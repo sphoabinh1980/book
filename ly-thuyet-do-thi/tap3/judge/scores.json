@@ -1,0 +1,3551 @@
+{
+ "BATTAY": {
+  "BATTAY": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.0,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC",
+    "st3_5:AC"
+   ]
+  },
+  "BATTAY_1mophong": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.0,
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE",
+    "st3_4:TLE",
+    "st3_5:TLE"
+   ]
+  },
+  "BATTAY_2tongchan": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.0,
+    0.0,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:WA",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:WA",
+    "st3_4:AC",
+    "st3_5:AC"
+   ]
+  },
+  "BATTAY_3int": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.0,
+    0.0,
+    0.02
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:AC",
+    "st3_4:AC",
+    "st3_5:WA"
+   ]
+  }
+ },
+ "NOITIENG": {
+  "NOITIENG": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.07,
+    0.07
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  },
+  "NOITIENG_1ngaytho": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE",
+    "st3_4:TLE"
+   ]
+  },
+  "NOITIENG_2khongloaitrung": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.01,
+    0.04,
+    0.05
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:WA",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  }
+ },
+ "TAMGIAC": {
+  "TAMGIAC": {
+   "points": [
+    20,
+    30,
+    50
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.07,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  },
+  "TAMGIAC_1bavonglap": {
+   "points": [
+    20,
+    30,
+    0
+   ],
+   "total": 50,
+   "time": [
+    0.01,
+    0.87,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA",
+    "st3_4:WA"
+   ]
+  },
+  "TAMGIAC_2bitset": {
+   "points": [
+    20,
+    30,
+    0
+   ],
+   "total": 50,
+   "time": [
+    0.01,
+    0.05,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA",
+    "st3_4:WA"
+   ]
+  },
+  "TAMGIAC_3theocanh": {
+   "points": [
+    20,
+    30,
+    0
+   ],
+   "total": 50,
+   "time": [
+    0.01,
+    0.17,
+    2
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:TLE",
+    "st3_4:TLE"
+   ]
+  }
+ },
+ "CHUYENDOI": {
+  "CHUYENDOI": {
+   "points": [
+    40,
+    60
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.25
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "CHUYENDOI_1haichieu": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.01,
+    0.22
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:WA",
+    "st1_3:AC",
+    "st1_4:WA",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st2_4:AC"
+   ]
+  }
+ },
+ "BANCHUNG": {
+  "BANCHUNG": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.27,
+    0.46,
+    0.12
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "BANCHUNG_1matran": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.22,
+    0.01,
+    0.0
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  },
+  "BANCHUNG_2nhiphan": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.32,
+    0.95,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:AC"
+   ]
+  }
+ },
+ "BANDO": {
+  "BANDO": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.04,
+    0.0,
+    0.14
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "BANDO_1demlai": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.04,
+    0.02,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  }
+ },
+ "DEMDAO": {
+  "DEMDAO": {
+   "points": [
+    40,
+    60
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.03
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "DEMDAO_1dequy": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    0.04
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:RTE",
+    "st2_2:RTE",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  }
+ },
+ "CAYKHONG": {
+  "CAYKHONG": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.04,
+    0.04,
+    0.03
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "CAYKHONG_1chiemcanh": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.03,
+    0.03,
+    0.02
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  }
+ },
+ "DUPHONG": {
+  "DUPHONG": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.04,
+    0.33
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "DUPHONG_1bfsmoimay": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:AC",
+    "st2_3:TLE",
+    "st3_1:TLE",
+    "st3_2:AC",
+    "st3_3:TLE"
+   ]
+  },
+  "DUPHONG_2dequy": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.01,
+    0.07,
+    0.32
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:RTE",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  }
+ },
+ "MADITUAN": {
+  "MADITUAN": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.02,
+    0.04,
+    0.05
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "MADITUAN_1bfsmoicau": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.06,
+    0.03,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  }
+ },
+ "CHAYTRON": {
+  "CHAYTRON": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.06,
+    0.01,
+    0.07
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st2_5:AC",
+    "st2_6:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC",
+    "st3_5:AC"
+   ]
+  },
+  "CHAYTRON_1bolua": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.05,
+    0.01,
+    0.05
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:WA",
+    "st2_4:WA",
+    "st2_5:WA",
+    "st2_6:WA",
+    "st3_1:AC",
+    "st3_2:WA",
+    "st3_3:WA",
+    "st3_4:WA",
+    "st3_5:WA"
+   ]
+  },
+  "CHAYTRON_2mophong": {
+   "points": [
+    0,
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    1,
+    0.02,
+    1
+   ],
+   "verdicts": [
+    "st1_1:TLE",
+    "st1_2:TLE",
+    "st1_3:TLE",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st2_5:AC",
+    "st2_6:AC",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE",
+    "st3_4:AC",
+    "st3_5:AC"
+   ]
+  },
+  "CHAYTRON_3cungluc": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.05,
+    0.01,
+    0.06
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:WA",
+    "st2_5:WA",
+    "st2_6:WA",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC",
+    "st3_5:WA"
+   ]
+  }
+ },
+ "CHIADOI": {
+  "CHIADOI": {
+   "points": [
+    20,
+    30,
+    20,
+    30
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.06,
+    0.03,
+    0.05
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st4_1:AC",
+    "st4_2:AC",
+    "st4_3:AC"
+   ]
+  },
+  "CHIADOI_1vetcan": {
+   "points": [
+    20,
+    0,
+    0,
+    0
+   ],
+   "total": 20,
+   "time": [
+    0.01,
+    0.03,
+    0.01,
+    0.02
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA",
+    "st4_1:WA",
+    "st4_2:WA",
+    "st4_3:WA"
+   ]
+  },
+  "CHIADOI_2thamlam": {
+   "points": [
+    20,
+    30,
+    0,
+    0
+   ],
+   "total": 50,
+   "time": [
+    0.0,
+    0.06,
+    0.01,
+    0.04
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:WA",
+    "st4_1:AC",
+    "st4_2:AC",
+    "st4_3:WA"
+   ]
+  },
+  "CHIADOI_3qhd": {
+   "points": [
+    20,
+    30,
+    20,
+    0
+   ],
+   "total": 70,
+   "time": [
+    0.0,
+    0.05,
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st4_1:AC",
+    "st4_2:TLE",
+    "st4_3:AC"
+   ]
+  }
+ },
+ "DUONGTRUONG": {
+  "DUONGTRUONG": {
+   "points": [
+    40,
+    60
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.13
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "DUONGTRUONG_1on2": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE",
+    "st2_4:TLE"
+   ]
+  },
+  "DUONGTRUONG_2int": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.01,
+    0.16
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:WA",
+    "st1_3:WA",
+    "st1_4:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st2_4:AC"
+   ]
+  }
+ },
+ "NUTGIAO": {
+  "NUTGIAO": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.19
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "NUTGIAO_1xoadinh": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.16,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE",
+    "st2_4:TLE"
+   ]
+  },
+  "NUTGIAO_2motduong": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.01,
+    0.14
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:WA",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "NUTGIAO_3demduong": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.15
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  }
+ },
+ "XEBUYT": {
+  "XEBUYT": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.17,
+    0.01,
+    0.17
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "XEBUYT_1bellman": {
+   "points": [
+    0,
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    1,
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:TLE",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:TLE",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "XEBUYT_2dingay": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.15,
+    0.01,
+    0.14
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st3_1:AC",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  }
+ },
+ "DOITIEN": {
+  "DOITIEN": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st1_5:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "DOITIEN_1vongngan": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st1_5:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "DOITIEN_2tumot": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st1_5:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:WA",
+    "st2_4:AC"
+   ]
+  }
+ },
+ "BAYRE": {
+  "BAYRE": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.0,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  },
+  "BAYRE_1dijkstra": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:AC",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  },
+  "BAYRE_2khongsaochep": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.02,
+    0.0,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:WA",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  }
+ },
+ "LICHTHIDAU": {
+  "LICHTHIDAU": {
+   "points": [
+    40,
+    60
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.02
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "LICHTHIDAU_1kahn": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  },
+  "LICHTHIDAU_2khongdung": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:TLE"
+   ]
+  }
+ },
+ "XEPHANG": {
+  "XEPHANG": {
+   "points": [
+    40,
+    40,
+    20
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.01,
+    0.06
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "XEPHANG_1floyd": {
+   "points": [
+    40,
+    40,
+    0
+   ],
+   "total": 80,
+   "time": [
+    0.0,
+    0.05,
+    1.05
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  },
+  "XEPHANG_2tructiep": {
+   "points": [
+    0,
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.0,
+    0.01,
+    0.1
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:WA",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:AC",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:AC"
+   ]
+  }
+ },
+ "XETAI": {
+  "XETAI": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.16
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "XETAI_1moicauhoi": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE"
+   ]
+  },
+  "XETAI_2caykhung": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.06
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  }
+ },
+ "DENGIAOTHONG": {
+  "DENGIAOTHONG": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.02,
+    0.0,
+    0.04
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  },
+  "DENGIAOTHONG_1khongcho": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.02,
+    0.0,
+    0.03
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:AC",
+    "st3_4:WA"
+   ]
+  },
+  "DENGIAOTHONG_2mophong": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.08,
+    0.0,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:TLE",
+    "st3_4:AC"
+   ]
+  }
+ },
+ "PHATUONG": {
+  "PHATUONG": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  },
+  "PHATUONG_1theoo": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    0.01,
+    0.0
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA",
+    "st3_4:AC"
+   ]
+  },
+  "PHATUONG_2thutuong": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.01,
+    0.73,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE",
+    "st3_4:TLE"
+   ]
+  }
+ },
+ "ROBOTXOAY": {
+  "ROBOTXOAY": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.09
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "ROBOTXOAY_1bfsthuong": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.0,
+    0.16
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:WA",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "ROBOTXOAY_2dijkstra": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.6
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  }
+ },
+ "THUDO": {
+  "THUDO": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.06
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "THUDO_1bellman": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:TLE"
+   ]
+  },
+  "THUDO_2ktrongcung": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.0,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:WA",
+    "st1_3:WA",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  }
+ },
+ "MANGBANBE": {
+  "MANGBANBE": {
+   "points": [
+    40,
+    60
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "MANGBANBE_1bfs": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.02,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE"
+   ]
+  },
+  "MANGBANBE_2dsuthuong": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:AC",
+    "st2_3:TLE"
+   ]
+  }
+ },
+ "PHACAU": {
+  "PHACAU": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.06
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "PHACAU_1demlai": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE"
+   ]
+  }
+ },
+ "HAIPHE": {
+  "HAIPHE": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.06,
+    0.01,
+    0.05
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "HAIPHE_1bfslai": {
+   "points": [
+    0,
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    1,
+    0.08,
+    1
+   ],
+   "verdicts": [
+    "st1_1:TLE",
+    "st1_2:TLE",
+    "st1_3:TLE",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  },
+  "HAIPHE_2dsuthuong": {
+   "points": [
+    0,
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.06,
+    0.01,
+    0.07
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:WA",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:WA"
+   ]
+  },
+  "HAIPHE_3dsu2n": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.07,
+    0.01,
+    0.06
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  }
+ },
+ "NOIMANG": {
+  "NOIMANG": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.09,
+    0.09
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "NOIMANG_1prim": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  },
+  "NOIMANG_2quencosan": {
+   "points": [
+    30,
+    30,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.01,
+    0.07,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  }
+ },
+ "ITDOC": {
+  "ITDOC": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.11,
+    0.15
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "ITDOC_1moicauhoi": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  },
+  "ITDOC_2dfscay": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.02,
+    1,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  }
+ },
+ "GIENGONG": {
+  "GIENGONG": {
+   "points": [
+    20,
+    30,
+    50
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.01,
+    0.09
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "GIENGONG_1vetcan": {
+   "points": [
+    20,
+    0,
+    0
+   ],
+   "total": 20,
+   "time": [
+    0.21,
+    0.01,
+    0.05
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  },
+  "GIENGONG_2motgieng": {
+   "points": [
+    0,
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.01,
+    0.01,
+    0.1
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:AC",
+    "st2_3:WA",
+    "st3_1:WA",
+    "st3_2:AC",
+    "st3_3:WA"
+   ]
+  },
+  "GIENGONG_3prim": {
+   "points": [
+    20,
+    30,
+    0
+   ],
+   "total": 50,
+   "time": [
+    0.0,
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  }
+ },
+ "HOHANG": {
+  "HOHANG": {
+   "points": [
+    40,
+    60
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.27
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "HOHANG_1leo": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE"
+   ]
+  },
+  "HOHANG_2dequy": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    0.25
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:RTE",
+    "st2_2:RTE",
+    "st2_3:AC"
+   ]
+  }
+ },
+ "CAPQUANG": {
+  "CAPQUANG": {
+   "points": [
+    30,
+    20,
+    50
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.12,
+    0.16
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "CAPQUANG_1dfs": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.02,
+    1,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  }
+ },
+ "CAPK": {
+  "CAPK": {
+   "points": [
+    20,
+    40,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.08,
+    0.47
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "CAPK_1leo": {
+   "points": [
+    20,
+    0,
+    0
+   ],
+   "total": 20,
+   "time": [
+    0.01,
+    2,
+    2
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  },
+  "CAPK_2nhaynhiphan": {
+   "points": [
+    20,
+    40,
+    0
+   ],
+   "total": 60,
+   "time": [
+    0.01,
+    0.14,
+    0.05
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:RTE",
+    "st3_2:RTE",
+    "st3_3:RTE"
+   ]
+  }
+ },
+ "XHGIAIDAU": {
+  "XHGIAIDAU": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.06
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "XHGIAIDAU_1hoanvi": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.0,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE",
+    "st2_4:TLE"
+   ]
+  },
+  "XHGIAIDAU_2dungsom": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.01,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:WA",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:WA",
+    "st2_4:AC"
+   ]
+  }
+ },
+ "XAYNHA": {
+  "XAYNHA": {
+   "points": [
+    40,
+    60
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.06
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "XAYNHA_1thuthem": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE"
+   ]
+  },
+  "XAYNHA_2motduong": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.01,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:WA",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  }
+ },
+ "DEMLOTRINH": {
+  "DEMLOTRINH": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.08,
+    0.01,
+    0.11
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "DEMLOTRINH_1theonhan": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.05,
+    0.01,
+    0.05
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  },
+  "DEMLOTRINH_2moichutrinh": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.05,
+    0.0,
+    0.06
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:WA",
+    "st3_3:AC"
+   ]
+  }
+ },
+ "HUYETMACH": {
+  "HUYETMACH": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.08,
+    0.09
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "HUYETMACH_1xoatung": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  },
+  "HUYETMACH_2chacha": {
+   "points": [
+    0,
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    0.07,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:WA",
+    "st1_3:WA",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  }
+ },
+ "BIENAP": {
+  "BIENAP": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "BIENAP_1xoatung": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE"
+   ]
+  },
+  "BIENAP_2quengoc": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.01,
+    0.11
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:WA",
+    "st1_3:WA",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  }
+ },
+ "CAPDUPHONG": {
+  "CAPDUPHONG": {
+   "points": [
+    20,
+    30,
+    50
+   ],
+   "total": 100,
+   "time": [
+    0.05,
+    0.0,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "CAPDUPHONG_1lacay": {
+   "points": [
+    20,
+    0,
+    0
+   ],
+   "total": 20,
+   "time": [
+    0.03,
+    0.01,
+    0.04
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  },
+  "CAPDUPHONG_2xoatung": {
+   "points": [
+    0,
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    1,
+    0.02,
+    1
+   ],
+   "verdicts": [
+    "st1_1:TLE",
+    "st1_2:TLE",
+    "st1_3:TLE",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  }
+ },
+ "TINDON": {
+  "TINDON": {
+   "points": [
+    30,
+    30,
+    40
+   ],
+   "total": 100,
+   "time": [
+    0.08,
+    0.01,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  },
+  "TINDON_1bacvao0": {
+   "points": [
+    30,
+    0,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.04,
+    0.01,
+    0.04
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA",
+    "st3_4:AC"
+   ]
+  },
+  "TINDON_2bacra": {
+   "points": [
+    0,
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.05,
+    0.0,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:WA",
+    "st1_3:WA",
+    "st2_1:WA",
+    "st2_2:AC",
+    "st2_3:WA",
+    "st3_1:WA",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  }
+ },
+ "KHOBAU": {
+  "KHOBAU": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.13,
+    0.09
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "KHOBAU_1dag": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.06,
+    0.1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  },
+  "KHOBAU_2int": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.08,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:WA",
+    "st1_3:WA",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  }
+ },
+ "TUYENCHON": {
+  "TUYENCHON": {
+   "points": [
+    20,
+    80
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.09
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "TUYENCHON_1vetcan": {
+   "points": [
+    20,
+    0
+   ],
+   "total": 20,
+   "time": [
+    0.01,
+    0.02
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:AC",
+    "st2_3:WA"
+   ]
+  },
+  "TUYENCHON_2nguocthutu": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.0,
+    0.05
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:AC",
+    "st1_3:WA",
+    "st2_1:WA",
+    "st2_2:AC",
+    "st2_3:WA"
+   ]
+  }
+ },
+ "NETVE": {
+  "NETVE": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.09,
+    0.1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "NETVE_1chiembac": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.05,
+    0.08
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:AC",
+    "st2_3:WA"
+   ]
+  },
+  "NETVE_2khuyen": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.09,
+    0.07
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  }
+ },
+ "DOMINO": {
+  "DOMINO": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.03
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC"
+   ]
+  },
+  "DOMINO_1vetcan": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE",
+    "st2_4:TLE"
+   ]
+  },
+  "DOMINO_2quenlienthong": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.0,
+    0.04
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:WA",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:WA",
+    "st2_4:AC"
+   ]
+  }
+ },
+ "KETSAT": {
+  "KETSAT": {
+   "points": [
+    20,
+    30,
+    50
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.0,
+    0.03
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC",
+    "st3_4:AC"
+   ]
+  },
+  "KETSAT_1quaylui": {
+   "points": [
+    20,
+    30,
+    0
+   ],
+   "total": 50,
+   "time": [
+    0.01,
+    0.01,
+    0.02
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:RTE",
+    "st3_2:RTE",
+    "st3_3:RTE",
+    "st3_4:RTE"
+   ]
+  },
+  "KETSAT_2dequy": {
+   "points": [
+    20,
+    30,
+    0
+   ],
+   "total": 50,
+   "time": [
+    0.01,
+    0.01,
+    0.03
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st2_4:AC",
+    "st3_1:RTE",
+    "st3_2:RTE",
+    "st3_3:RTE",
+    "st3_4:RTE"
+   ]
+  }
+ },
+ "XEPPHONG": {
+  "XEPPHONG": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.02
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "XEPPHONG_1vetcan": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.0,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:AC"
+   ]
+  },
+  "XEPPHONG_2thamlam": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:WA",
+    "st1_3:AC",
+    "st1_4:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  }
+ },
+ "DATDOMINO": {
+  "DATDOMINO": {
+   "points": [
+    20,
+    30,
+    50
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.0,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "DATDOMINO_1congthuc": {
+   "points": [
+    20,
+    0,
+    0
+   ],
+   "total": 20,
+   "time": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA",
+    "st3_1:WA",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  },
+  "DATDOMINO_2bitmask": {
+   "points": [
+    0,
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "verdicts": [
+    "st1_1:RTE",
+    "st1_2:RTE",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:RTE",
+    "st3_2:RTE",
+    "st3_3:RTE"
+   ]
+  }
+ },
+ "CAMERA": {
+  "CAMERA": {
+   "points": [
+    20,
+    30,
+    50
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.02,
+    0.03
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:AC",
+    "st3_3:AC"
+   ]
+  },
+  "CAMERA_1vetcan": {
+   "points": [
+    20,
+    0,
+    0
+   ],
+   "total": 20,
+   "time": [
+    0.01,
+    1,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE",
+    "st3_1:TLE",
+    "st3_2:TLE",
+    "st3_3:TLE"
+   ]
+  },
+  "CAMERA_2chiinso": {
+   "points": [
+    0,
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.0,
+    0.02,
+    0.02
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC",
+    "st3_1:AC",
+    "st3_2:WA",
+    "st3_3:WA"
+   ]
+  }
+ },
+ "DUONGONG": {
+  "DUONGONG": {
+   "points": [
+    40,
+    60
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "DUONGONG_1baohoa": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  },
+  "DUONGONG_2snhieunhat": {
+   "points": [
+    40,
+    0
+   ],
+   "total": 40,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  }
+ },
+ "ROINHAU": {
+  "ROINHAU": {
+   "points": [
+    40,
+    60
+   ],
+   "total": 100,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "ROINHAU_1thamlam": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.08,
+    0.07
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:AC",
+    "st1_3:WA",
+    "st2_1:WA",
+    "st2_2:AC",
+    "st2_3:WA"
+   ]
+  },
+  "ROINHAU_2gopsongsong": {
+   "points": [
+    0,
+    0
+   ],
+   "total": 0,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:WA",
+    "st1_2:WA",
+    "st1_3:WA",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  }
+ },
+ "TRUCNHAT": {
+  "TRUCNHAT": {
+   "points": [
+    30,
+    70
+   ],
+   "total": 100,
+   "time": [
+    0.0,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:AC",
+    "st2_2:AC",
+    "st2_3:AC"
+   ]
+  },
+  "TRUCNHAT_1vetcan": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    1
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:TLE",
+    "st2_2:TLE",
+    "st2_3:TLE"
+   ]
+  },
+  "TRUCNHAT_2thamlam": {
+   "points": [
+    30,
+    0
+   ],
+   "total": 30,
+   "time": [
+    0.01,
+    0.01
+   ],
+   "verdicts": [
+    "st1_1:AC",
+    "st1_2:AC",
+    "st1_3:AC",
+    "st2_1:WA",
+    "st2_2:WA",
+    "st2_3:WA"
+   ]
+  }
+ }
+}

@@ -1,7 +1,7 @@
 # Đối chiếu lời giải tham khảo (sol/CODE) với chương trình trâu trên test ngẫu nhiên nhỏ.
 import sys, random, subprocess, importlib, os
 HERE = os.path.dirname(os.path.abspath(__file__))
-SOL = os.path.join(HERE, '..', 'sol')
+SOL = os.environ.get('SOLDIR', os.path.join(HERE, '..', 'sol'))
 def run(code, inp):
     r = subprocess.run([os.path.join(SOL, code)], input=inp, capture_output=True, text=True, timeout=20, cwd=HERE)
     if r.returncode != 0: raise RuntimeError('crash ' + r.stderr)
