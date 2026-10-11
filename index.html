@@ -4,293 +4,347 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HVTOJ Books - Sách Quy Hoạch Động</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-green: #00b14f; /* Màu xanh lá chủ đạo từ ảnh 3 */
-            --header-dark: #00893d; /* Màu viền đậm hơn */
+            --primary-green: #00b14f;
+            --header-dark: #00893d;
         }
-        body { font-family: Arial, sans-serif; background-color: #f5f5f5; color: #333; }
+        body { 
+            font-family: 'Roboto', 'Inter', -apple-system, sans-serif;
+            background-color: #f5f5f5; 
+            color: #333; 
+            -webkit-font-smoothing: antialiased; 
+        }
         
-        /* Header styles */
         .top-header { background-color: var(--primary-green); color: white; padding: 15px 0; }
-        .logo-text { font-size: 28px; font-weight: bold; color: white; text-decoration: none; display: flex; align-items: center;}
+        .logo-text { font-size: 28px; font-weight: 700; color: white; text-decoration: none; display: flex; align-items: center;}
         .search-bar { display: flex; flex-grow: 1; max-width: 600px; margin: 0 30px; }
-        .search-input { width: 100%; padding: 10px 15px; border: none; outline: none; font-size: 14px; border-radius: 4px 0 0 4px; }
-        .search-btn { background-color: #f1f1f1; color: #333; border: none; padding: 10px 20px; cursor: pointer; border-radius: 0 4px 4px 0; font-size: 14px; }
+        .search-input { width: 100%; padding: 10px 15px; border: none; outline: none; font-size: 14px; border-radius: 4px 0 0 4px; font-family: inherit;}
+        .search-btn { background-color: #f1f1f1; color: #333; border: none; padding: 10px 20px; cursor: pointer; border-radius: 0 4px 4px 0; font-size: 14px; font-weight: 500; transition: background 0.2s;}
         .search-btn:hover { background-color: #e2e2e2; }
         
-        .header-links { display: flex; gap: 20px; align-items: center; font-size: 14px; }
-        .header-links a { color: white; text-decoration: none; }
-        .header-links a:hover { text-decoration: underline; }
-        .cart-icon { display: flex; align-items: center; gap: 5px; }
+        .header-links { display: flex; gap: 20px; align-items: center; font-size: 14px; font-weight: 500;}
+        .header-links a { color: white; text-decoration: none; transition: opacity 0.2s; cursor: pointer;}
+        .header-links a:hover { opacity: 0.8; }
 
-        /* Navigation / Categories bar */
         .nav-bar { background-color: white; border-bottom: 2px solid var(--primary-green); display: flex; justify-content: space-between; align-items: center; padding-right: 20px;}
-        
-        .category-menu-btn { 
-            background-color: transparent; 
-            color: #333; 
-            padding: 12px 20px; 
-            font-weight: bold; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px;
-            cursor: pointer;
-            border: none;
-            font-size: 15px;
-        }
-        .hotline { font-weight: bold; color: var(--primary-green); font-size: 15px; }
-        .hotline i { margin-right: 5px; }
+        .category-menu-btn { background-color: transparent; color: #333; padding: 12px 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; cursor: pointer; border: none; font-size: 15px; transition: color 0.2s;}
+        .category-menu-btn:hover { color: var(--primary-green); }
+        .hotline { font-weight: 700; color: var(--primary-green); font-size: 15px; }
 
-        /* Main Content Layout */
         .main-container { max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 flex gap-6; max-width: 1200px; margin: 20px auto; display: flex; gap: 20px; }
         
-        /* Sidebar (Left) */
-        .sidebar { width: 250px; background: white; border: 1px solid #eee; flex-shrink: 0; align-self: flex-start;}
+        .sidebar { width: 250px; background: white; border: 1px solid #eee; flex-shrink: 0; align-self: flex-start; transition: all 0.3s ease;}
         .category-list { list-style: none; padding: 0; margin: 0; }
         .category-list li { border-bottom: 1px solid #f1f1f1; }
-        .category-list li a { 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 12px 15px; 
-            color: #333; 
-            text-decoration: none; 
-            font-size: 14px;
-            transition: color 0.2s;
-        }
+        .category-list li a { display: flex; justify-content: space-between; padding: 12px 15px; color: #333; text-decoration: none; font-size: 14px; font-weight: 400; transition: color 0.2s; cursor: pointer;}
         .category-list li a:hover { color: var(--primary-green); }
-        .category-list li a i { font-size: 10px; color: #999; margin-top: 4px;}
-        .category-list li.active > a { font-weight: bold; color: #333; }
+        .category-list li.active > a { font-weight: 700; color: #333; }
         
-        /* Main Banner Area (Right) */
         .content-area { flex-grow: 1; overflow: hidden; }
         
-        /* Banner Slider Style */
         .banner-slider { width: 100%; position: relative; background: white; border: 1px solid #eee; margin-bottom: 20px;}
-        .banner-slider img { width: 100%; height: auto; display: block; }
         .slider-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(200,200,200,0.8); cursor: pointer; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(200,200,200,0.8); cursor: pointer; transition: background 0.3s;}
         .dot.active { background: var(--primary-green); }
-        .slider-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; width: 30px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
-        .slider-nav.prev { left: 0; }
-        .slider-nav.next { right: 0; }
-
-        /* Section Title (Green Tab) */
-        .section-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 2px solid #ddd;
-            margin-bottom: 20px;
-            background: #f1f1f1;
-        }
-        .section-title { 
-            background-color: var(--primary-green); 
-            color: white; 
-            padding: 10px 30px 10px 20px; 
-            font-weight: bold;
-            font-size: 16px;
-            position: relative;
-            display: inline-block;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            right: -15px;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-top: 20px solid transparent;
-            border-bottom: 20px solid transparent;
-            border-left: 15px solid var(--primary-green);
-        }
-        .view-all { font-size: 13px; color: #666; text-decoration: none; padding-right: 10px;}
+        
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ddd; margin-bottom: 20px; background: #f1f1f1; }
+        .section-title { background-color: var(--primary-green); color: white; padding: 10px 30px 10px 20px; font-weight: 700; font-size: 16px; position: relative; display: inline-block; text-transform: uppercase; }
+        .section-title::after { content: ''; position: absolute; right: -15px; top: 0; width: 0; height: 0; border-top: 20px solid transparent; border-bottom: 20px solid transparent; border-left: 15px solid var(--primary-green); }
+        .view-all { font-size: 13px; color: #666; text-decoration: none; padding-right: 10px; font-weight: 500; cursor: pointer; transition: color 0.2s;}
         .view-all:hover { color: var(--primary-green); }
 
-        /* Book Grid Layout */
-        .book-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; position: relative; padding: 0 30px;}
-        .book-card { background: white; padding: 15px; text-align: center; position: relative; border: 1px solid transparent; transition: border 0.2s;}
-        .book-card:hover { border: 1px solid var(--primary-green); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        /* Sửa layout phần sách mới để cuộn mượt */
+        .book-slider-container { position: relative; padding: 0 30px; margin-bottom: 30px; }
+        .book-grid-scroll { display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 15px; padding-bottom: 10px; scrollbar-width: none; /* Firefox */ }
+        .book-grid-scroll::-webkit-scrollbar { display: none; /* Chrome */ }
+        .book-card { background: white; padding: 15px; text-align: center; position: relative; border: 1px solid transparent; transition: all 0.2s; min-width: calc(25% - 12px); flex-shrink: 0; cursor: pointer;}
+        .book-card:hover { border: 1px solid var(--primary-green); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px);}
         
-        .book-cover { width: 100%; height: 220px; object-fit: contain; margin-bottom: 10px; }
-        .book-title { font-size: 14px; color: #333; margin-bottom: 5px; height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-align: left;}
+        .book-title { font-size: 14px; color: #333; margin-bottom: 5px; height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-align: left; font-weight: 500; line-height: 1.4; transition: color 0.2s;}
+        .book-card:hover .book-title { color: var(--primary-green); }
         
-        /* Discount Tag */
-        .discount-badge { position: absolute; top: 10px; right: 10px; background-color: #ffb800; color: white; padding: 2px 6px; font-size: 12px; font-weight: bold; border-radius: 2px; }
+        .discount-badge { position: absolute; top: 10px; right: 10px; background-color: #ffb800; color: white; padding: 2px 6px; font-size: 12px; font-weight: 700; border-radius: 2px; }
 
-        /* Carousel Arrows for Books */
-        .grid-arrow { position: absolute; top: 40%; transform: translateY(-50%); font-size: 20px; color: #666; cursor: pointer; background: transparent; border: none; padding: 10px;}
-        .grid-arrow:hover { color: var(--primary-green); }
+        .grid-arrow { position: absolute; top: 40%; transform: translateY(-50%); font-size: 20px; color: #666; cursor: pointer; background: white; border: 1px solid #ddd; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+        .grid-arrow:hover { color: var(--primary-green); border-color: var(--primary-green); }
         .grid-arrow.left { left: 0; }
         .grid-arrow.right { right: 0; }
 
-        /* Preview iFrame Container */
         .preview-wrapper { width: 100%; height: 500px; border: 1px solid #ddd; margin-bottom: 20px; background: white;}
+        
+        .buy-btn { transition: all 0.2s; transform: scale(1); }
+        .buy-btn:active { transform: scale(0.95); }
+
+        /* Nút giỏ hàng nổi bật */
+        .cart-badge { background: #ff3b30; color: white; font-size: 11px; padding: 2px 6px; border-radius: 10px; position: absolute; top: -8px; right: -10px; font-weight: bold;}
     </style>
 </head>
 <body>
 
-    <!-- Top Header (Green Bar) -->
+    <!-- Top Header -->
     <div class="top-header">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center max-w-[1200px] m-auto">
-            <a href="#" class="logo-text">
+            <a href="#" class="logo-text" onclick="showToast('Đang tải lại trang chủ...')">
                 <i class="fas fa-book-reader mr-2"></i> HVTOJ
             </a>
             
             <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Tìm kiếm tựa sách, tác giả...">
-                <button class="search-btn">Tìm</button>
+                <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm tựa sách, tác giả...">
+                <button class="search-btn" onclick="handleSearch()">Tìm</button>
             </div>
             
-            <div class="header-links">
-                <a href="#">Tài khoản của bạn <i class="fas fa-caret-down ml-1"></i></a>
-                <a href="#" class="cart-icon">Giỏ hàng (0) <i class="fas fa-caret-down ml-1"></i></a>
+            <div class="header-links relative">
+                <a onclick="showToast('Tính năng đăng nhập đang được cập nhật!')">Tài khoản <i class="fas fa-caret-down ml-1"></i></a>
+                <a onclick="showCart()" class="cart-icon relative ml-4">
+                    Giỏ hàng <i class="fas fa-shopping-cart ml-1"></i>
+                    <span id="cartCount" class="cart-badge hidden">0</span>
+                </a>
             </div>
         </div>
     </div>
 
-    <!-- Navigation Bar -->
     <div class="bg-white border-b-2 border-[#00b14f]">
         <div class="nav-bar max-w-[1200px] mx-auto">
-            <button class="category-menu-btn">
+            <button class="category-menu-btn" onclick="toggleSidebar()">
                 <i class="fas fa-bars"></i> DANH MỤC SẢN PHẨM
             </button>
-            <div class="hotline">
+            <div class="hotline" onclick="showToast('Đang gọi 0938 424 289...')" style="cursor: pointer;">
                 <i class="fas fa-phone-alt"></i> Hotline: 0938 424 289
             </div>
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-container">
-        <!-- Sidebar Categories -->
-        <div class="sidebar">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
             <ul class="category-list">
-                <li class="active"><a href="#">Nổi bật <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Sách Tin Học - Lập Trình <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Sách kinh tế <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Văn học nước ngoài <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Văn học trong nước <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Sách kĩ năng sống <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Sách tuổi teen <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Học ngoại ngữ <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Sách thiếu nhi <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Thường thức đời sống <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Sách chuyên ngành <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Văn Phòng Phẩm - Quà Tặng <i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="#">Công ty phát hành <i class="fas fa-chevron-right"></i></a></li>
+                <li class="active"><a onclick="showToast('Đang tải danh mục: Nổi bật')">Nổi bật <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục: Sách Tin Học')">Sách Tin Học - Lập Trình <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục: Sách kinh tế')">Sách kinh tế <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục: Văn học nước ngoài')">Văn học nước ngoài <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục: Văn học trong nước')">Văn học trong nước <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục: Kỹ năng sống')">Sách kĩ năng sống <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục: Sách tuổi teen')">Sách tuổi teen <i class="fas fa-chevron-right"></i></a></li>
             </ul>
         </div>
 
-        <!-- Main Content Area -->
         <div class="content-area">
             
-            <!-- Hero Banner (Text description for QHD) -->
-            <div class="banner-slider p-8 bg-gradient-to-r from-green-50 to-emerald-100 flex items-center justify-between">
+            <!-- Banner tương tác -->
+            <div class="banner-slider p-8 bg-gradient-to-r from-green-50 to-emerald-100 flex items-center justify-between transition-all duration-500" id="mainBanner">
                 <div class="max-w-lg">
                     <div class="text-sm font-bold text-green-600 mb-2 uppercase tracking-wide">Chuyên đề bồi dưỡng HSG</div>
-                    <h1 class="text-3xl font-extrabold text-gray-900 mb-4 leading-tight">QUY HOẠCH ĐỘNG<br/><span class="text-green-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-4 leading-tight">QUY HOẠCH ĐỘNG<br/><span class="text-green-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
                     <p class="text-gray-600 mb-6 text-sm italic">"Người không nhớ quá khứ sẽ phải lặp lại nó. Code của em cũng vậy thôi..."</p>
                     <p class="font-bold text-gray-800"><i class="fas fa-pen-nib text-green-600 mr-2"></i>Tác giả: Lê Thành Nam</p>
                 </div>
                 <div class="w-1/3 flex justify-center">
-                    <i class="fas fa-laptop-code text-8xl text-green-700 opacity-20"></i>
+                    <i class="fas fa-laptop-code text-8xl text-green-700 opacity-20 transform hover:scale-110 transition-transform duration-300"></i>
                 </div>
                 
                 <div class="slider-dots">
-                    <div class="dot active"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
+                    <div class="dot active" onclick="changeBanner(0)"></div>
+                    <div class="dot" onclick="changeBanner(1)"></div>
+                    <div class="dot" onclick="changeBanner(2)"></div>
                 </div>
             </div>
 
-            <!-- Book Section: Sách Mới (Preview QHD Books) -->
             <div class="section-header">
                 <div class="section-title">Đọc Thử Bộ Sách Quy Hoạch Động</div>
             </div>
 
-            <!-- Preview Frames Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-                <!-- Book 1 -->
+                <!-- Tập 1 -->
                 <div>
-                    <h3 class="text-center font-bold text-gray-800 mb-2 text-sm">TẬP 1: LÝ THUYẾT</h3>
+                    <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 1: LÝ THUYẾT</h3>
                     <div class="preview-wrapper">
                         <iframe src="https://drive.google.com/file/d/1qYnLIlwhtUBEdhA6Pe1dNmkNWulCgBKV/preview" width="100%" height="100%" frameborder="0"></iframe>
                     </div>
                     <div class="text-center">
-                        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 1</button>
+                        <button class="buy-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Tập 1: Lý Thuyết')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 1</button>
                     </div>
                 </div>
 
-                <!-- Book 2 -->
+                <!-- Tập 2 -->
                 <div>
-                    <h3 class="text-center font-bold text-gray-800 mb-2 text-sm">TẬP 2: BÀI TẬP</h3>
+                    <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 2: BÀI TẬP</h3>
                     <div class="preview-wrapper">
                         <iframe src="https://drive.google.com/file/d/1p01zxnWoO7Px16X6bNrc-OnN97h7u_vA/preview" width="100%" height="100%" frameborder="0"></iframe>
                     </div>
                     <div class="text-center">
-                        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 2</button>
+                        <button class="buy-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Tập 2: Bài Tập')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 2</button>
                     </div>
                 </div>
 
-                <!-- Book 3 -->
+                <!-- Tập 3 -->
                 <div>
-                    <h3 class="text-center font-bold text-gray-800 mb-2 text-sm">TẬP 3: HƯỚNG DẪN GIẢI</h3>
+                    <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 3: HƯỚNG DẪN GIẢI</h3>
                     <div class="preview-wrapper">
                         <iframe src="https://drive.google.com/file/d/1xCVa9W2ZJRn6D-dKbpOtoTdwYSYvn9Jt/preview" width="100%" height="100%" frameborder="0"></iframe>
                     </div>
                     <div class="text-center">
-                        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 3</button>
+                        <button class="buy-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Tập 3: Hướng Dẫn Giải')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 3</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Other Books Section (Mockup based on the image style) -->
             <div class="section-header mt-8">
-                <div class="section-title">Sách Mới</div>
-                <a href="#" class="view-all">Xem tất cả</a>
+                <div class="section-title">Sách Mới Khác</div>
+                <a onclick="showToast('Đang tải thêm danh sách...')" class="view-all">Xem tất cả <i class="fas fa-angle-right"></i></a>
             </div>
 
-            <div class="book-grid">
-                <button class="grid-arrow left"><i class="fas fa-chevron-left"></i></button>
-                <button class="grid-arrow right"><i class="fas fa-chevron-right"></i></button>
+            <!-- Scrollable Grid Container -->
+            <div class="book-slider-container">
+                <button class="grid-arrow left" onclick="scrollGrid(-300)"><i class="fas fa-chevron-left"></i></button>
+                <button class="grid-arrow right" onclick="scrollGrid(300)"><i class="fas fa-chevron-right"></i></button>
                 
-                <!-- Dummy Book 1 -->
-                <div class="book-card border border-gray-200">
-                    <div class="discount-badge">-10%</div>
-                    <div class="h-48 bg-gray-200 mb-3 flex items-center justify-center text-gray-400"><i class="fas fa-image text-3xl"></i></div>
-                    <div class="book-title hover:text-green-600 cursor-pointer">Xuyên Thành Phản Diện</div>
-                </div>
-                
-                <!-- Dummy Book 2 -->
-                <div class="book-card border border-gray-200">
-                    <div class="discount-badge">-10%</div>
-                    <div class="h-48 bg-gray-200 mb-3 flex items-center justify-center text-gray-400"><i class="fas fa-image text-3xl"></i></div>
-                    <div class="book-title hover:text-green-600 cursor-pointer">Á Nô - Tập 1 (Bản Thường)</div>
-                </div>
+                <div class="book-grid-scroll" id="bookGrid">
+                    
+                    <div class="book-card" onclick="showToast('Đang mở trang chi tiết: Xuyên Thành Phản Diện')">
+                        <div class="discount-badge">-10%</div>
+                        <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-book text-3xl"></i></div>
+                        <div class="book-title">Xuyên Thành Phản Diện (Tiểu Thuyết)</div>
+                    </div>
+                    
+                    <div class="book-card" onclick="showToast('Đang mở trang chi tiết: Á Nô')">
+                        <div class="discount-badge">-15%</div>
+                        <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-book text-3xl"></i></div>
+                        <div class="book-title">Á Nô - Tập 1 (Bản Thường)</div>
+                    </div>
 
-                <!-- Dummy Book 3 -->
-                <div class="book-card border border-gray-200">
-                    <div class="discount-badge">-20%</div>
-                    <div class="h-48 bg-gray-200 mb-3 flex items-center justify-center text-gray-400"><i class="fas fa-image text-3xl"></i></div>
-                    <div class="book-title hover:text-green-600 cursor-pointer">Khế Tử - Tập 3.4 (Bản Thường)</div>
-                </div>
+                    <div class="book-card" onclick="showToast('Đang mở trang chi tiết: Khế Tử')">
+                        <div class="discount-badge">-20%</div>
+                        <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-book text-3xl"></i></div>
+                        <div class="book-title">Khế Tử - Tập 3.4 (Bản Đặc Biệt)</div>
+                    </div>
 
-                <!-- Dummy Book 4 -->
-                <div class="book-card border border-gray-200">
-                    <div class="discount-badge">-20%</div>
-                    <div class="h-48 bg-gray-200 mb-3 flex items-center justify-center text-gray-400"><i class="fas fa-image text-3xl"></i></div>
-                    <div class="book-title hover:text-green-600 cursor-pointer">Thiên Quan Tứ Phúc</div>
+                    <div class="book-card" onclick="showToast('Đang mở trang chi tiết: Thiên Quan Tứ Phúc')">
+                        <div class="discount-badge">-5%</div>
+                        <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-book text-3xl"></i></div>
+                        <div class="book-title">Thiên Quan Tứ Phúc - Tập Mới Nhất</div>
+                    </div>
+
+                    <div class="book-card" onclick="showToast('Đang mở trang chi tiết: Cấu Trúc Dữ Liệu')">
+                        <div class="discount-badge">-25%</div>
+                        <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-code text-3xl"></i></div>
+                        <div class="book-title">Cấu Trúc Dữ Liệu & Giải Thuật Thực Hành</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="text-center text-gray-500 mt-4 mb-10">Nhà sách HVTOJ</div>
+            <div class="text-center text-gray-500 mt-4 mb-10 font-medium">Nhà sách HVTOJ © 2026</div>
         </div>
     </div>
 
+    <!-- Script tạo độ tương tác động (Logic JS) -->
+    <script>
+        // --- Hệ thống thông báo (Toast/Popup) ---
+        function showToast(message, isSuccess = false) {
+            // Xóa thông báo cũ nếu có
+            const oldToast = document.getElementById('toast');
+            if(oldToast) oldToast.remove();
+
+            // Tạo khung thông báo mới
+            const toast = document.createElement('div');
+            toast.id = 'toast';
+            toast.className = `fixed bottom-5 right-5 text-white px-6 py-3 rounded shadow-xl z-50 transform transition-all duration-300 translate-y-10 opacity-0 flex items-center gap-3 ${isSuccess ? 'bg-green-600' : 'bg-gray-800'}`;
+            
+            toast.innerHTML = `
+                <i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-info-circle'} text-xl"></i>
+                <span class="font-medium">${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Hiệu ứng trượt lên
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            }, 50);
+            
+            // Tự động tắt sau 3 giây
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // --- Logic Giỏ Hàng ---
+        let cartTotal = 0;
+        function addToCart(bookName) {
+            cartTotal++;
+            const badge = document.getElementById('cartCount');
+            badge.textContent = cartTotal;
+            badge.classList.remove('hidden');
+            
+            // Thêm hiệu ứng nảy (bounce) cho giỏ hàng
+            badge.classList.add('animate-bounce');
+            setTimeout(() => badge.classList.remove('animate-bounce'), 1000);
+
+            showToast(`Đã thêm "${bookName}" vào giỏ hàng!`, true);
+        }
+
+        function showCart() {
+            if(cartTotal === 0) {
+                showToast("Giỏ hàng của bạn đang trống!");
+            } else {
+                showToast(`Bạn đang có ${cartTotal} sản phẩm trong giỏ hàng. Tính năng thanh toán đang cập nhật.`);
+            }
+        }
+
+        // --- Tìm kiếm ---
+        function handleSearch() {
+            const val = document.getElementById('searchInput').value.trim();
+            if(val) {
+                showToast(`Đang tìm kiếm sách: "${val}"...`);
+            } else {
+                showToast("Vui lòng nhập từ khóa tìm kiếm!");
+                document.getElementById('searchInput').focus();
+            }
+        }
+        // Cho phép ấn Enter để tìm kiếm
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') handleSearch();
+        });
+
+        // --- Thanh trượt Sách Mới (Carousel) ---
+        function scrollGrid(amount) {
+            const grid = document.getElementById('bookGrid');
+            grid.scrollBy({ left: amount, behavior: 'smooth' });
+        }
+
+        // --- Toggle Sidebar Danh mục ---
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            if(sidebar.style.display === 'none') {
+                sidebar.style.display = 'block';
+            } else {
+                sidebar.style.display = 'none';
+            }
+        }
+
+        // --- Logic Banner Tương tác ---
+        const colors = [
+            'from-green-50 to-emerald-100',
+            'from-blue-50 to-cyan-100',
+            'from-amber-50 to-yellow-100'
+        ];
+        function changeBanner(index) {
+            const banner = document.getElementById('mainBanner');
+            const dots = document.querySelectorAll('.dot');
+            
+            // Xóa tất cả màu nền cũ và trạng thái active
+            banner.className = `banner-slider p-8 bg-gradient-to-r ${colors[index]} flex items-center justify-between transition-all duration-500`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Active dot mới
+            dots[index].classList.add('active');
+        }
+    </script>
 </body>
 </html>
