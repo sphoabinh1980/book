@@ -1,0 +1,5 @@
+# file thực thi biên dịch từ sol/*.cpp
+sol/*
+!sol/*.cpp
+!sol/*.h
+__pycache__/
