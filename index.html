@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HVTOJ Books - Sách Toán Học Và Chống Trâu</title>
+    <title>HVTOJ Books - Nhà Sách Chuyên Khảo Tin Học & Toán Học</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -12,6 +12,7 @@
     <style>
         :root {
             --primary-green: #00b14f;
+            --primary-blue: #2563eb;
             --header-dark: #00893d;
         }
         body { 
@@ -21,7 +22,10 @@
             -webkit-font-smoothing: antialiased; 
         }
         
-        .top-header { background-color: var(--primary-green); color: white; padding: 15px 0; }
+        .top-header { color: white; padding: 15px 0; transition: background-color 0.5s ease; }
+        .theme-green .top-header { background-color: var(--primary-green); }
+        .theme-blue .top-header { background-color: var(--primary-blue); }
+        
         .logo-text { font-size: 28px; font-weight: 700; color: white; text-decoration: none; display: flex; align-items: center;}
         .search-bar { display: flex; flex-grow: 1; max-width: 600px; margin: 0 30px; }
         .search-input { width: 100%; padding: 10px 15px; border: none; outline: none; font-size: 14px; border-radius: 4px 0 0 4px; font-family: inherit;}
@@ -32,10 +36,18 @@
         .header-links a { color: white; text-decoration: none; transition: opacity 0.2s; cursor: pointer;}
         .header-links a:hover { opacity: 0.8; }
 
-        .nav-bar { background-color: white; border-bottom: 2px solid var(--primary-green); display: flex; justify-content: space-between; align-items: center; padding-right: 20px;}
+        .nav-bar { background-color: white; border-bottom: 2px solid; display: flex; justify-content: space-between; align-items: center; padding-right: 20px; transition: border-color 0.5s ease;}
+        .theme-green .nav-bar { border-color: var(--primary-green); }
+        .theme-blue .nav-bar { border-color: var(--primary-blue); }
+        
         .category-menu-btn { background-color: transparent; color: #333; padding: 12px 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; cursor: pointer; border: none; font-size: 15px; transition: color 0.2s;}
-        .category-menu-btn:hover { color: var(--primary-green); }
-        .hotline { font-weight: 700; color: var(--primary-green); font-size: 15px; }
+        
+        .theme-green .category-menu-btn:hover { color: var(--primary-green); }
+        .theme-blue .category-menu-btn:hover { color: var(--primary-blue); }
+        
+        .hotline { font-weight: 700; font-size: 15px; transition: color 0.5s ease;}
+        .theme-green .hotline { color: var(--primary-green); }
+        .theme-blue .hotline { color: var(--primary-blue); }
 
         .main-container { max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 flex gap-6; max-width: 1200px; margin: 20px auto; display: flex; gap: 20px; }
         
@@ -43,35 +55,64 @@
         .category-list { list-style: none; padding: 0; margin: 0; }
         .category-list li { border-bottom: 1px solid #f1f1f1; }
         .category-list li a { display: flex; justify-content: space-between; padding: 12px 15px; color: #333; text-decoration: none; font-size: 14px; font-weight: 400; transition: color 0.2s; cursor: pointer;}
-        .category-list li a:hover { color: var(--primary-green); }
-        .category-list li.active > a { font-weight: 700; color: #333; }
+        
+        .theme-green .category-list li a:hover, .theme-green .category-list li.active > a { color: var(--primary-green); font-weight: 700; }
+        .theme-blue .category-list li a:hover, .theme-blue .category-list li.active > a { color: var(--primary-blue); font-weight: 700; }
         
         .content-area { flex-grow: 1; overflow: hidden; }
         
+        /* Chuyển trang (Tab System) */
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .banner-slider { width: 100%; position: relative; background: white; border: 1px solid #eee; margin-bottom: 20px;}
         .slider-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
         .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(200,200,200,0.8); cursor: pointer; transition: background 0.3s;}
-        .dot.active { background: var(--primary-green); }
+        
+        .theme-green .dot.active { background: var(--primary-green); }
+        .theme-blue .dot.active { background: var(--primary-blue); }
         
         .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ddd; margin-bottom: 20px; background: #f1f1f1; }
-        .section-title { background-color: var(--primary-green); color: white; padding: 10px 30px 10px 20px; font-weight: 700; font-size: 16px; position: relative; display: inline-block; text-transform: uppercase; }
-        .section-title::after { content: ''; position: absolute; right: -15px; top: 0; width: 0; height: 0; border-top: 20px solid transparent; border-bottom: 20px solid transparent; border-left: 15px solid var(--primary-green); }
+        .section-title { color: white; padding: 10px 30px 10px 20px; font-weight: 700; font-size: 16px; position: relative; display: inline-block; text-transform: uppercase; transition: background-color 0.5s ease;}
+        
+        .theme-green .section-title { background-color: var(--primary-green); }
+        .theme-blue .section-title { background-color: var(--primary-blue); }
+        
+        .section-title::after { content: ''; position: absolute; right: -15px; top: 0; width: 0; height: 0; border-top: 20px solid transparent; border-bottom: 20px solid transparent; transition: border-left-color 0.5s ease;}
+        
+        .theme-green .section-title::after { border-left: 15px solid var(--primary-green); }
+        .theme-blue .section-title::after { border-left: 15px solid var(--primary-blue); }
+        
         .view-all { font-size: 13px; color: #666; text-decoration: none; padding-right: 10px; font-weight: 500; cursor: pointer; transition: color 0.2s;}
-        .view-all:hover { color: var(--primary-green); }
+        
+        .theme-green .view-all:hover { color: var(--primary-green); }
+        .theme-blue .view-all:hover { color: var(--primary-blue); }
 
         .book-slider-container { position: relative; padding: 0 30px; margin-bottom: 30px; }
         .book-grid-scroll { display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 15px; padding-bottom: 10px; scrollbar-width: none; }
         .book-grid-scroll::-webkit-scrollbar { display: none; }
         .book-card { background: white; padding: 15px; text-align: center; position: relative; border: 1px solid transparent; transition: all 0.2s; min-width: calc(25% - 12px); flex-shrink: 0; cursor: pointer;}
-        .book-card:hover { border: 1px solid var(--primary-green); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px);}
+        
+        .theme-green .book-card:hover { border-color: var(--primary-green); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px);}
+        .theme-blue .book-card:hover { border-color: var(--primary-blue); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px);}
         
         .book-title { font-size: 14px; color: #333; margin-bottom: 5px; height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-align: left; font-weight: 500; line-height: 1.4; transition: color 0.2s;}
-        .book-card:hover .book-title { color: var(--primary-green); }
+        
+        .theme-green .book-card:hover .book-title { color: var(--primary-green); }
+        .theme-blue .book-card:hover .book-title { color: var(--primary-blue); }
         
         .discount-badge { position: absolute; top: 10px; right: 10px; background-color: #ffb800; color: white; padding: 2px 6px; font-size: 12px; font-weight: 700; border-radius: 2px; }
 
         .grid-arrow { position: absolute; top: 40%; transform: translateY(-50%); font-size: 20px; color: #666; cursor: pointer; background: white; border: 1px solid #ddd; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-        .grid-arrow:hover { color: var(--primary-green); border-color: var(--primary-green); }
+        
+        .theme-green .grid-arrow:hover { color: var(--primary-green); border-color: var(--primary-green); }
+        .theme-blue .grid-arrow:hover { color: var(--primary-blue); border-color: var(--primary-blue); }
+        
         .grid-arrow.left { left: 0; }
         .grid-arrow.right { right: 0; }
 
@@ -79,12 +120,19 @@
         
         .buy-btn { transition: all 0.2s; transform: scale(1); }
         .buy-btn:active { transform: scale(0.95); }
+        
+        .theme-green .buy-btn { background-color: var(--primary-green); }
+        .theme-green .buy-btn:hover { background-color: #00893d; }
+        
+        .theme-blue .buy-btn { background-color: var(--primary-blue); }
+        .theme-blue .buy-btn:hover { background-color: #1d4ed8; }
 
         .cart-badge { background: #ff3b30; color: white; font-size: 11px; padding: 2px 6px; border-radius: 10px; position: absolute; top: -8px; right: -10px; font-weight: bold;}
     </style>
 </head>
-<body>
+<body class="theme-green" id="bodyTheme">
 
+    <!-- Top Header -->
     <div class="top-header">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center max-w-[1200px] m-auto">
             <a href="#" class="logo-text" onclick="showToast('Đang tải lại trang chủ...')">
@@ -106,8 +154,9 @@
         </div>
     </div>
 
-    <div class="bg-white border-b-2 border-[#00b14f]">
-        <div class="nav-bar max-w-[1200px] mx-auto">
+    <!-- Nav Bar -->
+    <div class="bg-white border-b-2 nav-bar-border">
+        <div class="nav-bar max-w-[1200px] mx-auto" style="border: none;"> <!-- Xóa border cứng để dùng border theme -->
             <button class="category-menu-btn" onclick="toggleSidebar()">
                 <i class="fas fa-bars"></i> DANH MỤC SẢN PHẨM
             </button>
@@ -121,103 +170,153 @@
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <ul class="category-list">
-                <li><a onclick="showToast('Đang tải danh mục: Nổi bật')">Nổi bật <i class="fas fa-chevron-right"></i></a></li>
-                <li class="active"><a onclick="showToast('Đang tải danh mục: Sách Tin Học')">Sách Tin Học - Lập Trình <i class="fas fa-chevron-right"></i></a></li>
-                <li><a onclick="showToast('Đang tải danh mục: Sách kinh tế')">Sách kinh tế <i class="fas fa-chevron-right"></i></a></li>
-                <li><a onclick="showToast('Đang tải danh mục: Văn học nước ngoài')">Văn học nước ngoài <i class="fas fa-chevron-right"></i></a></li>
-                <li><a onclick="showToast('Đang tải danh mục: Văn học trong nước')">Văn học trong nước <i class="fas fa-chevron-right"></i></a></li>
-                <li><a onclick="showToast('Đang tải danh mục: Kỹ năng sống')">Sách kĩ năng sống <i class="fas fa-chevron-right"></i></a></li>
-                <li><a onclick="showToast('Đang tải danh mục: Sách tuổi teen')">Sách tuổi teen <i class="fas fa-chevron-right"></i></a></li>
+                <li id="menu-qhd" class="active"><a onclick="switchTab('qhd')">Sách Quy Hoạch Động <i class="fas fa-chevron-right"></i></a></li>
+                <li id="menu-toan"><a onclick="switchTab('toan')">Toán Học & Chống Trâu <i class="fas fa-chevron-right"></i></a></li>
+                <hr>
+                <li><a onclick="showToast('Đang tải danh mục...')">Sách Tin Học - Lập Trình <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục...')">Cấu Trúc Dữ Liệu <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục...')">Văn học nước ngoài <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục...')">Văn học trong nước <i class="fas fa-chevron-right"></i></a></li>
+                <li><a onclick="showToast('Đang tải danh mục...')">Kỹ năng sống <i class="fas fa-chevron-right"></i></a></li>
             </ul>
         </div>
 
         <div class="content-area">
             
-            <div class="banner-slider p-8 bg-gradient-to-r from-blue-50 to-indigo-100 flex items-center justify-between transition-all duration-500" id="mainBanner">
-                <div class="max-w-lg">
-                    <div class="text-sm font-bold text-blue-600 mb-2 uppercase tracking-wide">Tuyển Tập Luyện Thi HSG</div>
-                    <h1 class="text-3xl font-bold text-gray-900 mb-4 leading-tight">TOÁN HỌC VÀ CHỐNG TRÂU<br/><span class="text-blue-700">TỐI ƯU HÓA THUẬT TOÁN</span></h1>
-                    <p class="text-gray-600 mb-6 text-sm italic">"Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng tư duy Toán học sắc bén."</p>
-                    <p class="font-bold text-gray-800"><i class="fas fa-pen-nib text-blue-600 mr-2"></i>Tác giả: Lê Thành Nam</p>
+            <!-- ===================== TRANG QUY HOẠCH ĐỘNG ===================== -->
+            <div id="tab-qhd" class="tab-content active">
+                <div class="banner-slider p-8 bg-gradient-to-r from-green-50 to-emerald-100 flex items-center justify-between transition-all duration-500" id="mainBannerQhd">
+                    <div class="max-w-lg">
+                        <div class="text-sm font-bold text-green-600 mb-2 uppercase tracking-wide">Chuyên đề bồi dưỡng HSG</div>
+                        <h1 class="text-3xl font-bold text-gray-900 mb-4 leading-tight">QUY HOẠCH ĐỘNG<br/><span class="text-green-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
+                        <p class="text-gray-600 mb-6 text-sm italic">"Người không nhớ quá khứ sẽ phải lặp lại nó. Code của em cũng vậy thôi..."</p>
+                        <p class="font-bold text-gray-800"><i class="fas fa-pen-nib text-green-600 mr-2"></i>Tác giả: Lê Thành Nam</p>
+                    </div>
+                    <div class="w-1/3 flex justify-center">
+                        <i class="fas fa-laptop-code text-8xl text-green-700 opacity-20 transform hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="slider-dots">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
                 </div>
-                <div class="w-1/3 flex justify-center">
-                    <i class="fas fa-infinity text-8xl text-blue-700 opacity-20 transform hover:scale-110 transition-transform duration-300"></i>
+
+                <div class="section-header">
+                    <div class="section-title">Đọc Thử Bộ Sách Quy Hoạch Động</div>
                 </div>
-                
-                <div class="slider-dots">
-                    <div class="dot active" onclick="changeBanner(0)"></div>
-                    <div class="dot" onclick="changeBanner(1)"></div>
-                    <div class="dot" onclick="changeBanner(2)"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+                    <div>
+                        <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 1: LÝ THUYẾT</h3>
+                        <div class="preview-wrapper">
+                            <iframe src="https://drive.google.com/file/d/1qYnLIlwhtUBEdhA6Pe1dNmkNWulCgBKV/preview" width="100%" height="100%" frameborder="0"></iframe>
+                        </div>
+                        <div class="text-center">
+                            <button class="buy-btn text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Quy Hoạch Động Tập 1')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 1</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 2: BÀI TẬP</h3>
+                        <div class="preview-wrapper">
+                            <iframe src="https://drive.google.com/file/d/1p01zxnWoO7Px16X6bNrc-OnN97h7u_vA/preview" width="100%" height="100%" frameborder="0"></iframe>
+                        </div>
+                        <div class="text-center">
+                            <button class="buy-btn text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Quy Hoạch Động Tập 2')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 2</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 3: HƯỚNG DẪN GIẢI</h3>
+                        <div class="preview-wrapper">
+                            <iframe src="https://drive.google.com/file/d/1xCVa9W2ZJRn6D-dKbpOtoTdwYSYvn9Jt/preview" width="100%" height="100%" frameborder="0"></iframe>
+                        </div>
+                        <div class="text-center">
+                            <button class="buy-btn text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Quy Hoạch Động Tập 3')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 3</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="section-header">
-                <div class="section-title">Đọc Thử Bộ Sách Toán Học & Chống Trâu</div>
+            <!-- ===================== TRANG TOÁN HỌC ===================== -->
+            <div id="tab-toan" class="tab-content">
+                <div class="banner-slider p-8 bg-gradient-to-r from-blue-50 to-indigo-100 flex items-center justify-between transition-all duration-500" id="mainBannerToan">
+                    <div class="max-w-lg">
+                        <div class="text-sm font-bold text-blue-600 mb-2 uppercase tracking-wide">Tuyển Tập Luyện Thi HSG</div>
+                        <h1 class="text-3xl font-bold text-gray-900 mb-4 leading-tight">TOÁN HỌC VÀ CHỐNG TRÂU<br/><span class="text-blue-700">TỐI ƯU HÓA THUẬT TOÁN</span></h1>
+                        <p class="text-gray-600 mb-6 text-sm italic">"Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng tư duy Toán học sắc bén."</p>
+                        <p class="font-bold text-gray-800"><i class="fas fa-pen-nib text-blue-600 mr-2"></i>Tác giả: Lê Thành Nam</p>
+                    </div>
+                    <div class="w-1/3 flex justify-center">
+                        <i class="fas fa-infinity text-8xl text-blue-700 opacity-20 transform hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="slider-dots">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <div class="section-title">Đọc Thử Bộ Sách Toán Học & Chống Trâu</div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+                    <div>
+                        <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 1: LÝ THUYẾT</h3>
+                        <div class="preview-wrapper">
+                            <iframe src="https://drive.google.com/file/d/1r4NanrxLmjAYc8DUIjvBtjDgXDdCh7MA/preview" width="100%" height="100%" frameborder="0"></iframe>
+                        </div>
+                        <div class="text-center">
+                            <button class="buy-btn text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Toán Học Tập 1')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 1</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 2: BÀI TẬP</h3>
+                        <div class="preview-wrapper">
+                            <iframe src="https://drive.google.com/file/d/1Ue4HnH_gfumU8h-434Opq8xewlvxDEku/preview" width="100%" height="100%" frameborder="0"></iframe>
+                        </div>
+                        <div class="text-center">
+                            <button class="buy-btn text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Toán Học Tập 2')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 2</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 3: HƯỚNG DẪN GIẢI</h3>
+                        <div class="preview-wrapper">
+                            <iframe src="https://drive.google.com/file/d/12uio721j_LU_7VXHYSG167CJvnmCGP9t/preview" width="100%" height="100%" frameborder="0"></iframe>
+                        </div>
+                        <div class="text-center">
+                            <button class="buy-btn text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Toán Học Tập 3')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 3</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-                <!-- Tập 1 -->
-                <div>
-                    <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 1: LÝ THUYẾT</h3>
-                    <div class="preview-wrapper">
-                        <iframe src="https://drive.google.com/file/d/1r4NanrxLmjAYc8DUIjvBtjDgXDdCh7MA/preview" width="100%" height="100%" frameborder="0"></iframe>
-                    </div>
-                    <div class="text-center">
-                        <button class="buy-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Tập 1: Lý Thuyết Toán Học')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 1</button>
-                    </div>
-                </div>
-
-                <!-- Tập 2 -->
-                <div>
-                    <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 2: BÀI TẬP</h3>
-                    <div class="preview-wrapper">
-                        <iframe src="https://drive.google.com/file/d/1Ue4HnH_gfumU8h-434Opq8xewlvxDEku/preview" width="100%" height="100%" frameborder="0"></iframe>
-                    </div>
-                    <div class="text-center">
-                        <button class="buy-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Tập 2: Bài Tập Toán Học')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 2</button>
-                    </div>
-                </div>
-
-                <!-- Tập 3 -->
-                <div>
-                    <h3 class="text-center font-bold text-gray-800 mb-2 text-sm uppercase">TẬP 3: HƯỚNG DẪN GIẢI</h3>
-                    <div class="preview-wrapper">
-                        <iframe src="https://drive.google.com/file/d/12uio721j_LU_7VXHYSG167CJvnmCGP9t/preview" width="100%" height="100%" frameborder="0"></iframe>
-                    </div>
-                    <div class="text-center">
-                        <button class="buy-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold shadow" onclick="addToCart('Tập 3: Giải Bài Tập Toán Học')"><i class="fas fa-cart-plus mr-1"></i> Mua ngay Tập 3</button>
-                    </div>
-                </div>
-            </div>
-
+            <!-- ===================== SÁCH KHÁC (Chung) ===================== -->
             <div class="section-header mt-8">
-                <div class="section-title">Sách Cùng Tác Giả</div>
-                <a href="https://sphoabinh1980.github.io/book/" target="_blank" class="view-all">Xem chuyên đề Quy Hoạch Động <i class="fas fa-angle-right"></i></a>
+                <div class="section-title">Khám Phá Thêm Sách Khác</div>
+                <a onclick="showToast('Đang tải thêm danh sách...')" class="view-all">Xem tất cả <i class="fas fa-angle-right"></i></a>
             </div>
 
-            <!-- Scrollable Grid Container -->
             <div class="book-slider-container">
                 <button class="grid-arrow left" onclick="scrollGrid(-300)"><i class="fas fa-chevron-left"></i></button>
                 <button class="grid-arrow right" onclick="scrollGrid(300)"><i class="fas fa-chevron-right"></i></button>
                 
                 <div class="book-grid-scroll" id="bookGrid">
                     
-                    <div class="book-card" onclick="window.open('https://sphoabinh1980.github.io/book/', '_blank')">
+                    <div class="book-card" onclick="switchTab('qhd')">
                         <div class="discount-badge">-15%</div>
                         <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-laptop-code text-3xl"></i></div>
-                        <div class="book-title">Quy Hoạch Động: Tập 1 - Lý Thuyết</div>
+                        <div class="book-title">Combo Quy Hoạch Động (Trọn Bộ 3 Tập)</div>
                     </div>
                     
-                    <div class="book-card" onclick="window.open('https://sphoabinh1980.github.io/book/', '_blank')">
+                    <div class="book-card" onclick="switchTab('toan')">
                         <div class="discount-badge">-15%</div>
-                        <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-laptop-code text-3xl"></i></div>
-                        <div class="book-title">Quy Hoạch Động: Tập 2 - Bài Tập</div>
-                    </div>
-
-                    <div class="book-card" onclick="window.open('https://sphoabinh1980.github.io/book/', '_blank')">
-                        <div class="discount-badge">-15%</div>
-                        <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-laptop-code text-3xl"></i></div>
-                        <div class="book-title">Quy Hoạch Động: Tập 3 - Hướng Dẫn Giải</div>
+                        <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-infinity text-3xl"></i></div>
+                        <div class="book-title">Combo Toán Học & Chống Trâu (Trọn Bộ 3 Tập)</div>
                     </div>
 
                     <div class="book-card" onclick="showToast('Đang mở trang chi tiết...')">
@@ -231,6 +330,11 @@
                         <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-laptop-code text-3xl"></i></div>
                         <div class="book-title">Lập trình thi đấu C++ Toàn Tập</div>
                     </div>
+                    
+                    <div class="book-card" onclick="showToast('Đang mở trang chi tiết...')">
+                        <div class="h-48 bg-gray-100 mb-3 flex items-center justify-center text-gray-400 rounded"><i class="fas fa-book text-3xl"></i></div>
+                        <div class="book-title">Xuyên Thành Phản Diện (Tiểu Thuyết)</div>
+                    </div>
                 </div>
             </div>
 
@@ -238,8 +342,35 @@
         </div>
     </div>
 
-    <!-- Script tạo độ tương tác động (Logic JS) -->
+    <!-- Script tương tác -->
     <script>
+        // Hàm chuyển đổi Tab Sách
+        function switchTab(tabId) {
+            // Ẩn tất cả nội dung
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Xóa active ở menu
+            document.querySelectorAll('.category-list li').forEach(li => {
+                li.classList.remove('active');
+            });
+            
+            // Hiển thị nội dung tương ứng
+            document.getElementById('tab-' + tabId).classList.add('active');
+            document.getElementById('menu-' + tabId).classList.add('active');
+            
+            // Đổi Theme Màu Sắc
+            const body = document.getElementById('bodyTheme');
+            if(tabId === 'qhd') {
+                body.className = 'theme-green';
+            } else if(tabId === 'toan') {
+                body.className = 'theme-blue';
+            }
+            
+            // Cuộn lên đầu
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // --- Hệ thống thông báo (Toast/Popup) ---
         function showToast(message, isSuccess = false) {
             const oldToast = document.getElementById('toast');
@@ -316,22 +447,6 @@
             } else {
                 sidebar.style.display = 'none';
             }
-        }
-
-        // --- Logic Banner Tương tác ---
-        const colors = [
-            'from-blue-50 to-indigo-100',
-            'from-green-50 to-emerald-100',
-            'from-amber-50 to-yellow-100'
-        ];
-        function changeBanner(index) {
-            const banner = document.getElementById('mainBanner');
-            const dots = document.querySelectorAll('.dot');
-            
-            banner.className = `banner-slider p-8 bg-gradient-to-r ${colors[index]} flex items-center justify-between transition-all duration-500`;
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            dots[index].classList.add('active');
         }
     </script>
 </body>
