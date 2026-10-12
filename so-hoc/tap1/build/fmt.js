@@ -76,7 +76,7 @@ const BOX = {
 function box(kind, title, children, o = {}) {
   const [c, f] = BOX[kind];
   const kids = [];
-  if (title) kids.push(new Paragraph({ children: [new TextRun({ text: title, bold: true, color: c, font: ARIAL, size: 19 })], spacing: sp(60), keepNext: true }));
+  if (title) kids.push(new Paragraph({ children: runs(title, { bold: true, color: c, font: ARIAL, size: 19, codeColor: c }), spacing: sp(60), keepNext: true }));
   kids.push(...children);
   return [table([W], [new TableRow({ cantSplit: o.cantSplit !== false, children: [cell(kids, { w: W, fill: f, mar: { top: 100, bottom: 80, left: 180, right: 160 },
     borders: { top: none, bottom: none, right: none, left: { style: BorderStyle.SINGLE, size: 24, color: c } } })] })]), gap()];
@@ -89,8 +89,11 @@ let figCounter = { key: '', n: 0 };
 function figure(name, widthIn, cap, label) {
   const file = name.startsWith('tap2:') ? path.join(FIGDIR, name.slice(5) + '.png') : path.join(FIGDIR, name + '.png');
   const [pw, ph] = pngSize(file);
+  // sơ đồ khối: in gần đúng cỡ gốc (ảnh 220 dpi) để chữ không quá nhỏ, cho phép cao hơn hình thường
+  const isFlow = /_(ngaytho|toiuu)$/.test(name);
+  if (isFlow) widthIn = Math.min(pw / 220 * 0.92, 6.0);
   let w = Math.round(widthIn * 96), h = Math.round(w * ph / pw);
-  const MAXH = 3.4 * 96; if (h > MAXH) { w = Math.round(w * MAXH / h); h = Math.round(MAXH); }
+  const MAXH = (isFlow ? 5.4 : 3.6) * 96; if (h > MAXH) { w = Math.round(w * MAXH / h); h = Math.round(MAXH); }
   const out = [new Paragraph({ children: [new ImageRun({ type: 'png', data: fs.readFileSync(file), transformation: { width: w, height: h } })],
     alignment: AlignmentType.CENTER, spacing: { before: 60, after: 60 }, keepNext: true })];
   if (cap) out.push(new Paragraph({ children: [new TextRun({ text: label + ' ', bold: true, italics: true, color: '404040', size: 19 }), ...runs(cap, { italics: true, color: '404040', size: 19 })],
@@ -100,7 +103,7 @@ function figure(name, widthIn, cap, label) {
 // khối mã nguồn (giống Tập 1: nền xám nhạt, viền trái xám xanh, số dòng)
 function codeBlock(title, code) {
   const lines = code.replace(/\n$/, '').split('\n');
-  const kids = [new Paragraph({ children: [new TextRun({ text: title, bold: true, color: C.gray, font: ARIAL, size: 17 })], spacing: sp(60), keepNext: true })];
+  const kids = [new Paragraph({ children: runs(title, { bold: true, color: C.gray, font: ARIAL, size: 17 }), spacing: sp(60), keepNext: true })];
   const LIM = 78;
   lines.forEach((ln, i) => {
     // dòng quá dài: ngắt ở dấu cách gần nhất, dòng tiếp theo thụt vào và không đánh số
