@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    if (fopen("UOCTANG.INP", "r")) { freopen("UOCTANG.INP", "r", stdin); freopen("UOCTANG.OUT", "w", stdout); }
+    if (fopen("UOCTANG.INP", "r")) {
+        freopen("UOCTANG.INP", "r", stdin); freopen("UOCTANG.OUT", "w", stdout);
+    }
     long long n; int q; scanf("%lld %d", &n, &q);
     vector<long long> lo, hi;                      // lo tăng dần, hi giảm dần
     for (long long d = 1; d * d <= n; d++)

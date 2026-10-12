@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    if (fopen("XEPHANG.INP", "r")) { freopen("XEPHANG.INP", "r", stdin); freopen("XEPHANG.OUT", "w", stdout); }
+    if (fopen("XEPHANG.INP", "r")) {
+        freopen("XEPHANG.INP", "r", stdin); freopen("XEPHANG.OUT", "w", stdout);
+    }
     int T; scanf("%d", &T);
     while (T--) {
         long long n; scanf("%lld", &n);

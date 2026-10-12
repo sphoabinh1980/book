@@ -2,7 +2,9 @@
 using namespace std;
 typedef long long ll;
 int main() {
-    if (fopen("BOMOTSO.INP", "r")) { freopen("BOMOTSO.INP", "r", stdin); freopen("BOMOTSO.OUT", "w", stdout); }
+    if (fopen("BOMOTSO.INP", "r")) {
+        freopen("BOMOTSO.INP", "r", stdin); freopen("BOMOTSO.OUT", "w", stdout);
+    }
     int n; scanf("%d", &n);
     vector<ll> a(n + 2, 0), L(n + 2, 0), R(n + 2, 0);  // gcd(0, x) = x
     for (int i = 1; i <= n; i++) scanf("%lld", &a[i]);

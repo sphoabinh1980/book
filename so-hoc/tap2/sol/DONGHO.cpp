@@ -7,7 +7,9 @@ ll exgcd(ll a, ll b, ll &x, ll &y) {
     x = y1; y = x1 - a / b * y1; return g;
 }
 int main() {
-    if (fopen("DONGHO.INP", "r")) { freopen("DONGHO.INP", "r", stdin); freopen("DONGHO.OUT", "w", stdout); }
+    if (fopen("DONGHO.INP", "r")) {
+        freopen("DONGHO.INP", "r", stdin); freopen("DONGHO.OUT", "w", stdout);
+    }
     int Q; scanf("%d", &Q);
     while (Q--) {
         ll m, p, a, q, b, T; scanf("%lld %lld %lld %lld %lld %lld", &m, &p, &a, &q, &b, &T);

@@ -9,7 +9,9 @@ ll lcm2(ll x, ll y) {                              // BCNN có "bão hòa" tại
 }
 struct Seg { ll v; int lo, hi; };                  // lcm(t[l..r]) = v với mọi l trong [lo, hi]
 int main() {
-    if (fopen("DENNHAY.INP", "r")) { freopen("DENNHAY.INP", "r", stdin); freopen("DENNHAY.OUT", "w", stdout); }
+    if (fopen("DENNHAY.INP", "r")) {
+        freopen("DENNHAY.INP", "r", stdin); freopen("DENNHAY.OUT", "w", stdout);
+    }
     int n, q; scanf("%d %d", &n, &q);
     vector<ll> t(n + 1);
     for (int i = 1; i <= n; i++) scanf("%lld", &t[i]);

@@ -7,7 +7,9 @@ void print128(unsigned __int128 x) {               // in số 128 bit: tách t�
     while (k) putchar(s[--k]);
 }
 int main() {
-    if (fopen("CATGACH.INP", "r")) { freopen("CATGACH.INP", "r", stdin); freopen("CATGACH.OUT", "w", stdout); }
+    if (fopen("CATGACH.INP", "r")) {
+        freopen("CATGACH.INP", "r", stdin); freopen("CATGACH.OUT", "w", stdout);
+    }
     int T; scanf("%d", &T);
     while (T--) {
         ull a, b; scanf("%llu %llu", &a, &b);

@@ -7,7 +7,9 @@ ll exgcd(ll a, ll b, ll &x, ll &y) {               // a·x + b·y = gcd(a, b)
     x = y1; y = x1 - a / b * y1; return g;
 }
 int main() {
-    if (fopen("MUAHANG.INP", "r")) { freopen("MUAHANG.INP", "r", stdin); freopen("MUAHANG.OUT", "w", stdout); }
+    if (fopen("MUAHANG.INP", "r")) {
+        freopen("MUAHANG.INP", "r", stdin); freopen("MUAHANG.OUT", "w", stdout);
+    }
     int q; scanf("%d", &q);
     while (q--) {
         ll a, b, c; scanf("%lld %lld %lld", &a, &b, &c);
