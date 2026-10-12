@@ -257,18 +257,18 @@
         <div class="content-area">
             
             <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
-            <div class="banner-slider p-10 flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-teal-50 to-emerald-100 banner-content-wrapper" id="mainBanner">
+            <div class="banner-slider p-10 flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-orange-50 to-amber-100 banner-content-wrapper" id="mainBanner">
                 <div class="max-w-lg w-full">
-                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-teal-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">TƯ DUY THUẬT TOÁN<br/><span class="text-teal-700">SÁCH MỚI CẬP NHẬT</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Rèn luyện tư duy logic, phân tích và xây dựng nền tảng thuật toán vững chắc để giải quyết mọi bài toán khó."</p>
-                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-teal-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib mr-2 text-teal-600" id="bannerIcon"></i>
+                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-orange-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
+                    <h1 class="banner-title text-slate-900" id="bannerTitle">TÍNH CHẴN LẺ (PARITY)<br/><span class="text-orange-700">SÁCH MỚI CẬP NHẬT</span></h1>
+                    <p class="banner-desc" id="bannerDesc">"Khám phá sức mạnh của Parity trong việc tối ưu hóa và giải quyết các bài toán Tin học."</p>
+                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-orange-100 mb-4 md:mb-0">
+                        <i class="fas fa-pen-nib mr-2 text-orange-600" id="bannerIcon"></i>
                         <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
                 <div class="banner-icon-bg">
-                    <i class="fas fa-brain text-teal-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                    <i class="fas fa-balance-scale text-orange-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
                 </div>
                 <div class="slider-dots" id="bannerDots">
                     <!-- Dots will be populated by JS -->
@@ -278,7 +278,31 @@
             <!-- Nơi chứa toàn bộ Khối Sách -->
             <div id="all-books-container">
 
-                <!-- ================= SÁCH MỚI: TƯ DUY THUẬT TOÁN ================= -->
+                <!-- ================= SÁCH MỚI: TÍNH CHẴN LẺ TRONG TIN HỌC ================= -->
+                <div class="book-block" id="book-parity" data-title="TÍNH CHẴN LẺ (PARITY)" data-desc="Khám phá sức mạnh của Parity trong việc tối ưu hóa và giải quyết các bài toán Tin học." data-theme="orange" data-icon="fa-balance-scale">
+                    <div class="section-header">
+                        <div class="section-title orange-theme">ĐỌC THỬ BỘ SÁCH TÍNH CHẴN LẺ TRONG TIN HỌC (PARITY)</div>
+                    </div>
+                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+                        <div class="book-col">
+                            <div class="book-vol-badge orange"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1L6tIdC0TwZb72ihUFE3P78ZiimLbAYS5/preview"></iframe></div>
+                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 1', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge orange"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1o-rQdkaUp1fk-mdlRezJQ4MF6N_d6jzL/preview"></iframe></div>
+                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 2', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge orange"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1SAAENcXnwx5LATlV86g-Ej90yD4JOT51/preview"></iframe></div>
+                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 3', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= SÁCH: TƯ DUY THUẬT TOÁN ================= -->
                 <div class="book-block" id="book-tuduy" data-title="TƯ DUY THUẬT TOÁN" data-desc="Rèn luyện tư duy logic, xây dựng nền tảng thuật toán vững chắc để giải quyết mọi bài toán khó." data-theme="teal" data-icon="fa-brain">
                     <div class="section-header">
                         <div class="section-title teal-theme">ĐỌC THỬ BỘ SÁCH TƯ DUY THUẬT TOÁN</div>
@@ -470,6 +494,11 @@
                     <button class="grid-arrow right" onclick="scrollGrid(320)"><i class="fas fa-chevron-right"></i></button>
                     
                     <div class="book-grid-scroll" id="bookGrid">
+                        <div class="book-card" onclick="document.getElementById('book-parity').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                            <div class="discount-badge">-15%</div>
+                            <div class="book-image-placeholder"><i class="fas fa-balance-scale"></i></div>
+                            <div class="book-title">Combo Tính Chẵn Lẻ (Trọn Bộ 3 Tập)</div>
+                        </div>
                         <div class="book-card" onclick="document.getElementById('book-tuduy').scrollIntoView({ behavior: 'smooth', block: 'start' });">
                             <div class="discount-badge">-20%</div>
                             <div class="book-image-placeholder"><i class="fas fa-brain"></i></div>
@@ -563,8 +592,7 @@
                         <option value="blue">Xanh Dương (Blue)</option>
                         <option value="purple">Tím (Purple)</option>
                         <option value="red">Đỏ (Red)</option>
-                        <option value="orange">Cam (Orange)</option>
-                        <option value="teal" selected>Xanh Cổ Vịt (Teal)</option>
+                        <option value="orange" selected>Cam (Orange)</option>
                     </select>
                 </div>
                 <div>
@@ -577,7 +605,8 @@
                         <option value="fa-infinity">Vô cực / Toán</option>
                         <option value="fa-calculator">Máy tính / Số học</option>
                         <option value="fa-graduation-cap">Mũ Cử Nhân / Giải Đề</option>
-                        <option value="fa-brain" selected>Bộ Não / Tư Duy</option>
+                        <option value="fa-brain">Bộ Não / Tư Duy</option>
+                        <option value="fa-balance-scale" selected>Cán Cân / Chẵn Lẻ</option>
                         <option value="fa-cogs">Bánh răng / Thuật toán</option>
                     </select>
                 </div>
@@ -588,8 +617,8 @@
                 <select id="admin_count" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" onchange="generateBookInputs()">
                     <option value="1">1 Quyển (Hiển thị căn giữa)</option>
                     <option value="2">2 Quyển (Chia 2 cột)</option>
-                    <option value="3">3 Quyển (Chia 3 cột)</option>
-                    <option value="4" selected="">4 Quyển (Chia 4 cột)</option>
+                    <option value="3" selected="">3 Quyển (Chia 3 cột)</option>
+                    <option value="4">4 Quyển (Chia 4 cột)</option>
                     <option value="5">5 Quyển (Dàn nhiều cột)</option>
                     <option value="6">6 Quyển (Dàn nhiều cột)</option>
                 </select>
@@ -628,18 +657,6 @@
                             </div>
                             <div class="md:col-span-2">
                                 <input type="text" id="admin_b_link_3" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Link Google Drive (https://drive.google.com/file/d/.../view)">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-5 pb-5 border-b border-slate-200 last:border-0 last:pb-0 last:mb-0">
-                        <p class="font-bold text-slate-800 mb-3"><i class="fas fa-book mr-2 text-slate-400"></i>Quyển thứ 4</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="md:col-span-1">
-                                <input type="text" id="admin_b_title_4" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Tiêu đề (VD: Tập 1: Lý Thuyết)">
-                            </div>
-                            <div class="md:col-span-2">
-                                <input type="text" id="admin_b_link_4" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Link Google Drive (https://drive.google.com/file/d/.../view)">
                             </div>
                         </div>
                     </div>
