@@ -14,6 +14,7 @@
             --primary-green: #00b14f;
             --primary-blue: #2563eb;
             --primary-purple: #9333ea;
+            --primary-teal: #0d9488;
             --header-dark: #00893d;
         }
         body { 
@@ -101,6 +102,7 @@
         .section-title.purple-theme::after { background-color: var(--primary-purple); }
         .section-title.red-theme::after { background-color: #ef4444; }
         .section-title.orange-theme::after { background-color: #f97316; }
+        .section-title.teal-theme::after { background-color: var(--primary-teal); }
 
         .view-all { font-size: 14px; color: #64748b; text-decoration: none; font-weight: 600; cursor: pointer; transition: color 0.2s; display: inline-block; padding-top: 5px;}
         @media (min-width: 768px) {
@@ -131,6 +133,7 @@
         .book-vol-badge.purple i { color: var(--primary-purple); margin-right: 8px; font-size: 14px;}
         .book-vol-badge.red i { color: #ef4444; margin-right: 8px; font-size: 14px;}
         .book-vol-badge.orange i { color: #f97316; margin-right: 8px; font-size: 14px;}
+        .book-vol-badge.teal i { color: var(--primary-teal); margin-right: 8px; font-size: 14px;}
         @media (min-width: 768px) {
             .book-vol-badge i { font-size: 18px; }
         }
@@ -165,6 +168,7 @@
         .buy-btn.purple { background-color: var(--primary-purple); } .buy-btn.purple:hover { background-color: #7e22ce; }
         .buy-btn.red { background-color: #ef4444; } .buy-btn.red:hover { background-color: #dc2626; }
         .buy-btn.orange { background-color: #f97316; } .buy-btn.orange:hover { background-color: #ea580c; }
+        .buy-btn.teal { background-color: var(--primary-teal); } .buy-btn.teal:hover { background-color: #0f766e; }
 
         /* Scrollable Book Grid (Khám Phá Sách Khác) */
         .book-slider-container { position: relative; padding: 0 10px; margin-bottom: 10px; background: transparent; padding-top: 10px;}
@@ -248,36 +252,67 @@
         </div>
     </div>
 
-    <!-- MAIN CONTAINER CHỮA LỖI LỆCH (Block thay vì flex) -->
+    <!-- MAIN CONTAINER -->
     <div class="main-container">
         <div class="content-area">
             
             <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
-            <div class="banner-slider p-10 flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-purple-50 to-fuchsia-100 banner-content-wrapper" id="mainBanner">
+            <div class="banner-slider p-10 flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-teal-50 to-emerald-100 banner-content-wrapper" id="mainBanner">
                 <div class="max-w-lg w-full">
-                    <div class="text-sm font-bold mb-3 uppercase tracking-wider text-purple-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ<br><span class="text-purple-700">SÁCH MỚI CẬP NHẬT</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Khám phá vẻ đẹp, tính chất và các thuật toán xử lý dãy số đặc biệt trong Lập trình thi đấu."</p>
-                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-purple-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib mr-2 text-purple-600" id="bannerIcon"></i>
+                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-teal-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
+                    <h1 class="banner-title text-slate-900" id="bannerTitle">TƯ DUY THUẬT TOÁN<br/><span class="text-teal-700">SÁCH MỚI CẬP NHẬT</span></h1>
+                    <p class="banner-desc" id="bannerDesc">"Rèn luyện tư duy logic, phân tích và xây dựng nền tảng thuật toán vững chắc để giải quyết mọi bài toán khó."</p>
+                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-teal-100 mb-4 md:mb-0">
+                        <i class="fas fa-pen-nib mr-2 text-teal-600" id="bannerIcon"></i>
                         <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
                 <div class="banner-icon-bg">
-                    <i class="fas fa-calculator text-purple-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                    <i class="fas fa-brain text-teal-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
                 </div>
-                <div class="slider-dots" id="bannerDots"></div>
+                <div class="slider-dots" id="bannerDots">
+                    <!-- Dots will be populated by JS -->
+                </div>
             </div>
 
             <!-- Nơi chứa toàn bộ Khối Sách -->
             <div id="all-books-container">
 
-                <!-- ================= SÁCH 00: CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ ================= -->
+                <!-- ================= SÁCH MỚI: TƯ DUY THUẬT TOÁN ================= -->
+                <div class="book-block" id="book-tuduy" data-title="TƯ DUY THUẬT TOÁN" data-desc="Rèn luyện tư duy logic, xây dựng nền tảng thuật toán vững chắc để giải quyết mọi bài toán khó." data-theme="teal" data-icon="fa-brain">
+                    <div class="section-header">
+                        <div class="section-title teal-theme">ĐỌC THỬ BỘ SÁCH TƯ DUY THUẬT TOÁN</div>
+                    </div>
+                    <!-- Layout 4 cột -->
+                    <div class="books-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-6">
+                        <div class="book-col">
+                            <div class="book-vol-badge teal"><i class="fas fa-book-open"></i> TẬP 1</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1CPUBR57COoryMrsetp7zwHhSpRGKSv5r/preview"></iframe></div>
+                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 1', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge teal"><i class="fas fa-tasks"></i> TẬP 2</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/16CgK5z8hjlY6t8onKRZiyOX5zshv88-W/preview"></iframe></div>
+                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 2', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge teal"><i class="fas fa-lightbulb"></i> TẬP 3</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1w63s4Xaz8lm7T3tCUBLD5iDddwWpxyfU/preview"></iframe></div>
+                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 3', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge teal"><i class="fas fa-cogs"></i> TẬP 4</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1JWoaBO2tx-SbRxaL3eK0M3-d2uveVGwF/preview"></iframe></div>
+                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 4', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 4</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= SÁCH CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ ================= -->
                 <div class="book-block" id="book-cacso" data-title="CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ" data-desc="Khám phá vẻ đẹp, tính chất và các thuật toán xử lý dãy số đặc biệt trong Lập trình thi đấu." data-theme="purple" data-icon="fa-calculator">
                     <div class="section-header">
                         <div class="section-title purple-theme">ĐỌC THỬ SÁCH CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ</div>
                     </div>
-                    <!-- Vì chỉ có 1 tập nên grid-cols-1 max-w-md mx-auto -->
                     <div class="books-container grid grid-cols-1 max-w-md mx-auto gap-10 md:gap-8">
                         <div class="book-col">
                             <div class="book-vol-badge purple"><i class="fas fa-book-open"></i> TẬP 1: CÁC SỐ ĐẶC BIỆT</div>
@@ -287,7 +322,7 @@
                     </div>
                 </div>
 
-                <!-- ================= SÁCH 0: HƯỚNG DẪN GIẢI ĐỀ THI HSG THPT ================= -->
+                <!-- ================= SÁCH: HƯỚNG DẪN GIẢI ĐỀ THI HSG THPT ================= -->
                 <div class="book-block" id="book-hsgthpt" data-title="GIẢI ĐỀ THI HSG THPT 2025 - 2026" data-desc="Tài liệu luyện thi bám sát cấu trúc đề thi học sinh giỏi THPT." data-theme="blue" data-icon="fa-graduation-cap">
                     <div class="section-header">
                         <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH GIẢI ĐỀ THI HSG THPT 2025 - 2026</div>
@@ -306,7 +341,7 @@
                     </div>
                 </div>
 
-                <!-- ================= SÁCH 1: LẬP TRÌNH C++ ================= -->
+                <!-- ================= SÁCH: LẬP TRÌNH C++ ================= -->
                 <div class="book-block" id="book-cpp" data-title="LẬP TRÌNH C++" data-desc="Làm chủ C++, tự tin chinh phục đỉnh cao lập trình thi đấu." data-theme="orange" data-icon="fa-code">
                     <div class="section-header">
                         <div class="section-title orange-theme">ĐỌC THỬ BỘ SÁCH LẬP TRÌNH C++</div>
@@ -325,7 +360,7 @@
                     </div>
                 </div>
                 
-                <!-- ================= SÁCH 2: SỐ HỌC ================= -->
+                <!-- ================= SÁCH: SỐ HỌC ================= -->
                 <div class="book-block" id="book-sohoc" data-title="SỐ HỌC" data-desc="Nền tảng vững chắc cho mọi thuật toán, từ số nguyên tố, đồng dư đến các định lý nâng cao." data-theme="red" data-icon="fa-calculator">
                     <div class="section-header">
                         <div class="section-title red-theme">ĐỌC THỬ BỘ SÁCH SỐ HỌC</div>
@@ -349,7 +384,7 @@
                     </div>
                 </div>
 
-                <!-- ================= SÁCH 3 ================= -->
+                <!-- ================= SÁCH: LÝ THUYẾT ĐỒ THỊ ================= -->
                 <div class="book-block" id="book-dothi" data-title="LÝ THUYẾT ĐỒ THỊ" data-desc="Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, luồng cực đại và hơn thế nữa với tư duy logic." data-theme="purple" data-icon="fa-project-diagram">
                     <div class="section-header">
                         <div class="section-title purple-theme">ĐỌC THỬ BỘ SÁCH LÝ THUYẾT ĐỒ THỊ</div>
@@ -373,7 +408,7 @@
                     </div>
                 </div>
 
-                <!-- ================= SÁCH 4 ================= -->
+                <!-- ================= SÁCH: TOÁN HỌC VÀ CHỐNG TRÂU ================= -->
                 <div class="book-block" id="book-toanhoc" data-title="TOÁN HỌC VÀ CHỐNG TRÂU" data-desc="Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng sự nhạy bén của Toán học." data-theme="blue" data-icon="fa-infinity">
                     <div class="section-header">
                         <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH TOÁN HỌC & CHỐNG TRÂU</div>
@@ -397,7 +432,7 @@
                     </div>
                 </div>
 
-                <!-- ================= SÁCH 5 ================= -->
+                <!-- ================= SÁCH: QUY HOẠCH ĐỘNG ================= -->
                 <div class="book-block" id="book-qhd" data-title="QUY HOẠCH ĐỘNG" data-desc="Người không nhớ quá khứ sẽ phải lặp lại nó. Code của em cũng vậy thôi..." data-theme="green" data-icon="fa-laptop-code">
                     <div class="section-header">
                         <div class="section-title">ĐỌC THỬ BỘ SÁCH QUY HOẠCH ĐỘNG</div>
@@ -435,6 +470,11 @@
                     <button class="grid-arrow right" onclick="scrollGrid(320)"><i class="fas fa-chevron-right"></i></button>
                     
                     <div class="book-grid-scroll" id="bookGrid">
+                        <div class="book-card" onclick="document.getElementById('book-tuduy').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                            <div class="discount-badge">-20%</div>
+                            <div class="book-image-placeholder"><i class="fas fa-brain"></i></div>
+                            <div class="book-title">Combo Tư Duy Thuật Toán (Trọn Bộ 4 Tập)</div>
+                        </div>
                         <div class="book-card" onclick="document.getElementById('book-cacso').scrollIntoView({ behavior: 'smooth', block: 'start' });">
                             <div class="discount-badge">-15%</div>
                             <div class="book-image-placeholder"><i class="fas fa-calculator"></i></div>
@@ -484,7 +524,7 @@
     </div>
 
     <!-- LOGIN MODAL -->
-    <div id="loginModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[110] hidden items-center justify-center p-4 md:p-0">
+    <div id="loginModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[110] items-center justify-center p-4 md:p-0 hidden">
         <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 md:p-8 relative">
             <button onclick="document.getElementById('loginModal').classList.add('hidden'); document.getElementById('loginModal').classList.remove('flex');" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-xl"><i class="fas fa-times"></i></button>
             <h2 class="text-xl font-extrabold text-slate-800 mb-6 text-center"><i class="fas fa-lock text-green-500 mr-2"></i>Đăng Nhập Quản Trị</h2>
@@ -501,7 +541,7 @@
     </div>
 
     <!-- ADMIN MODAL -->
-    <div id="adminModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[100] hidden items-center justify-center p-4 md:p-0 overflow-y-auto">
+    <div id="adminModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[100] items-center justify-center p-4 md:p-0 overflow-y-auto hidden">
         <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full p-6 md:p-8 my-8 relative">
             <button onclick="document.getElementById('adminModal').classList.add('hidden'); document.getElementById('adminModal').classList.remove('flex');" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-2xl"><i class="fas fa-times"></i></button>
             
@@ -524,6 +564,7 @@
                         <option value="purple">Tím (Purple)</option>
                         <option value="red">Đỏ (Red)</option>
                         <option value="orange">Cam (Orange)</option>
+                        <option value="teal" selected>Xanh Cổ Vịt (Teal)</option>
                     </select>
                 </div>
                 <div>
@@ -536,6 +577,8 @@
                         <option value="fa-infinity">Vô cực / Toán</option>
                         <option value="fa-calculator">Máy tính / Số học</option>
                         <option value="fa-graduation-cap">Mũ Cử Nhân / Giải Đề</option>
+                        <option value="fa-brain" selected>Bộ Não / Tư Duy</option>
+                        <option value="fa-cogs">Bánh răng / Thuật toán</option>
                     </select>
                 </div>
             </div>
@@ -545,20 +588,66 @@
                 <select id="admin_count" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" onchange="generateBookInputs()">
                     <option value="1">1 Quyển (Hiển thị căn giữa)</option>
                     <option value="2">2 Quyển (Chia 2 cột)</option>
-                    <option value="3" selected>3 Quyển (Chia 3 cột)</option>
-                    <option value="4">4 Quyển (Chia 4 cột)</option>
+                    <option value="3">3 Quyển (Chia 3 cột)</option>
+                    <option value="4" selected="">4 Quyển (Chia 4 cột)</option>
                     <option value="5">5 Quyển (Dàn nhiều cột)</option>
                     <option value="6">6 Quyển (Dàn nhiều cột)</option>
                 </select>
             </div>
 
             <div id="dynamic_book_inputs" class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6 max-h-[300px] overflow-y-auto">
-                <!-- Javascript will populate this -->
-            </div>
+                    <div class="mb-5 pb-5 border-b border-slate-200 last:border-0 last:pb-0 last:mb-0">
+                        <p class="font-bold text-slate-800 mb-3"><i class="fas fa-book mr-2 text-slate-400"></i>Quyển thứ 1</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="md:col-span-1">
+                                <input type="text" id="admin_b_title_1" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Tiêu đề (VD: Tập 1: Lý Thuyết)">
+                            </div>
+                            <div class="md:col-span-2">
+                                <input type="text" id="admin_b_link_1" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Link Google Drive (https://drive.google.com/file/d/.../view)">
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="mb-5 pb-5 border-b border-slate-200 last:border-0 last:pb-0 last:mb-0">
+                        <p class="font-bold text-slate-800 mb-3"><i class="fas fa-book mr-2 text-slate-400"></i>Quyển thứ 2</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="md:col-span-1">
+                                <input type="text" id="admin_b_title_2" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Tiêu đề (VD: Tập 1: Lý Thuyết)">
+                            </div>
+                            <div class="md:col-span-2">
+                                <input type="text" id="admin_b_link_2" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Link Google Drive (https://drive.google.com/file/d/.../view)">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5 pb-5 border-b border-slate-200 last:border-0 last:pb-0 last:mb-0">
+                        <p class="font-bold text-slate-800 mb-3"><i class="fas fa-book mr-2 text-slate-400"></i>Quyển thứ 3</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="md:col-span-1">
+                                <input type="text" id="admin_b_title_3" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Tiêu đề (VD: Tập 1: Lý Thuyết)">
+                            </div>
+                            <div class="md:col-span-2">
+                                <input type="text" id="admin_b_link_3" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Link Google Drive (https://drive.google.com/file/d/.../view)">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5 pb-5 border-b border-slate-200 last:border-0 last:pb-0 last:mb-0">
+                        <p class="font-bold text-slate-800 mb-3"><i class="fas fa-book mr-2 text-slate-400"></i>Quyển thứ 4</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="md:col-span-1">
+                                <input type="text" id="admin_b_title_4" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Tiêu đề (VD: Tập 1: Lý Thuyết)">
+                            </div>
+                            <div class="md:col-span-2">
+                                <input type="text" id="admin_b_link_4" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Link Google Drive (https://drive.google.com/file/d/.../view)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             <div class="flex flex-col md:flex-row gap-4 justify-end border-t pt-6">
-                <button onclick="previewAndAddBook()" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-eye mr-2"></i>Thêm & Xem Thử Trực Tiếp</button>
-                <button onclick="downloadUpdatedHTML()" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-download mr-2"></i>Lưu & Tải File HTML Mới</button>
+                <button onclick="previewAndAddBook()" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-eye mr-2"></i>Thêm &amp; Xem Thử Trực Tiếp</button>
+                <button onclick="downloadUpdatedHTML()" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-download mr-2"></i>Lưu &amp; Tải File HTML Mới</button>
             </div>
             
             <p class="text-xs text-slate-500 mt-4 text-center">Sau khi tải file <span class="font-bold">index.html</span> mới, hãy upload lên GitHub đè lên file cũ để cập nhật cho mọi người.</p>
@@ -620,6 +709,7 @@
                 else if(theme === 'purple') { bgClass = 'bg-purple-50'; textClass = 'text-purple-600'; accentClass = 'text-purple-700'; }
                 else if(theme === 'red') { bgClass = 'bg-red-50'; textClass = 'text-red-600'; accentClass = 'text-red-700'; }
                 else if(theme === 'orange') { bgClass = 'bg-orange-50'; textClass = 'text-orange-600'; accentClass = 'text-orange-700'; }
+                else if(theme === 'teal') { bgClass = 'bg-teal-50'; textClass = 'text-teal-600'; accentClass = 'text-teal-700'; }
 
                 bannerDataList.push({
                     title: `${title}<br/><span class="${accentClass}">SÁCH MỚI CẬP NHẬT</span>`,
@@ -674,6 +764,7 @@
                 else if(data.theme === 'purple') dots[index].style.backgroundColor = 'var(--primary-purple)';
                 else if(data.theme === 'red') dots[index].style.backgroundColor = '#ef4444';
                 else if(data.theme === 'orange') dots[index].style.backgroundColor = '#f97316';
+                else if(data.theme === 'teal') dots[index].style.backgroundColor = 'var(--primary-teal)';
             }
         }
 
