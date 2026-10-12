@@ -42,12 +42,35 @@
         .category-menu-btn { background-color: transparent; color: #1e293b; padding: 12px 0; font-weight: 800; display: flex; align-items: center; gap: 10px; cursor: pointer; border: none; font-size: 15px; transition: color 0.2s;}
         .category-menu-btn:hover { color: var(--primary-green); }
 
-        .main-container { max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 md:mt-8 flex justify-center; }
-        .content-area { width: 100%; max-width: 1200px; overflow: hidden; }
+        /* SỬA LỖI LỆCH TRANG (HÌNH 1) */
+        .main-container { max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 md:mt-8; display: block; }
+        .content-area { width: 100%; overflow: hidden; margin: 0 auto; }
         
-        .banner-slider { width: 100%; position: relative; background: white; border: 1px solid #e2e8f0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); padding: 25px 20px;}
+        /* CẢI TIẾN BANNER SLIDER TỰ ĐỘNG CHUYỂN (HÌNH 2) */
+        .banner-container {
+            width: 100%; position: relative; overflow: hidden;
+            margin-bottom: 30px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            background: white; border: 1px solid #e2e8f0;
+        }
         @media (min-width: 768px) {
-            .banner-slider { padding: 40px; margin-bottom: 40px; border-radius: 16px; }
+            .banner-container { margin-bottom: 40px; border-radius: 16px; }
+        }
+
+        .banner-track {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+            width: 300%; /* Vì có 3 banner */
+        }
+
+        .banner-slide {
+            width: 33.333333%;
+            padding: 25px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        @media (min-width: 768px) {
+            .banner-slide { padding: 40px; }
         }
         
         .banner-title { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 15px; line-height: 1.3;}
@@ -64,6 +87,10 @@
         @media (min-width: 768px) {
             .banner-icon-bg { display: flex; justify-content: center; width: 33.333333%; }
         }
+
+        .slider-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(200,200,200,0.8); cursor: pointer; transition: background 0.3s;}
+        .dot.active { background: var(--primary-green); }
 
         .book-block { margin-bottom: 40px; background: white; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);}
         @media (min-width: 768px) {
@@ -211,11 +238,6 @@
         @media (min-width: 768px) {
             .header-wrapper { flex-direction: row; gap: 0; align-items: center; }
         }
-        
-        .banner-content-wrapper { display: flex; flex-direction: column; }
-        @media (min-width: 768px) {
-            .banner-content-wrapper { flex-direction: row; align-items: center; justify-content: space-between; }
-        }
     </style>
 </head>
 <body>
@@ -244,23 +266,66 @@
         </div>
     </div>
 
-    <!-- MAIN CONTAINER -->
+    <!-- MAIN CONTAINER CHỮA LỖI LỆCH (Block thay vì flex) -->
     <div class="main-container">
         <div class="content-area">
             
-            <!-- Banner Slider -->
-            <div class="banner-slider bg-gradient-to-r from-purple-50 to-fuchsia-100 banner-content-wrapper" id="mainBanner">
-                <div class="max-w-lg w-full">
-                    <div class="text-xs md:text-sm font-bold text-purple-600 mb-2 md:mb-3 uppercase tracking-wider" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">LÝ THUYẾT ĐỒ THỊ<br/><span class="text-purple-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, luồng cực đại và hơn thế nữa."</p>
-                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-purple-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib text-purple-600 mr-2" id="bannerIcon"></i>
-                        <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
+            <!-- ================= BANNER SLIDER TỰ ĐỘNG CHUYỂN ================= -->
+            <div class="banner-container">
+                <div class="banner-track" id="bannerTrack">
+                    <!-- Slide 1: Lý Thuyết Đồ Thị (Màu Tím) -->
+                    <div class="banner-slide bg-gradient-to-r from-purple-50 to-fuchsia-100">
+                        <div class="max-w-lg w-full">
+                            <div class="text-xs md:text-sm font-bold text-purple-600 mb-2 md:mb-3 uppercase tracking-wider">Sách Nổi Bật Mới Nhất</div>
+                            <h1 class="banner-title text-slate-900">LÝ THUYẾT ĐỒ THỊ<br/><span class="text-purple-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
+                            <p class="banner-desc">"Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, luồng cực đại và hơn thế nữa với tư duy logic."</p>
+                            <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-purple-100 mb-4 md:mb-0">
+                                <i class="fas fa-pen-nib text-purple-600 mr-2"></i>
+                                <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
+                            </div>
+                        </div>
+                        <div class="banner-icon-bg">
+                            <i class="fas fa-project-diagram text-purple-700 opacity-20" style="font-size: 10rem;"></i>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Toán Học (Màu Xanh Dương) -->
+                    <div class="banner-slide bg-gradient-to-r from-blue-50 to-indigo-100">
+                        <div class="max-w-lg w-full">
+                            <div class="text-xs md:text-sm font-bold text-blue-600 mb-2 md:mb-3 uppercase tracking-wider">Tuyển Tập Luyện Thi HSG</div>
+                            <h1 class="banner-title text-slate-900">TOÁN HỌC VÀ CHỐNG TRÂU<br/><span class="text-blue-700">TỐI ƯU HÓA THUẬT TOÁN</span></h1>
+                            <p class="banner-desc">"Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng sự nhạy bén của Toán học."</p>
+                            <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-blue-100 mb-4 md:mb-0">
+                                <i class="fas fa-pen-nib text-blue-600 mr-2"></i>
+                                <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
+                            </div>
+                        </div>
+                        <div class="banner-icon-bg">
+                            <i class="fas fa-infinity text-blue-700 opacity-20" style="font-size: 10rem;"></i>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Quy Hoạch Động (Màu Xanh Lá) -->
+                    <div class="banner-slide bg-gradient-to-r from-green-50 to-emerald-100">
+                        <div class="max-w-lg w-full">
+                            <div class="text-xs md:text-sm font-bold text-green-600 mb-2 md:mb-3 uppercase tracking-wider">Chuyên đề bồi dưỡng HSG</div>
+                            <h1 class="banner-title text-slate-900">QUY HOẠCH ĐỘNG<br/><span class="text-green-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
+                            <p class="banner-desc">"Người không nhớ quá khứ sẽ phải lặp lại nó. Code của em cũng vậy thôi..."</p>
+                            <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-green-100 mb-4 md:mb-0">
+                                <i class="fas fa-pen-nib text-green-600 mr-2"></i>
+                                <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
+                            </div>
+                        </div>
+                        <div class="banner-icon-bg">
+                            <i class="fas fa-laptop-code text-green-700 opacity-20" style="font-size: 10rem;"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="banner-icon-bg">
-                    <i class="fas fa-project-diagram text-purple-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+
+                <div class="slider-dots" id="bannerDots">
+                    <div class="dot active" onclick="goToSlide(0)"></div>
+                    <div class="dot" onclick="goToSlide(1)"></div>
+                    <div class="dot" onclick="goToSlide(2)"></div>
                 </div>
             </div>
 
@@ -381,8 +446,25 @@
 
             <!-- Giao diện Admin Ẩn (Phục vụ thêm sách) -->
             <div class="text-center mb-12">
-                <button onclick="document.getElementById('adminModal').classList.remove('hidden'); document.getElementById('adminModal').classList.add('flex');" class="px-5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-full text-sm font-bold transition-all"><i class="fas fa-cog mr-2"></i>Quản trị viên (Thêm sách)</button>
+                <button onclick="openLoginModal()" class="px-5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-full text-sm font-bold transition-all"><i class="fas fa-cog mr-2"></i>Quản trị viên (Thêm sách)</button>
             </div>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[110] hidden items-center justify-center p-4 md:p-0">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 md:p-8 relative">
+            <button onclick="document.getElementById('loginModal').classList.add('hidden'); document.getElementById('loginModal').classList.remove('flex');" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-xl"><i class="fas fa-times"></i></button>
+            <h2 class="text-xl font-extrabold text-slate-800 mb-6 text-center"><i class="fas fa-lock text-green-500 mr-2"></i>Đăng Nhập Quản Trị</h2>
+            <div class="mb-4">
+                <label class="block text-sm font-bold text-slate-700 mb-2">Tài khoản</label>
+                <input type="text" id="admin_user" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Nhập tài khoản" onkeypress="if(event.key==='Enter') checkAdminLogin()">
+            </div>
+            <div class="mb-6">
+                <label class="block text-sm font-bold text-slate-700 mb-2">Mật khẩu</label>
+                <input type="password" id="admin_pass" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Nhập mật khẩu" onkeypress="if(event.key==='Enter') checkAdminLogin()">
+            </div>
+            <button onclick="checkAdminLogin()" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all shadow-md">Xác Nhận</button>
         </div>
     </div>
 
@@ -437,6 +519,51 @@
 
     <!-- Script tương tác & Admin -->
     <script>
+        // --- LOGIC BANNER TỰ ĐỘNG CHUYỂN SLIDE ---
+        let currentSlide = 0;
+        const totalSlides = 3;
+        let slideInterval;
+
+        function goToSlide(index) {
+            currentSlide = index;
+            const track = document.getElementById('bannerTrack');
+            const dots = document.querySelectorAll('#bannerDots .dot');
+            
+            // Trượt Banner (Dịch sang trái 33.33% cho mỗi slide vì có 3 slide = 100% / 3)
+            track.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+            
+            // Cập nhật chấm Dot
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+            
+            // Đặt lại màu sắc Dot cho phù hợp slide đang xem (Tím -> Xanh Dương -> Xanh Lá)
+            if(currentSlide === 0) dots[currentSlide].style.backgroundColor = 'var(--primary-purple)';
+            else if(currentSlide === 1) dots[currentSlide].style.backgroundColor = 'var(--primary-blue)';
+            else dots[currentSlide].style.backgroundColor = 'var(--primary-green)';
+            
+            resetAutoSlide();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }
+
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, 5000); // 5 Giây tự trượt 1 lần
+        }
+
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            startAutoSlide();
+        }
+
+        // Bắt đầu trượt khi load trang
+        window.onload = function() {
+            startAutoSlide();
+        };
+
+        // --- CÁC HÀM TIỆN ÍCH ---
         function showToast(message, isSuccess = false) {
             const oldToast = document.getElementById('toast');
             if(oldToast) oldToast.remove();
@@ -463,15 +590,40 @@
             grid.scrollBy({ left: amount, behavior: 'smooth' });
         }
 
-        // --- CÁC HÀM XỬ LÝ CHỨC NĂNG ADMIN ---
+        // --- CÁC HÀM XỬ LÝ CHỨC NĂNG ADMIN & ĐĂNG NHẬP ---
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.getElementById('loginModal').classList.add('flex');
+            document.getElementById('admin_user').focus();
+        }
+
+        function checkAdminLogin() {
+            const u = document.getElementById('admin_user').value;
+            const p = document.getElementById('admin_pass').value;
+            
+            // TÀI KHOẢN VÀ MẶT KHẨU MẶC ĐỊNH
+            if (u === 'admin' && p === 'codeplus') { 
+                document.getElementById('loginModal').classList.add('hidden');
+                document.getElementById('loginModal').classList.remove('flex');
+                
+                document.getElementById('adminModal').classList.remove('hidden');
+                document.getElementById('adminModal').classList.add('flex');
+                
+                document.getElementById('admin_user').value = '';
+                document.getElementById('admin_pass').value = '';
+                
+                showToast('Đăng nhập quản trị thành công!', true);
+            } else {
+                showToast('Sai tài khoản hoặc mật khẩu!', false);
+            }
+        }
         
-        // Khởi tạo các form nhập link sách khi vừa bật Admin Modal
         generateBookInputs();
 
         function generateBookInputs() {
             const count = parseInt(document.getElementById('admin_count').value);
             const container = document.getElementById('dynamic_book_inputs');
-            container.innerHTML = ''; // Xóa cũ
+            container.innerHTML = ''; 
             
             for(let i=1; i<=count; i++) {
                 container.innerHTML += `
@@ -490,7 +642,6 @@
             }
         }
 
-        // Chuyển link /view thành /preview để nhúng iframe được
         function processDriveLink(link) {
             if(!link) return '';
             let newLink = link.trim();
@@ -504,7 +655,6 @@
             const theme = document.getElementById('admin_theme').value;
             const count = parseInt(document.getElementById('admin_count').value);
             
-            // Xử lý Class Grid phù hợp với layout 1, 2, 3, 4 quyển
             let gridClass = 'grid-cols-1 md:grid-cols-3';
             if(count === 1) gridClass = 'grid-cols-1 max-w-md mx-auto';
             else if(count === 2) gridClass = 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto';
@@ -544,24 +694,21 @@
                 </div>
             `;
 
-            // Thêm lên TRÊN CÙNG của kho sách (ngay dưới Banner)
             const allBooksContainer = document.getElementById('all-books-container');
             allBooksContainer.insertAdjacentHTML('afterbegin', newBlockHtml);
             
-            // Đóng Modal và cuộn lên xem
             document.getElementById('adminModal').classList.add('hidden');
             document.getElementById('adminModal').classList.remove('flex');
             window.scrollTo({ top: 500, behavior: 'smooth' });
             showToast('Đã thêm sách thành công!', true);
         }
 
-        // Tải xuống bản HTML đã cập nhật để upload lên Github
         function downloadUpdatedHTML() {
-            // Đảm bảo modal đang đóng để không bị dính vào file HTML
             document.getElementById('adminModal').classList.add('hidden');
             document.getElementById('adminModal').classList.remove('flex');
             
-            let htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            let htmlContent = "<!DOCTYPE html>
+" + document.documentElement.outerHTML;
             const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
             const url = URL.createObjectURL(blob);
             
