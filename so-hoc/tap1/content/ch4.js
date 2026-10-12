@@ -563,7 +563,7 @@ const L16 = {
   practice: [
     ['16.1', 'TỔNG ƯỚC', 'σ(1) + ... + σ(n) mod 10^9^ + 7, n ≤ 10^12^: chia khối, tổng cấp số cộng trong mỗi khối.'],
     ['16.2', 'TỔNG DƯ', 'Σ (n mod i) với i từ 1 đến k (k có thể khác n), mod 10^9^ + 7: n mod i = n − i · ⌊n / i⌋, chia khối trên [1, min(n, k)].'],
-    ['16.3', 'HAI THƯƠNG', 'Σ ⌊n / i⌋ · ⌊m / i⌋ với i từ 1 đến min(n, m), n, m ≤ 10^12^: chia khối đồng thời theo hai thương.'],
+    ['16.3', 'HAI THƯƠNG', 'Σ (n mod i) · (m mod i) với i từ 1 đến min(n, m), n, m ≤ 10^12^: viết n mod i = n − i · ⌊n / i⌋, khai triển rồi chia khối đồng thời theo hai thương, dùng công thức Σ i và Σ i^2^ trên mỗi khối.'],
   ],
   quiz: [
     ['Tính S(100) = Σ ⌊100 / i⌋. Thuật toán gom khối chạy bao nhiêu lượt?', 'Đáp số: S(100) = 482, 19 lượt'],

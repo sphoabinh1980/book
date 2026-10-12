@@ -280,7 +280,7 @@ const L18 = {
   practice: [
     ['18.1', 'ĐỔI CƠ SỐ', 'Đổi một số từ cơ số a sang cơ số b (2 ≤ a, b ≤ 36): Horner để về giá trị, rồi chia liên tiếp.'],
     ['18.2', 'BIT TRONG ĐOẠN', 'Q truy vấn tổng số bit 1 của các số trong [L, R] ≤ 10^18^: f(R) − f(L − 1) với hàm f của bài.'],
-    ['18.3', 'SỐ CÓ k BIT 1', 'Đếm số trong [1, n] có đúng k bit 1: duyệt bit 1 của n từ cao xuống, cộng tổ hợp C(số bit còn lại, k còn lại) (Bài 13).'],
+    ['18.3', 'SỐ CÓ K BIT 1', 'Đếm số trong [1, n] có đúng k bit 1: duyệt bit 1 của n từ cao xuống, cộng tổ hợp C(số bit còn lại, k còn lại) (Bài 13).'],
   ],
   quiz: [
     ['Tính tổng số bit 1 của các số 1..100 bằng công thức theo cột.', 'Đáp số: 319'],
