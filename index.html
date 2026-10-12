@@ -13,6 +13,7 @@
         :root {
             --primary-green: #00b14f;
             --primary-blue: #2563eb;
+            --primary-purple: #9333ea;
             --header-dark: #00893d;
         }
         body { 
@@ -29,10 +30,6 @@
         .search-btn { background-color: #f1f5f9; color: #334155; border: none; padding: 12px 24px; cursor: pointer; border-radius: 0 8px 8px 0; font-size: 14px; font-weight: 600; transition: all 0.2s;}
         .search-btn:hover { background-color: #e2e8f0; color: var(--primary-green);}
         
-        .header-links { display: flex; gap: 24px; align-items: center; font-size: 14px; font-weight: 600;}
-        .header-links a { color: white; text-decoration: none; transition: opacity 0.2s; cursor: pointer;}
-        .header-links a:hover { opacity: 0.8; }
-
         .nav-bar { background-color: white; border-bottom: 2px solid var(--primary-green); display: flex; justify-content: space-between; align-items: center; padding-right: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
         .category-menu-btn { background-color: transparent; color: #1e293b; padding: 16px 24px; font-weight: 800; display: flex; align-items: center; gap: 10px; cursor: pointer; border: none; font-size: 15px; transition: color 0.2s;}
         .category-menu-btn:hover { color: var(--primary-green); }
@@ -59,9 +56,8 @@
             content: ''; position: absolute; left: 0; bottom: -14px; width: 60px; height: 4px; 
             background-color: var(--primary-green); border-radius: 2px;
         }
-        .section-title.blue-theme::after {
-            background-color: var(--primary-blue);
-        }
+        .section-title.blue-theme::after { background-color: var(--primary-blue); }
+        .section-title.purple-theme::after { background-color: var(--primary-purple); }
 
         .view-all { font-size: 15px; color: #64748b; text-decoration: none; font-weight: 600; cursor: pointer; transition: color 0.2s;}
         .view-all:hover { color: var(--primary-green); }
@@ -69,7 +65,6 @@
 
         .books-container { padding: 0; }
         
-        /* Nâng cấp khung đọc thử (Preview Wrapper) thay thế cho nút mua hàng */
         .book-col { display: flex; flex-direction: column; align-items: center; }
         .book-vol-badge {
             display: inline-flex; align-items: center; justify-content: center;
@@ -80,6 +75,7 @@
         }
         .book-vol-badge.blue i { color: var(--primary-blue); margin-right: 8px; font-size: 16px;}
         .book-vol-badge.green i { color: var(--primary-green); margin-right: 8px; font-size: 16px;}
+        .book-vol-badge.purple i { color: var(--primary-purple); margin-right: 8px; font-size: 16px;}
         
         .preview-wrapper { 
             width: 100%; height: 650px; 
@@ -143,24 +139,60 @@
     <div class="main-container">
         <div class="content-area">
             
-            <!-- Banner Slider Chung -->
-            <div class="banner-slider p-10 bg-gradient-to-r from-blue-50 to-indigo-100 flex items-center justify-between" id="mainBanner">
+            <!-- Banner Slider Chung (Cập nhật cho sách mới nhất) -->
+            <div class="banner-slider p-10 bg-gradient-to-r from-purple-50 to-fuchsia-100 flex items-center justify-between" id="mainBanner">
                 <div class="max-w-lg">
-                    <div class="text-sm font-bold text-blue-600 mb-3 uppercase tracking-wider" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
-                    <h1 class="text-4xl font-extrabold text-slate-900 mb-5 leading-tight" id="bannerTitle">TOÁN HỌC VÀ CHỐNG TRÂU<br/><span class="text-blue-700">TỐI ƯU HÓA THUẬT TOÁN</span></h1>
-                    <p class="text-slate-600 mb-8 text-base italic leading-relaxed" id="bannerDesc">"Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng tư duy Toán học sắc bén."</p>
-                    <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm border border-blue-100">
-                        <i class="fas fa-pen-nib text-blue-600 mr-2" id="bannerIcon"></i>
+                    <div class="text-sm font-bold text-purple-600 mb-3 uppercase tracking-wider">Tuyển Tập Luyện Thi HSG</div>
+                    <h1 class="text-4xl font-extrabold text-slate-900 mb-5 leading-tight">LÝ THUYẾT ĐỒ THỊ<br/><span class="text-purple-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
+                    <p class="text-slate-600 mb-8 text-base italic leading-relaxed">"Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, luồng cực đại và hơn thế nữa."</p>
+                    <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm border border-purple-100">
+                        <i class="fas fa-pen-nib text-purple-600 mr-2"></i>
                         <span class="font-bold text-slate-800">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
                 <div class="w-1/3 flex justify-center">
-                    <i class="fas fa-infinity text-8xl text-blue-700 opacity-20 transform hover:scale-110 transition-transform duration-500" id="bannerBigIcon" style="font-size: 10rem;"></i>
+                    <i class="fas fa-project-diagram text-purple-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 10rem;"></i>
                 </div>
             </div>
 
-            <!-- ================= SÁCH 1: TOÁN HỌC VÀ CHỐNG TRÂU ================= -->
-            <div class="book-block">
+            <!-- ================= SÁCH 1: LÝ THUYẾT ĐỒ THỊ (MỚI NHẤT Ở TRÊN) ================= -->
+            <div class="book-block" id="book-dothi">
+                <div class="section-header">
+                    <div class="section-title purple-theme">ĐỌC THỬ BỘ SÁCH LÝ THUYẾT ĐỒ THỊ</div>
+                </div>
+
+                <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="book-col">
+                        <div class="book-vol-badge purple">
+                            <i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT
+                        </div>
+                        <div class="preview-wrapper">
+                            <iframe src="https://drive.google.com/file/d/1LabrYYHAOoC3JdqzQ7zFUTIqn-wG6pKa/preview"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="book-col">
+                        <div class="book-vol-badge purple">
+                            <i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP
+                        </div>
+                        <div class="preview-wrapper">
+                            <iframe src="https://drive.google.com/file/d/1RMfmwVTty40Pt9PFV7SytduB15QjBKVj/preview"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="book-col">
+                        <div class="book-vol-badge purple">
+                            <i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI
+                        </div>
+                        <div class="preview-wrapper">
+                            <iframe src="https://drive.google.com/file/d/1C4txJF9xdFlg3jH7fFFXwWqG_loymzri/preview"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SÁCH 2: TOÁN HỌC VÀ CHỐNG TRÂU ================= -->
+            <div class="book-block" id="book-toanhoc">
                 <div class="section-header">
                     <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH TOÁN HỌC & CHỐNG TRÂU</div>
                 </div>
@@ -195,8 +227,8 @@
                 </div>
             </div>
 
-            <!-- ================= SÁCH 2: QUY HOẠCH ĐỘNG ================= -->
-            <div class="book-block">
+            <!-- ================= SÁCH 3: QUY HOẠCH ĐỘNG (CŨ NHẤT) ================= -->
+            <div class="book-block" id="book-qhd">
                 <div class="section-header">
                     <div class="section-title">ĐỌC THỬ BỘ SÁCH QUY HOẠCH ĐỘNG</div>
                 </div>
@@ -244,13 +276,19 @@
                     
                     <div class="book-grid-scroll" id="bookGrid">
                         
-                        <div class="book-card" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+                        <div class="book-card" onclick="document.getElementById('book-dothi').scrollIntoView({ behavior: 'smooth' });">
+                            <div class="discount-badge">-15%</div>
+                            <div class="book-image-placeholder"><i class="fas fa-project-diagram"></i></div>
+                            <div class="book-title">Combo Lý Thuyết Đồ Thị (Trọn Bộ 3 Tập)</div>
+                        </div>
+
+                        <div class="book-card" onclick="document.getElementById('book-toanhoc').scrollIntoView({ behavior: 'smooth' });">
                             <div class="discount-badge">-15%</div>
                             <div class="book-image-placeholder"><i class="fas fa-infinity"></i></div>
                             <div class="book-title">Combo Toán Học & Chống Trâu (Trọn Bộ 3 Tập)</div>
                         </div>
 
-                        <div class="book-card" onclick="window.scrollTo({ top: 900, behavior: 'smooth' });">
+                        <div class="book-card" onclick="document.getElementById('book-qhd').scrollIntoView({ behavior: 'smooth' });">
                             <div class="discount-badge">-15%</div>
                             <div class="book-image-placeholder"><i class="fas fa-laptop-code"></i></div>
                             <div class="book-title">Combo Quy Hoạch Động (Trọn Bộ 3 Tập)</div>
@@ -266,18 +304,6 @@
                             <div class="discount-badge">-20%</div>
                             <div class="book-image-placeholder"><i class="fas fa-terminal"></i></div>
                             <div class="book-title">Lập trình thi đấu C++ Toàn Tập</div>
-                        </div>
-                        
-                        <div class="book-card" onclick="showToast('Đang mở trang chi tiết...')">
-                            <div class="discount-badge">-10%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-book"></i></div>
-                            <div class="book-title">Xuyên Thành Phản Diện (Tiểu Thuyết)</div>
-                        </div>
-                        
-                        <div class="book-card" onclick="showToast('Đang mở trang chi tiết...')">
-                            <div class="discount-badge">-10%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-book-open"></i></div>
-                            <div class="book-title">Á Nô - Tập 1 (Bản Thường)</div>
                         </div>
                     </div>
                 </div>
