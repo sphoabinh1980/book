@@ -248,38 +248,54 @@
         </div>
     </div>
 
-    <!-- MAIN CONTAINER -->
+    <!-- MAIN CONTAINER CHỮA LỖI LỆCH (Block thay vì flex) -->
     <div class="main-container">
         <div class="content-area">
             
-            <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
-            <div class="banner-slider p-10 flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-red-50 to-orange-100 banner-content-wrapper" id="mainBanner">
+            <!-- ================= BANNER SLIDER TỰ ĐỘNG CHUYỂN ================= -->
+            <div class="banner-slider p-10 flex items-center justify-between transition-all duration-500 bg-gradient-to-r bg-blue-50 to-slate-100" id="mainBanner">
                 <div class="max-w-lg w-full">
-                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-red-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">LẬP TRÌNH C++<br><span class="text-red-700">SÁCH MỚI CẬP NHẬT</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Làm chủ C++, tự tin chinh phục đỉnh cao lập trình thi đấu."</p>
-                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-red-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib mr-2 text-red-600" id="bannerIcon"></i>
+                    <div class="text-sm font-bold mb-3 uppercase tracking-wider text-blue-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
+                    <h1 class="banner-title text-slate-900" id="bannerTitle">TOÁN HỌC VÀ CHỐNG TRÂU<br><span class="text-blue-700">SÁCH MỚI CẬP NHẬT</span></h1>
+                    <p class="banner-desc" id="bannerDesc">"Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng sự nhạy bén của Toán học."</p>
+                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-purple-100 mb-4 md:mb-0">
+                        <i class="fas fa-pen-nib mr-2 text-blue-600" id="bannerIcon"></i>
                         <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
                 <div class="banner-icon-bg">
-                    <i class="fas fa-calculator text-red-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                    <i class="fas fa-infinity text-blue-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
                 </div>
-                <div class="slider-dots" id="bannerDots">
-                    <!-- Dots will be populated by JS -->
-                </div>
+                <div class="slider-dots" id="bannerDots"><div class="dot" onclick="goToSlide(0)" style="background-color: rgba(200, 200, 200, 0.8);"></div><div class="dot active" onclick="goToSlide(1)" style="background-color: var(--primary-blue);"></div><div class="dot" onclick="goToSlide(2)" style="background-color: rgba(200, 200, 200, 0.8);"></div></div>
             </div>
 
             <!-- Nơi chứa toàn bộ Khối Sách -->
             <div id="all-books-container">
 
-                <!-- ================= SÁCH 0: C++ TỪ CON SỐ 0 (MỚI NHẤT Ở TRÊN) ================= -->
+                <!-- ================= SÁCH 0: HƯỚNG DẪN GIẢI ĐỀ THI HSG THPT ================= -->
+                <div class="book-block" id="book-hsgthpt" data-title="GIẢI ĐỀ THI HSG THPT 2025 - 2026" data-desc="Tài liệu luyện thi bám sát cấu trúc đề thi học sinh giỏi THPT." data-theme="blue" data-icon="fa-graduation-cap">
+                    <div class="section-header">
+                        <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH GIẢI ĐỀ THI HSG THPT 2025 - 2026</div>
+                    </div>
+                    <div class="books-container grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-10 md:gap-8">
+                        <div class="book-col">
+                            <div class="book-vol-badge blue"><i class="fas fa-book-open"></i> TẬP 1: KIẾN THỨC NỀN TẢNG</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1E8KJSWTpzeazV453meaqHkTgk9YI9fBC/preview"></iframe></div>
+                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 1', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge blue"><i class="fas fa-tasks"></i> TẬP 2: HƯỚNG DẪN GIẢI ĐỀ</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1gFb4HfMBYu8W-8sxUHdMTRL96HYuK98n/preview"></iframe></div>
+                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 2', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= SÁCH 1: LẬP TRÌNH C++ ================= -->
                 <div class="book-block" id="book-cpp" data-title="LẬP TRÌNH C++" data-desc="Làm chủ C++, tự tin chinh phục đỉnh cao lập trình thi đấu." data-theme="orange" data-icon="fa-code">
                     <div class="section-header">
                         <div class="section-title orange-theme">ĐỌC THỬ BỘ SÁCH LẬP TRÌNH C++</div>
                     </div>
-                    <!-- Vì chỉ có 2 tập nên grid-cols-2 trên md và max-w-4xl để căn giữa đẹp -->
                     <div class="books-container grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-10 md:gap-8">
                         <div class="book-col">
                             <div class="book-vol-badge orange"><i class="fas fa-book-open"></i> TẬP 1: CPP TỪ CON SỐ 0</div>
@@ -294,7 +310,7 @@
                     </div>
                 </div>
                 
-                <!-- ================= SÁCH 1: SỐ HỌC ================= -->
+                <!-- ================= SÁCH 2: SỐ HỌC ================= -->
                 <div class="book-block" id="book-sohoc" data-title="SỐ HỌC" data-desc="Nền tảng vững chắc cho mọi thuật toán, từ số nguyên tố, đồng dư đến các định lý nâng cao." data-theme="red" data-icon="fa-calculator">
                     <div class="section-header">
                         <div class="section-title red-theme">ĐỌC THỬ BỘ SÁCH SỐ HỌC</div>
@@ -318,7 +334,7 @@
                     </div>
                 </div>
 
-                <!-- ================= SÁCH 2 ================= -->
+                <!-- ================= SÁCH 3 ================= -->
                 <div class="book-block" id="book-dothi" data-title="LÝ THUYẾT ĐỒ THỊ" data-desc="Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, luồng cực đại và hơn thế nữa với tư duy logic." data-theme="purple" data-icon="fa-project-diagram">
                     <div class="section-header">
                         <div class="section-title purple-theme">ĐỌC THỬ BỘ SÁCH LÝ THUYẾT ĐỒ THỊ</div>
@@ -342,7 +358,7 @@
                     </div>
                 </div>
 
-                <!-- ================= SÁCH 3 ================= -->
+                <!-- ================= SÁCH 4 ================= -->
                 <div class="book-block" id="book-toanhoc" data-title="TOÁN HỌC VÀ CHỐNG TRÂU" data-desc="Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng sự nhạy bén của Toán học." data-theme="blue" data-icon="fa-infinity">
                     <div class="section-header">
                         <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH TOÁN HỌC & CHỐNG TRÂU</div>
@@ -366,7 +382,7 @@
                     </div>
                 </div>
 
-                <!-- ================= SÁCH 4 ================= -->
+                <!-- ================= SÁCH 5 ================= -->
                 <div class="book-block" id="book-qhd" data-title="QUY HOẠCH ĐỘNG" data-desc="Người không nhớ quá khứ sẽ phải lặp lại nó. Code của em cũng vậy thôi..." data-theme="green" data-icon="fa-laptop-code">
                     <div class="section-header">
                         <div class="section-title">ĐỌC THỬ BỘ SÁCH QUY HOẠCH ĐỘNG</div>
@@ -404,6 +420,11 @@
                     <button class="grid-arrow right" onclick="scrollGrid(320)"><i class="fas fa-chevron-right"></i></button>
                     
                     <div class="book-grid-scroll" id="bookGrid">
+                        <div class="book-card" onclick="document.getElementById('book-hsgthpt').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                            <div class="discount-badge">-15%</div>
+                            <div class="book-image-placeholder"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="book-title">Combo Giải Đề Thi HSG THPT (2 Tập)</div>
+                        </div>
                         <div class="book-card" onclick="document.getElementById('book-cpp').scrollIntoView({ behavior: 'smooth', block: 'start' });">
                             <div class="discount-badge">-20%</div>
                             <div class="book-image-placeholder"><i class="fas fa-code"></i></div>
@@ -479,21 +500,22 @@
                     <label class="block text-sm font-bold text-slate-700 mb-2">Màu Sắc Chủ Đạo</label>
                     <select id="admin_theme" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                         <option value="green">Xanh Lá Cây (Green)</option>
-                        <option value="blue">Xanh Dương (Blue)</option>
+                        <option value="blue" selected>Xanh Dương (Blue)</option>
                         <option value="purple">Tím (Purple)</option>
                         <option value="red">Đỏ (Red)</option>
-                        <option value="orange" selected>Cam (Orange)</option>
+                        <option value="orange">Cam (Orange)</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-slate-700 mb-2">Icon Banner (FontAwesome)</label>
                     <select id="admin_icon" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                         <option value="fa-book">Sách thường</option>
-                        <option value="fa-code" selected>Mã code</option>
+                        <option value="fa-code">Mã code</option>
                         <option value="fa-laptop-code">Laptop</option>
                         <option value="fa-project-diagram">Đồ thị</option>
                         <option value="fa-infinity">Vô cực / Toán</option>
                         <option value="fa-calculator">Máy tính / Số học</option>
+                        <option value="fa-graduation-cap" selected>Mũ Cử Nhân / Giải Đề</option>
                     </select>
                 </div>
             </div>
@@ -502,8 +524,8 @@
                 <label class="block text-sm font-bold text-slate-700 mb-2">Số lượng sách trong Combo</label>
                 <select id="admin_count" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" onchange="generateBookInputs()">
                     <option value="1">1 Quyển (Hiển thị căn giữa)</option>
-                    <option value="2">2 Quyển (Chia 2 cột)</option>
-                    <option value="3" selected="">3 Quyển (Chia 3 cột)</option>
+                    <option value="2" selected="">2 Quyển (Chia 2 cột)</option>
+                    <option value="3">3 Quyển (Chia 3 cột)</option>
                     <option value="4">4 Quyển (Chia 4 cột)</option>
                     <option value="5">5 Quyển (Dàn nhiều cột)</option>
                     <option value="6">6 Quyển (Dàn nhiều cột)</option>
@@ -586,7 +608,7 @@
             
             books.forEach(book => {
                 const title = book.getAttribute('data-title');
-                if(!title) return; // Bỏ qua nếu không phải khối sách có data
+                if(!title) return; 
                 
                 const desc = book.getAttribute('data-desc');
                 const theme = book.getAttribute('data-theme');
