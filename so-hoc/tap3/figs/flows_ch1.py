@@ -1,0 +1,7 @@
+from flow import flow
+flow('f_ngaythu_naive', [('term', 'Một câu hỏi (t, k)'), ('proc', 'd ← t − 2'), ('loop', 'chưa đi đủ |k| ngày?'), ('proc', 'đi thêm một ngày theo chiều của k:\nd ← (d ± 1 + 7) mod 7'), ('end', ''), ('io', 'In d + 2'), ('term', 'Kết thúc')])
+flow('f_ngaythu_opt', [('term', 'Một câu hỏi (t, k)'), ('proc', 'd ← t − 2'), ('proc', 'r ← (d + k mod 7) mod 7'), ('dec', 'r < 0 ?', ('r ← r + 7', 'proc')), ('io', 'In r + 2'), ('term', 'Kết thúc')])
+flow('f_chusocuoi_naive', [('term', 'Một câu hỏi (a, b)'), ('proc', 'r ← 1'), ('loop', 'lặp b lần'), ('proc', 'r ← r · (a mod 10) mod 10'), ('end', ''), ('io', 'In r'), ('term', 'Kết thúc')])
+flow('f_chusocuoi_opt', [('term', 'Một câu hỏi (xâu a, xâu b)'), ('dec', 'b = "0" ?', ('In 1', 'io')), ('proc', 'x ← chữ số cuối của a\ne ← b mod 4 (Horner trên xâu b)'), ('dec', 'e = 0 ?', ('e ← 4', 'proc')), ('io', 'In x^e mod 10'), ('term', 'Kết thúc')])
+flow('f_vietlien_naive', [('term', 'Bắt đầu'), ('proc', 's ← xâu rỗng'), ('loop', 'i = 1, 2, ..., n'), ('proc', 's ← s + to_string(i)'), ('end', ''), ('proc', 'r ← s mod m (Horner theo chữ số)'), ('io', 'In r'), ('term', 'Kết thúc')])
+flow('f_vietlien_opt', [('term', 'Bắt đầu'), ('proc', 'r ← 0; p ← 10 mod m; nxt ← 10'), ('loop', 'i = 1, 2, ..., n'), ('dec', 'i = nxt ?', ('p ← p · 10 mod m\nnxt ← nxt · 10', 'proc')), ('proc', 'r ← (r · p + i) mod m'), ('end', ''), ('io', 'In r'), ('term', 'Kết thúc')])

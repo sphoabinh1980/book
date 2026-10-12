@@ -19,7 +19,7 @@ const L1 = {
       input: ['Dòng đầu chứa số nguyên Q. Mỗi dòng trong Q dòng tiếp theo chứa hai số nguyên t và k.'],
       output: ['Gồm Q dòng, dòng thứ i là thứ (một số từ 2 tới 8) ứng với câu hỏi thứ i.'],
       limits: ['1 ≤ Q ≤ 10^5^;  2 ≤ t ≤ 8;  |k| ≤ 10^18^.'],
-      subtasks: [[30, '0 ≤ k ≤ 10^6^.'], [30, 'k ≥ 0.'], [40, 'Không có ràng buộc gì thêm.']],
+      subtasks: [[30, 'Q ≤ 100 và 0 ≤ k ≤ 10^6^.'], [30, 'k ≥ 0.'], [40, 'Không có ràng buộc gì thêm.']],
       examples: [
         { explain: ['1000 = 7 · 142 + 6: sau 1000 ngày, thứ Hai tiến thêm 6 ngày là **Chủ nhật** (8).', '−100 = 7 · (−15) + 5: 100 ngày trước thứ Hai là **thứ Bảy** (7).', '10^18^ chia 7 dư 1: **thứ Ba** (3).'] },
         { explain: ['k = 0: chính hôm nay, Chủ nhật.', 'Một tuần trước thứ Năm vẫn là **thứ Năm**.'] },
