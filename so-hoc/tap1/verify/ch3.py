@@ -123,7 +123,7 @@ def gen_CRT(r):          # bội chung nhỏ (hoặc m1 lớn) để cách ngây
         if lcm_all(ms) // ms[0] <= 3 * 10**5: break
     x = r.randint(0, lcm_all(ms) - 1)
     eq = [(x % m, m) for m in ms]
-    if r.random() < 0.45:  # làm hỏng một phương trình: thường thành vô nghiệm
+    if r.random() < 0.6:  # làm hỏng một phương trình: thường thành vô nghiệm
         i = r.randrange(len(ms)); eq[i] = (r.randint(0, ms[i] - 1), ms[i])
     return fmt_crt(eq)
 def gen_CRT_tontu(r):    # đôi một nguyên tố cùng nhau, tích ≤ 10^18

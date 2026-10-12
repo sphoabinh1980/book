@@ -1,0 +1,302 @@
+// SỐ HỌC — TẬP 1. CHƯƠNG 4. TỔ HỢP VÀ ĐẾM
+const C3 = (n) => n.map(() => 'center');
+
+// ============================================================ BÀI 13
+const L13 = {
+  no: 13, title: 'Tổ hợp và hệ số nhị thức', sub: 'đếm số cách chọn và tính C(n, k) mod p thật nhanh',
+  goals: [
+    'Nắm **quy tắc nhân**, hoán vị, chỉnh hợp, tổ hợp và hiểu vì sao C(n, k) = n! / (k! · (n − k)!).',
+    'Chứng minh được **hằng đẳng thức Pascal** C(n, k) = C(n − 1, k − 1) + C(n − 1, k) bằng một lập luận đếm.',
+    'Biết vì sao không thể chia thẳng giai thừa theo mô-đun, và dùng **nghịch đảo giai thừa** để trả lời mỗi truy vấn C(n, k) mod p trong O(1).',
+    'Chọn đúng công cụ cho từng giới hạn: tam giác Pascal, giai thừa, nhân dần, định lí Lucas.',
+  ],
+  warmup: [
+    'Lớp em có 30 bạn. Cô giáo cần chọn **3 bạn đi thi Tin học**. Bạn Minh nhẩm: "Bạn thứ nhất có 30 cách chọn, bạn thứ hai 29, bạn thứ ba 28, vậy 30 · 29 · 28 = 24 360 cách." Bạn Lan cãi: "Chọn An, Bình, Chi hay chọn Chi, An, Bình thì vẫn là một đội thôi!" Ai đúng?',
+    'Cả hai đều có lí, chỉ là hai câu hỏi khác nhau: Minh đếm **có thứ tự** (thi đấu theo lượt 1, 2, 3), Lan đếm **không thứ tự** (chỉ cần biết đội gồm những ai). Bài học này phân biệt rõ hai cách đếm ấy, rồi trả lời một câu hỏi rất "Tin học": làm sao tính số cách chọn k trong n vật khi n tới một triệu, cho một trăm nghìn câu hỏi, mỗi câu trong nháy mắt?',
+  ],
+  body: [
+    { h: 'Quy tắc nhân, hoán vị và giai thừa' },
+    'Mọi phép đếm trong bài này dựa trên một quy tắc rất đơn giản: nếu một việc gồm **hai bước liên tiếp**, bước đầu có a cách làm và **với mỗi cách** của bước đầu, bước sau có b cách làm, thì cả việc có **a · b** cách. Quy tắc mở rộng cho nhiều bước: số cách bằng tích số cách của từng bước.',
+    'Bạn Minh trong phần khởi động đã dùng đúng quy tắc này: chọn người thi lượt 1 (30 cách), rồi lượt 2 (còn 29 cách), rồi lượt 3 (còn 28 cách), được 30 · 29 · 28 = 24 360. Cách đếm có thứ tự như vậy có tên riêng.',
+    { box: 'def', title: 'ĐỊNH NGHĨA (HOÁN VỊ, CHỈNH HỢP)', body: [
+      { ul: [
+        'Một **hoán vị** của n vật là một cách xếp cả n vật thành một hàng. Số hoán vị là n! = 1 · 2 · ... · n (đọc là "n giai thừa"); quy ước 0! = 1.',
+        'Một **chỉnh hợp chập k** của n vật là một cách chọn k vật **có thứ tự**. Số chỉnh hợp là A(n, k) = n · (n − 1) · ... · (n − k + 1) = n! / (n − k)!.',
+      ] },
+    ] },
+    'Giai thừa tăng **cực nhanh**. Bảng dưới cho thấy 20! vẫn vừa kiểu `long long` (giới hạn khoảng 9,2 · 10^18^), nhưng 21! đã vượt cả `unsigned long long`. Đây là lí do mọi bài đếm trong thi đấu đều yêu cầu in kết quả **theo mô-đun** một số nguyên tố, thường là p = 10^9^ + 7.',
+    { table: { cols: [900, 2300, 900, 4518], head: ['n', 'n!', 'n', 'n!'],
+      rows: [['0', '1', '6', '720'], ['1', '1', '7', '5 040'], ['2', '2', '8', '40 320'], ['3', '6', '9', '362 880'], ['4', '24', '10', '3 628 800'], ['5', '120', '20', '2 432 902 008 176 640 000 (vừa `long long`)'], ['', '', '21', '51 090 942 171 709 440 000 (**tràn** 2^64^)']],
+      aligns: ['center', 'center', 'center', 'center'] } },
+
+    { h: 'Tổ hợp và tam giác Pascal' },
+    'Bây giờ đến câu hỏi của bạn Lan: chỉ quan tâm **đội gồm những ai**, không quan tâm thứ tự.',
+    { box: 'def', title: 'ĐỊNH NGHĨA (TỔ HỢP)', body: [
+      'Một **tổ hợp chập k** của n vật là một tập con gồm k vật (không có thứ tự). Số tổ hợp kí hiệu là C(n, k) (sách giáo khoa viết C~n~^k^, đọc là "n chọn k"), còn gọi là **hệ số nhị thức**. Quy ước C(n, k) = 0 khi k < 0 hoặc k > n.',
+      { formula: 'C(n, k) = n! / (k! · (n − k)!)' },
+    ] },
+    { box: 'why', title: 'VÌ SAO CÔNG THỨC ĐÚNG?', body: [
+      'Đếm số chỉnh hợp A(n, k) theo **hai bước**: bước 1 chọn tập k vật (C(n, k) cách), bước 2 xếp thứ tự k vật đó (k! cách). Theo quy tắc nhân, A(n, k) = C(n, k) · k!, nên C(n, k) = A(n, k) / k! = n! / (k! · (n − k)!).',
+      'Với lớp 30 bạn: mỗi đội 3 bạn được Minh đếm đúng 3! = 6 lần (6 thứ tự), nên số đội là 24 360 / 6 = **4 060**. Cả Minh và Lan đều đúng với câu hỏi của mình.',
+    ] },
+    { box: 'example', title: 'VÍ DỤ: XỔ SỐ 6/45', body: [
+      'Một vé xổ số chọn 6 số khác nhau trong các số 1..45, thứ tự không quan trọng. Số vé khác nhau là C(45, 6) = 45 · 44 · 43 · 42 · 41 · 40 / 720 = **8 145 060**. Mua một vé, khả năng trúng giải đặc biệt chỉ là 1 phần 8 triệu.',
+    ] },
+    'Công thức giai thừa đẹp nhưng chưa cho ta thấy **cấu trúc** của các số C(n, k). Hãy xét một ví dụ nhỏ: chọn 2 bạn trong 5 bạn đánh số 1..5. Ta chia các cách chọn thành hai nhóm theo câu hỏi "bạn số 5 có được chọn không?".',
+    { fig: 'f13_chon', w: 5.8, cap: 'Mười cách chọn 2 trong 5 bạn, chia theo bạn số 5: có (4 cách) hoặc không (6 cách).' },
+    'Nếu bạn 5 được chọn, ta chỉ còn chọn thêm 1 bạn trong 4 bạn kia: C(4, 1) = 4 cách. Nếu bạn 5 không được chọn, ta phải chọn đủ 2 bạn trong 4 bạn kia: C(4, 2) = 6 cách. Hai nhóm không giao nhau và phủ hết mọi cách, nên C(5, 2) = 4 + 6 = 10. Lập luận này đúng với mọi n và k.',
+    { box: 'theorem', title: 'ĐỊNH LÍ (HẰNG ĐẲNG THỨC PASCAL)', body: [
+      'Với mọi n ≥ 1 và 1 ≤ k ≤ n − 1:',
+      { formula: 'C(n, k) = C(n − 1, k − 1) + C(n − 1, k)' },
+      'cùng với hai "đầu mút" C(n, 0) = C(n, n) = 1 và tính đối xứng C(n, k) = C(n, n − k).',
+    ] },
+    { box: 'why', body: [
+      'Xét một vật cố định, chẳng hạn vật thứ n. Mỗi tập con k phần tử **hoặc chứa** vật n (khi đó k − 1 phần tử còn lại chọn trong n − 1 vật: C(n − 1, k − 1) cách), **hoặc không chứa** vật n (cả k phần tử chọn trong n − 1 vật: C(n − 1, k) cách). Hai trường hợp loại trừ nhau, nên cộng lại.',
+      'Đối xứng: chọn k vật để **lấy** cũng chính là chọn n − k vật để **bỏ lại**, hai việc tương ứng một-một.',
+    ] },
+    'Xếp các số C(n, k) thành hàng thứ n (k = 0, 1, ..., n), ta được **tam giác Pascal**: mỗi số bên trong bằng tổng hai số đứng ngay trên nó.',
+    { fig: 'f13_pascal', w: 5.9, cap: 'Tam giác Pascal tới hàng 8. Mỗi ô bên trong bằng tổng hai ô phía trên; cột phải là tổng mỗi hàng.' },
+    { box: 'note', title: 'NHỊ THỨC NEWTON VÀ TỔNG MỖI HÀNG', body: [
+      'Khai triển (a + b)^n^ = (a + b)(a + b)...(a + b): mỗi số hạng a^k^b^n−k^ xuất hiện đúng bằng số cách chọn k thừa số đóng góp a, tức C(n, k) lần. Vậy (a + b)^n^ = Σ C(n, k) · a^k^ · b^n−k^, đó là lí do C(n, k) được gọi là **hệ số nhị thức**. Thay a = b = 1: tổng hàng thứ n bằng **2^n^** (số tập con của tập n phần tử). Thay a = 1, b = −1: tổng đan dấu của mỗi hàng (n ≥ 1) bằng **0**; em sẽ dùng điều này ở Bài 14.',
+    ] },
+
+    { h: 'Bài toán TOHOP' },
+    { problem: { code: 'TOHOP', statement: [
+      'Cho Q truy vấn, mỗi truy vấn gồm hai số nguyên n, k. Với mỗi truy vấn, hãy in C(n, k) mod (10^9^ + 7); nếu k > n thì in 0.',
+    ], input: 'Dòng đầu chứa Q (1 ≤ Q ≤ 10^5^). Mỗi dòng trong Q dòng sau chứa n, k (0 ≤ n, k ≤ 10^6^).', output: 'Q dòng, mỗi dòng là đáp số của một truy vấn.' } },
+    { examples: 'TOHOP', explain: ['C(5, 2) = 10, C(6, 3) = 20, C(10, 0) = 1; k > n nên C(3, 5) = 0.', 'C(10^6^, 5 · 10^5^) có tới 301 027 chữ số, ta chỉ in số dư. C(n, 1) = C(n, n − 1) = n.', 'Số vé xổ số 6/45. C(0, 0) = 1: chỉ có một cách chọn "không gì cả" từ tập rỗng.'] },
+
+    { h: 'Ý tưởng ngây thơ: Dựng cả tam giác Pascal' },
+    'Hằng đẳng thức Pascal chỉ dùng **phép cộng**, mà phép cộng thì lấy dư thoải mái (Bài 1). Vậy ta dựng tam giác Pascal theo mô-đun p, từ hàng 0 đến hàng mx là n lớn nhất trong các truy vấn, rồi tra bảng. Không có phép chia nào, không cần biết p có nguyên tố hay không.',
+    { fig: 'f13_ngaytho', w: 2.9, cap: 'Sơ đồ khối của cách dựng tam giác Pascal.' },
+    { file: 'TOHOP_ngaytho', title: 'TOHOP.CPP (ngây thơ): tam giác Pascal theo mô-đun' },
+    { box: 'count', body: [
+      'Hàng n có n + 1 ô, mỗi ô một phép cộng, nên dựng tới hàng mx tốn khoảng mx^2^ / 2 phép cộng và **cùng chừng ấy ô nhớ**. Với mx = 5000: 12,5 triệu ô, chạy tốt. Với mx = 10^6^: khoảng 5 · 10^11^ ô, tức **2 TB** bộ nhớ nếu mỗi ô 4 byte, và hàng trăm giây tính toán.',
+    ] },
+    { box: 'stuck', body: [
+      'Tam giác Pascal tính **tất cả** các C(n, k) trong khi ta chỉ cần 10^5^ giá trị. Công thức n! / (k! · (n − k)!) thì chỉ cần ba giai thừa, và mọi giai thừa tới 10^6^ có thể tính sẵn trong O(n). Nhưng công thức có **phép chia**, mà Bài 1 đã cảnh báo: đồng dư không giữ qua phép chia. 720 mod 7 = 6 và 6 · 6 mod 7 = 1, ta không thể "chia 6 cho 1" để ra C(6, 3) = 20 được.',
+    ] },
+
+    { h: 'Phá bế tắc: Giai thừa và nghịch đảo giai thừa' },
+    { step: 'Đổi phép chia thành phép nhân với nghịch đảo' },
+    'Ở Bài 10 em đã biết: khi p nguyên tố và b không chia hết cho p, tồn tại duy nhất **nghịch đảo** b^−1^ (mod p) thỏa b · b^−1^ ≡ 1, và theo định lí Fermat nhỏ b^−1^ ≡ b^p−2^ (mod p). Chia cho b theo mô-đun p nghĩa là nhân với b^−1^. Ví dụ 2^−1^ ≡ 500 000 004 vì 2 · 500 000 004 = 1 000 000 008 ≡ 1 (mod 10^9^ + 7).',
+    'Với p = 10^9^ + 7 > 10^6^ ≥ n, các thừa số 1, 2, ..., n đều nhỏ hơn p nên **không chia hết cho p**, và k!, (n − k)! có nghịch đảo. Đặt fact[i] = i! mod p và ifact[i] = (i!)^−1^ mod p, ta có:',
+    { formula: 'C(n, k) ≡ fact[n] · ifact[k] · ifact[n − k]   (mod p)' },
+    { step: 'Tính giai thừa đi xuôi, nghịch đảo đi ngược' },
+    'fact[i] = fact[i − 1] · i mod p: dễ. Còn ifact[i], nếu dùng lũy thừa nhanh cho từng i thì tốn N · log p, khoảng 3 · 10^7^ phép nhân, cũng được, nhưng có một mẹo đẹp hơn nhiều: chỉ cần **một** lần lũy thừa cho ifact[N], rồi **đi ngược** về 0.',
+    { formula: 'ifact[i − 1] = ifact[i] · i   (mod p)' },
+    { fig: 'f13_xich', w: 6.0, cap: 'Giai thừa đi xuôi (nhân thêm i); nghịch đảo giai thừa đi ngược (cũng nhân với i), chỉ một lần lũy thừa.' },
+    { box: 'why', body: [
+      'Vì i! = (i − 1)! · i, nên 1 / (i − 1)! = i / i! = (1 / i!) · i. Viết theo mô-đun: ifact[i] · i · fact[i − 1] ≡ ifact[i] · fact[i] ≡ 1 (mod p), tức ifact[i] · i đúng là nghịch đảo của fact[i − 1]. Theo tính duy nhất của nghịch đảo, ifact[i − 1] = ifact[i] · i mod p.',
+    ] },
+    { step: 'Chạy tay với p = 10^9^ + 7' },
+    'Bảng dưới được sinh bằng chính thuật toán: fact đi xuôi từ 0 đến 6; ifact[6] = 720^p−2^ mod p = 301 388 891, rồi ifact đi ngược. Cột cuối kiểm tra fact[i] · ifact[i] ≡ 1.',
+    { table: { cols: [900, 2000, 3000, 2718], head: ['i', 'fact[i]', 'ifact[i]', 'fact[i] · ifact[i] mod p'],
+      rows: [['0', '1', '1', '1'], ['1', '1', '1', '1'], ['2', '2', '500 000 004', '1'], ['3', '6', '166 666 668', '1'], ['4', '24', '41 666 667', '1'], ['5', '120', '808 333 339', '1'], ['6', '720', '**301 388 891** (lũy thừa)', '1']],
+      aligns: C3([1, 1, 1, 1]) } },
+    'Trả lời các truy vấn của ví dụ 1:',
+    { table: { cols: [1300, 3000, 3000, 1318], head: ['(n, k)', 'fact[n] · ifact[k] mod p', '· ifact[n − k] mod p', 'Đáp số'],
+      rows: [['(5, 2)', '120 · 500 000 004 → 60', '60 · 166 666 668 → 10', '**10**'], ['(6, 3)', '720 · 166 666 668 → 120', '120 · 166 666 668 → 20', '**20**'], ['(10, 0)', '3 628 800 · 1 → 3 628 800', '· ifact[10] → 1', '**1**'], ['(3, 5)', 'k > n', '', '**0**']],
+      aligns: C3([1, 1, 1, 1]) } },
+    'Để ý dòng đầu: nhân 120 với nghịch đảo của 2 ra 60, đúng như 120 / 2; nhân tiếp với nghịch đảo của 6 ra 10, đúng như 60 / 6. Các con số nghịch đảo trông "kì quặc" nhưng chúng cư xử y như phân số.',
+    { step: 'Chương trình' },
+    { fig: 'f13_toiuu', w: 3.0, cap: 'Sơ đồ khối của cách dùng giai thừa và nghịch đảo giai thừa.' },
+    { file: 'TOHOP', title: 'TOHOP.CPP: giai thừa và nghịch đảo giai thừa' },
+    { box: 'count', body: [
+      'Chuẩn bị: N phép nhân cho fact, một lần lũy thừa (khoảng 2 · 30 phép nhân), N phép nhân cho ifact: tổng O(N + log p) với N = 10^6^. Mỗi truy vấn: 2 phép nhân, O(1). Cả chương trình khoảng 2 · 10^6^ + 2 · 10^5^ phép nhân, chạy dưới 0,1 giây; bộ nhớ hai mảng 10^6^ số `long long`, 16 MB.',
+    ] },
+    { table: { cols: [2600, 3000, 3018], head: ['', 'Tam giác Pascal', 'Giai thừa + nghịch đảo'],
+      rows: [['Thời gian chuẩn bị', 'O(n^2^): 5 · 10^11^', 'O(n + log p): 2 · 10^6^'], ['Bộ nhớ', 'O(n^2^): 2 TB', 'O(n): 16 MB'], ['Mỗi truy vấn', 'O(1)', 'O(1)'], ['Yêu cầu mô-đun', 'bất kì', 'p nguyên tố, p > n']],
+      aligns: C3([1, 1, 1]) } },
+  ],
+  ext: [
+    { sub: 'Mở rộng 1: Bài toán chia kẹo của Euler' },
+    'Có bao nhiêu cách chia 10 cái kẹo giống nhau cho 3 bạn An, Bình, Chi (bạn nào cũng có thể không được cái nào)? Mẹo của Euler: xếp 10 cái kẹo thành hàng và đặt thêm **2 vạch ngăn**. Kẹo trước vạch thứ nhất là của An, giữa hai vạch là của Bình, sau vạch thứ hai là của Chi. Mỗi cách chia ứng với đúng một cách chọn 2 vị trí làm vạch trong 12 vị trí.',
+    { fig: 'f13_keo', w: 5.6, cap: 'Mỗi cách chia kẹo là một cách đặt 2 vạch giữa 10 viên kẹo.' },
+    { box: 'theorem', title: 'ĐỊNH LÍ (CHIA KẸO)', body: [
+      'Số nghiệm nguyên **không âm** của x~1~ + x~2~ + ... + x~k~ = n là C(n + k − 1, k − 1). Số nghiệm nguyên **dương** (mỗi bạn ít nhất một kẹo) là C(n − 1, k − 1): phát trước mỗi bạn một cái rồi chia n − k cái còn lại.',
+    ] },
+    'Với 10 kẹo, 3 bạn: C(12, 2) = 66 cách; nếu mỗi bạn ít nhất một cái: C(9, 2) = 36 cách. Cả hai đều trả lời được bằng TOHOP.',
+    { sub: 'Mở rộng 2: n rất lớn, k nhỏ: nhân dần' },
+    'Nếu n tới 10^18^ nhưng k chỉ tới 10^6^, ta không thể lập bảng giai thừa tới n. Khi đó dùng trực tiếp C(n, k) = n · (n − 1) · ... · (n − k + 1) / k!: tử số là tích k thừa số (lấy dư từng thừa số), mẫu số k! có nghịch đảo vì k < p. Công thức đúng cả khi n ≥ p, vì đẳng thức C(n, k) · k! = n(n − 1)...(n − k + 1) là đẳng thức số nguyên. Mỗi truy vấn tốn O(k + log p).',
+    { file: 'TOHOP_nhandan', title: 'TOHOP_NHANDAN.CPP: C(n, k) bằng tích k thừa số' },
+    { sub: 'Mở rộng 3: Định lí Lucas khi p nhỏ' },
+    'Khi mô-đun p là số nguyên tố **nhỏ** (ví dụ p = 7 hay p = 10 007) mà n lớn hơn p, cách giai thừa hỏng vì n! chia hết cho p. Định lí Lucas cứu ta: viết n và k trong **hệ cơ số p**.',
+    { box: 'theorem', title: 'ĐỊNH LÍ (LUCAS)', body: [
+      'Nếu n = (n~t~ ... n~1~ n~0~)~p~ và k = (k~t~ ... k~1~ k~0~)~p~ là biểu diễn cơ số p (p nguyên tố) thì:',
+      { formula: 'C(n, k) ≡ C(n~t~, k~t~) · ... · C(n~1~, k~1~) · C(n~0~, k~0~)   (mod p)' },
+      'trong đó C(a, b) = 0 nếu b > a. Mỗi thừa số có a, b < p, tính bằng giai thừa tới p − 1.',
+    ] },
+    'Ví dụ: C(1000, 500) mod 7. Ta có 1000 = (2626)~7~, 500 = (1313)~7~, nên C(1000, 500) ≡ C(2, 1) · C(6, 3) · C(2, 1) · C(6, 3) = 2 · 20 · 2 · 20 = 1600 ≡ **4** (mod 7). Với n = 10^18^ chỉ có khoảng log~p~ n chữ số, nên mỗi truy vấn rất nhanh sau O(p) chuẩn bị.',
+    { file: 'TOHOP_lucas', title: 'TOHOP_LUCAS.CPP: định lí Lucas, đọc n, k, p' },
+    { table: { cols: [2400, 2900, 3318], head: ['Cách tính C(n, k) mod m', 'Dùng khi', 'Độ phức tạp'],
+      rows: [['Tam giác Pascal', 'n ≤ khoảng 5000, m bất kì', 'O(n^2^) chuẩn bị, O(1) mỗi truy vấn'], ['Giai thừa + nghịch đảo', 'n ≤ 10^7^, m = p nguyên tố > n', 'O(n + log p) chuẩn bị, O(1)'], ['Nhân dần', 'n tới 10^18^, k nhỏ, p nguyên tố > k', 'O(k + log p) mỗi truy vấn'], ['Định lí Lucas', 'p nguyên tố nhỏ, n tới 10^18^', 'O(p) chuẩn bị, O(log~p~ n)']],
+      aligns: ['left', 'left', 'left'] } },
+    { sub: 'Mở rộng 4: Số Catalan' },
+    'Có bao nhiêu dãy gồm n cặp ngoặc "đúng" (mỗi tiền tố có số ngoặc mở không ít hơn số ngoặc đóng)? Với n = 3 có 5 dãy: ((())), (()()), (())(), ()(()), ()()(). Đáp số tổng quát là **số Catalan** C~n~ = C(2n, n) / (n + 1) = C(2n, n) − C(2n, n + 1); dãy bắt đầu 1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862. Số Catalan cũng đếm số cây nhị phân n nút, số cách chia đa giác lồi n + 2 đỉnh thành tam giác... Với TOHOP em tính được C~n~ mod p trong O(1): fact[2n] · ifact[n] · ifact[n + 1].',
+  ],
+  traps: [
+    '**Chia thẳng theo mô-đun:** `fact[n] / (fact[k] * fact[n-k]) % p` cho kết quả vô nghĩa, vì fact[] đã là số dư. Phải nhân với nghịch đảo.',
+    '**Quên kiểm tra k > n hoặc k < 0:** truy cập ifact[n − k] với chỉ số âm gây lỗi bộ nhớ. Luôn trả 0 trước.',
+    '**Tràn khi nhân ba số:** `fact[n] * ifact[k] * ifact[n-k] % p` tràn `long long` vì tích ba số cỡ 10^9^ tới 10^27^. Lấy dư sau **mỗi** phép nhân.',
+    '**Mô-đun không nguyên tố hoặc p ≤ n:** khi đó k! có thể không có nghịch đảo. Dùng tam giác Pascal (n nhỏ) hoặc Lucas (p nhỏ).',
+    '**Nhầm có thứ tự và không thứ tự:** chọn đội thì dùng C(n, k), xếp lượt thi thì dùng A(n, k) = C(n, k) · k!.',
+  ],
+  remember: [
+    'C(n, k) = n! / (k! · (n − k)!) = số tập con k phần tử của tập n phần tử; C(n, k) = 0 khi k < 0 hoặc k > n.',
+    'Hằng đẳng thức Pascal C(n, k) = C(n − 1, k − 1) + C(n − 1, k): chứng minh bằng cách xét một phần tử có được chọn hay không.',
+    'Với p nguyên tố > n: C(n, k) ≡ fact[n] · ifact[k] · ifact[n − k]; ifact[N] = fact[N]^p−2^, ifact[i − 1] = ifact[i] · i.',
+    'Chia kẹo: số nghiệm không âm của x~1~ + ... + x~k~ = n là C(n + k − 1, k − 1).',
+    'p nhỏ, n lớn: định lí Lucas, tách n, k theo cơ số p.',
+  ],
+  practice: [
+    ['13.1', 'CHIA KẸO', 'Đếm số cách chia n kẹo cho k bạn (có/không yêu cầu mỗi bạn ít nhất một cái), mod 10^9^ + 7: chia kẹo Euler + TOHOP.'],
+    ['13.2', 'ĐƯỜNG ĐI TRÊN LƯỚI', 'Số đường đi từ (0, 0) tới (m, n) chỉ đi phải/lên là C(m + n, n); có một ô cấm thì trừ số đường đi qua ô đó (quy tắc nhân).'],
+    ['13.3', 'TỔ HỢP KHỔNG LỒ', 'C(n, k) mod p với n, k ≤ 10^18^, p nguyên tố ≤ 10^5^, nhiều truy vấn: định lí Lucas.'],
+  ],
+  quiz: [
+    ['Có bao nhiêu cách chọn 3 bạn trong 30 bạn làm đội tuyển? Bao nhiêu cách nếu 3 bạn thi theo lượt 1, 2, 3?', 'Đáp số: C(30, 3) = 4060 và A(30, 3) = 24 360'],
+    ['Từ hàng 7 của tam giác Pascal (1, 7, 21, 35, 35, 21, 7, 1), hãy tính C(8, 3) và tổng các số ở hàng 8.', 'Đáp số: C(8, 3) = 21 + 35 = 56; tổng hàng 8 là 2^8^ = 256'],
+    ['Chia 10 cái kẹo giống nhau cho 3 bạn sao cho bạn nào cũng có ít nhất 1 cái. Có bao nhiêu cách?', 'Đáp số: C(9, 2) = 36'],
+    ['Dùng định lí Lucas, tính C(1000, 500) mod 7 (gợi ý 1000 = (2626)~7~, 500 = (1313)~7~).', 'Đáp số: 2 · 20 · 2 · 20 = 1600 ≡ 4 (mod 7)'],
+  ],
+  algos: [
+    ['Tam giác Pascal C(n, k) mod m', 'O(n²)'],
+    ['C(n, k) mod p bằng giai thừa và nghịch đảo giai thừa', 'O(n + log p) chuẩn bị, O(1) mỗi truy vấn'],
+    ['C(n, k) mod p nhân dần (n lớn, k nhỏ)', 'O(k + log p)'],
+    ['Định lí Lucas (p nguyên tố nhỏ)', 'O(p + log~p~ n)'],
+  ],
+};
+
+// ============================================================ BÀI 14
+const L14 = {
+  no: 14, title: 'Nguyên lí bù trừ', sub: 'đếm hợp của nhiều tập hợp: cộng, trừ, cộng xen kẽ',
+  goals: [
+    'Phát biểu và chứng minh **nguyên lí bù trừ** cho 2, 3 và k tập hợp.',
+    'Đếm số bội số trong [1, N] bằng ⌊N / a⌋, biết vì sao bội chung của a, b là bội của **lcm(a, b)** chứ không phải của a · b.',
+    'Duyệt 2^k^ tập con bằng **mặt nạ bit**, tính lcm của mỗi tập con chỉ bằng một phép gcd, và **chặn tràn số** khi lcm vượt N.',
+    'Áp dụng bù trừ để đếm số nguyên tố cùng nhau với n và số hoán vị không điểm cố định.',
+  ],
+  warmup: [
+    'Lớp 10 Tin có 100 học sinh. Thống kê cho thấy 60 em thích Toán, 50 em thích Tin, và 30 em thích cả hai. Hỏi có bao nhiêu em thích ít nhất một trong hai môn? Cộng 60 + 50 = 110 thì vượt cả sĩ số! Lỗi ở đâu? Ba mươi em thích cả hai đã bị **đếm hai lần**: đáp số đúng là 60 + 50 − 30 = 80.',
+    'Ý tưởng "cộng rồi trừ phần đếm trùng" nghe đơn giản, nhưng với ba, bốn, ... hai mươi tập hợp thì phần trùng chồng lên nhau rất rối. Bài này cho em quy luật chung, rồi dùng nó trả lời câu hỏi: trong các số từ 1 đến 10^18^, có bao nhiêu số chia hết cho ít nhất một trong 20 số cho trước?',
+  ],
+  body: [
+    { h: 'Đếm bội số trong một đoạn' },
+    'Trong các số 1, 2, ..., N, các bội của a là a, 2a, 3a, ..., q · a với q · a ≤ N < (q + 1) · a. Theo định nghĩa phép chia có dư (Bài 1), q chính là thương ⌊N / a⌋. Vậy:',
+    { formula: 'số bội của a trong [1, N] = ⌊N / a⌋' },
+    'Ví dụ trong [1, 30] có ⌊30 / 2⌋ = 15 số chẵn, ⌊30 / 3⌋ = 10 bội của 3, ⌊30 / 5⌋ = 6 bội của 5. Còn số chia hết cho **cả** 2 và 3? Một số chia hết cho cả a và b khi và chỉ khi nó là bội chung của a và b, tức là bội của **lcm(a, b)** (Bài 3). Với 2 và 3, lcm = 6, nên có ⌊30 / 6⌋ = 5 số: 6, 12, 18, 24, 30.',
+    { box: 'note', title: 'LCM, KHÔNG PHẢI TÍCH', body: [
+      'Chỉ khi a, b nguyên tố cùng nhau thì lcm(a, b) = a · b. Số chia hết cho cả 4 và 6 là bội của lcm(4, 6) = 12 chứ không phải của 24: trong [1, 100] có ⌊100 / 12⌋ = **8** số như vậy (12, 24, ..., 96), không phải ⌊100 / 24⌋ = 4.',
+    ] },
+
+    { h: 'Nguyên lí bù trừ' },
+    'Kí hiệu |A| là số phần tử của tập A. Câu chuyện lớp 10 Tin chính là công thức cho **hai tập**: |A ∪ B| = |A| + |B| − |A ∩ B|. Với **ba tập**, hãy nhìn vào hình dưới: ba hình tròn là các bội của 2, 3 và 5 trong [1, 30], và mỗi số được viết đúng vào vùng của nó.',
+    { fig: 'f14_venn', w: 5.0, cap: 'Các số 1..30 xếp theo chúng chia hết cho 2, 3, 5 hay không. Có 22 số nằm trong ít nhất một hình tròn.' },
+    'Cộng ba tập: 15 + 10 + 6 = 31. Nhưng các số ở vùng giao hai tập (6, 12, 10, 15...) bị đếm hai lần, còn số 30 ở giữa bị đếm **ba** lần. Trừ các giao từng cặp: 31 − 5 − 3 − 2 = 21. Lúc này số 30 đã bị cộng 3 lần rồi trừ 3 lần, tức **không được đếm lần nào**! Cộng lại giao của cả ba: 21 + 1 = **22**. Đếm trực tiếp trên hình: 8 + 4 + 2 + 4 + 2 + 1 + 1 = 22, khớp.',
+    { box: 'theorem', title: 'ĐỊNH LÍ (NGUYÊN LÍ BÙ TRỪ)', body: [
+      'Với các tập hữu hạn A~1~, A~2~, ..., A~k~:',
+      { formula: '|A~1~ ∪ ... ∪ A~k~| = Σ |A~i~| − Σ |A~i~ ∩ A~j~| + Σ |A~i~ ∩ A~j~ ∩ A~l~| − ...' },
+      'Nói gọn: lấy tổng theo mọi tập con khác rỗng S của {1, ..., k} của số phần tử của giao các A~i~ (i ∈ S), mang dấu **+** khi S có lẻ phần tử, dấu **−** khi S có chẵn phần tử.',
+    ] },
+    { box: 'why', body: [
+      'Xét một phần tử x nằm trong đúng t ≥ 1 tập. Trong tổng trên, x được cộng ở mọi tập con S gồm các tập chứa x: có C(t, 1) tập con 1 phần tử (dấu +), C(t, 2) tập con 2 phần tử (dấu −), ... Tổng số lần x được đếm là:',
+      { formula: 'C(t, 1) − C(t, 2) + C(t, 3) − ... = 1 − (1 − 1)^t^ = 1' },
+      'Đẳng thức cuối là nhị thức Newton với a = 1, b = −1 (Bài 13): C(t, 0) − C(t, 1) + C(t, 2) − ... = 0. Vậy mỗi phần tử của hợp được đếm **đúng một lần**, còn phần tử nằm ngoài mọi tập (t = 0) không được đếm lần nào.',
+    ] },
+    'Bảng dưới kiểm tra điều đó với ba tập: dù một số nằm trong 1, 2 hay 3 tập, tổng số lần đếm luôn là 1.',
+    { table: { cols: [2400, 1400, 1400, 1400, 2018], head: ['Số nằm trong t tập', '+ C(t, 1)', '− C(t, 2)', '+ C(t, 3)', 'Tổng số lần đếm'],
+      rows: [['t = 1 (ví dụ 4)', '1', '0', '0', '**1**'], ['t = 2 (ví dụ 6)', '2', '−1', '0', '**1**'], ['t = 3 (ví dụ 30)', '3', '−3', '1', '**1**']],
+      aligns: C3([1, 1, 1, 1, 1]) } },
+
+    { h: 'Bài toán BUTRU' },
+    { problem: { code: 'BUTRU', statement: [
+      'Cho số nguyên dương N và k số nguyên dương a~1~, a~2~, ..., a~k~. Hãy đếm số các số nguyên x trong đoạn [1, N] chia hết cho **ít nhất một** trong các số a~i~.',
+    ], input: 'Dòng đầu chứa N và k (1 ≤ N ≤ 10^18^, 1 ≤ k ≤ 20). Dòng thứ hai chứa a~1~, ..., a~k~ (1 ≤ a~i~ ≤ 10^18^, có thể trùng nhau).', output: 'Một số nguyên là số lượng cần đếm.' } },
+    { examples: 'BUTRU', explain: ['Đúng như Hình 14.1: 15 + 10 + 6 − 5 − 3 − 2 + 1 = 22.', 'lcm(10^9^ + 7, 10^9^ + 9) đã vượt 10^18^ nên mọi giao chứa cặp này bằng 0; lcm của cả ba số cỡ 10^27^, nhân thẳng thì tràn số.', '25 + 16 + 10 − 8 − 5 − 3 + 1 = 36; giao của bội 4 và bội 6 là bội của 12.'] },
+
+    { h: 'Ý tưởng ngây thơ: Xét từng số' },
+    'Cách tự nhiên nhất: đi qua từng x từ 1 đến N, thử chia cho từng a~i~; gặp một a~i~ chia hết x thì đếm x và dừng thử (để mỗi x chỉ được đếm một lần).',
+    { fig: 'f14_ngaytho', w: 3.0, cap: 'Sơ đồ khối của cách xét từng số.' },
+    { file: 'BUTRU_ngaytho', title: 'BUTRU.CPP (ngây thơ): xét từng x trong [1, N]' },
+    { box: 'count', body: [
+      'Tối đa N · k phép chia lấy dư. Với N = 10^6^, k = 20: 2 · 10^7^ phép, chạy tức thì. Với N = 10^18^: 2 · 10^19^ phép, máy tính 10^9^ phép mỗi giây cần khoảng **600 năm**.',
+    ] },
+    { box: 'stuck', body: [
+      'Ta không thể nhìn từng số một. Nhưng câu hỏi "có bao nhiêu bội của L trong [1, N]" thì trả lời được trong **một phép chia**: ⌊N / L⌋. Nguyên lí bù trừ biến bài toán về đúng những câu hỏi như vậy, mỗi câu cho một tập con của {a~1~, ..., a~k~}. Với k = 20 có 2^20^ − 1 = 1 048 575 tập con khác rỗng: nhỏ hơn 10^18^ rất nhiều.',
+    ] },
+
+    { h: 'Phá bế tắc: Bù trừ trên 2^k^ tập con' },
+    { step: 'Mỗi tập con cho một số hạng' },
+    'Gọi A~i~ là tập các bội của a~i~ trong [1, N]. Giao các A~i~ với i thuộc tập con S là tập các bội của L(S) = lcm của các a~i~, i ∈ S, nên có ⌊N / L(S)⌋ phần tử. Nguyên lí bù trừ cho ngay:',
+    { formula: 'đáp số = Σ~S ≠ ∅~ (−1)^|S| + 1^ · ⌊N / L(S)⌋' },
+    'Để duyệt mọi tập con, ta dùng **mặt nạ bit**: số nguyên S từ 1 đến 2^k^ − 1, bit thứ i của S bằng 1 nghĩa là a~i~ thuộc tập con (đánh số a~0~, ..., a~k−1~ như trong chương trình). Số phần tử |S| là số bit 1, hàm `__builtin_popcount(S)` cho ngay.',
+    { step: 'Tính lcm của mỗi tập con chỉ bằng một phép gcd' },
+    'Nếu với mỗi S ta lại tính lcm của cả |S| số thì tốn k phép gcd mỗi tập. Mẹo: gọi i là **bit 1 thấp nhất** của S (`__builtin_ctz(S)`), thì S bỏ đi i là `S & (S - 1)`, một số **nhỏ hơn** S nên đã được tính trước. Vì lcm có tính kết hợp:',
+    { formula: 'L[S] = lcm(L[S & (S − 1)], a~i~)' },
+    { fig: 'f14_tapcon', w: 5.9, cap: 'Tám tập con của {2, 3, 5}. Mũi tên đỏ: L[S] được tính từ tập con bỏ phần tử nhỏ nhất. Xanh cộng, hồng trừ.' },
+    { step: 'Chạy tay với N = 30, a = (2, 3, 5)' },
+    'Bảng dưới là kết quả chạy đúng vòng lặp của chương trình (mặt nạ viết bit a~0~ ở bên phải):',
+    { table: { cols: [1100, 1300, 1000, 1500, 900, 800, 1000, 1018], head: ['S', 'Tập con', 'Bit i', 'L[S bỏ i]', 'L[S]', 'Dấu', '⌊30 / L⌋', 'ans'],
+      rows: [['001', '{2}', '0', '1', '2', '+', '15', '15'], ['010', '{3}', '1', '1', '3', '+', '10', '25'], ['011', '{2, 3}', '0', '3', '6', '−', '5', '20'], ['100', '{5}', '2', '1', '5', '+', '6', '26'], ['101', '{2, 5}', '0', '5', '10', '−', '3', '23'], ['110', '{3, 5}', '1', '5', '15', '−', '2', '21'], ['111', '{2, 3, 5}', '0', '15', '30', '+', '1', '**22**']],
+      aligns: C3([1, 1, 1, 1, 1, 1, 1, 1]) } },
+    { step: 'Chặn tràn số khi lcm vượt N' },
+    'Ví dụ 2 cho thấy nguy hiểm: lcm của ba số nguyên tố cỡ 10^9^ là khoảng 10^27^, vượt xa 2^63^. Nhân thẳng thì `long long` tràn và ⌊N / L⌋ ra rác. Nhưng để ý: **một khi L > N thì ⌊N / L⌋ = 0**, và mọi tập lớn hơn có lcm còn lớn hơn (là bội của L), cũng cho 0. Vậy ta chỉ cần biết "L có vượt N không", không cần giá trị thật của L.',
+    { fig: 'f14_tran', w: 6.2, cap: 'Gặp lcm vượt N thì ghi L = N + 1 và không nhân thêm nữa, nên không bao giờ tràn số.' },
+    'Tính lcm(x, a) = (x / gcd(x, a)) · a. Đặt y = x / gcd(x, a); để biết y · a > N mà **không nhân**, ta so sánh y > ⌊N / a⌋.',
+    { box: 'why', title: 'VÌ SAO PHÉP SO SÁNH ĐÚNG?', body: [
+      'Đặt q = ⌊N / a⌋, tức q · a ≤ N < (q + 1) · a. Nếu y ≤ q thì y · a ≤ q · a ≤ N. Nếu y ≥ q + 1 thì y · a ≥ (q + 1) · a > N. Vậy y · a > N khi và chỉ khi y > q. Mọi phép tính ở đây đều có giá trị không vượt quá N ≤ 10^18^, an toàn trong `long long`; và khi y · a ≤ N thì phép nhân cũng không tràn.',
+      'Còn giá trị gán N + 1 ≤ 10^18^ + 1 vẫn vừa `long long`; mọi tập chứa S kế thừa giá trị này qua dòng `if (x > n)`.',
+    ] },
+    { step: 'Chương trình' },
+    { fig: 'f14_toiuu', w: 3.0, cap: 'Sơ đồ khối của cách bù trừ trên các tập con.' },
+    { file: 'BUTRU', title: 'BUTRU.CPP: bù trừ trên mọi tập con, chặn tràn lcm' },
+    { box: 'count', body: [
+      'Mỗi tập con: một phép gcd (khoảng 60 bước với số 64 bit), một phép chia và một phép so sánh. Tổng O(2^k^ · log N): với k = 20 khoảng 10^6^ tập con, chạy trong vài phần trăm giây. Mảng L có 2^20^ phần tử `long long`, 8 MB. So với cách ngây thơ, ta đã đổi sự phụ thuộc vào **N** (10^18^) thành phụ thuộc vào **k** (2^20^ ≈ 10^6^).',
+    ] },
+  ],
+  ext: [
+    { sub: 'Mở rộng 1: Cắt nhánh bằng đệ quy' },
+    'Khi các a~i~ khá lớn, phần lớn tập con có lcm vượt N. Thay vì duyệt cả 2^k^ mặt nạ, ta xây tập con bằng **đệ quy**: thêm dần a~j~ với chỉ số tăng dần, và khi lcm vượt N thì **bỏ cả nhánh** (mọi tập chứa nó đều cho 0). Ta cũng bỏ trước các số trùng nhau, vì chúng không làm thay đổi tập các bội. Trường hợp xấu nhất vẫn là 2^k^, nhưng thường nhanh hơn rất nhiều và không cần mảng 2^k^ phần tử.',
+    { file: 'BUTRU_dfs', title: 'BUTRU_DFS.CPP: bù trừ bằng đệ quy có cắt nhánh' },
+    { sub: 'Mở rộng 2: Đếm số nguyên tố cùng nhau với n' },
+    'Có bao nhiêu x trong [1, N] nguyên tố cùng nhau với n? Phân tích n ra thừa số nguyên tố (Bài 7) được các ước nguyên tố **phân biệt** p~1~, ..., p~k~. Số x **không** nguyên tố cùng nhau với n là số x chia hết cho ít nhất một p~i~: chính là BUTRU với a = (p~1~, ..., p~k~). Đáp số là N trừ đi số đó. Vì tích 15 số nguyên tố đầu tiên đã là 614 889 782 588 491 410 ≈ 6,1 · 10^17^, mọi n ≤ 10^18^ có **không quá 15** ước nguyên tố phân biệt: tối đa 2^15^ tập con.',
+    'Ví dụ n = 30, N = 100: số bội của 2, 3 hoặc 5 là 50 + 33 + 20 − 16 − 10 − 6 + 3 = 74, nên có 100 − 74 = **26** số nguyên tố cùng nhau với 30. Khi N = n, đáp số chính là φ(n) của Bài 11: với n = 30 là 30 − 22 = 8 (đúng tám số nằm ngoài ba hình tròn ở Hình 14.1). Công thức tích φ(n) = n · Π(1 − 1/p) thực ra là nguyên lí bù trừ viết gọn.',
+    { sub: 'Mở rộng 3: Hoán vị không điểm cố định' },
+    'Cuối năm, n bạn bỏ quà vào một hộp rồi mỗi bạn rút ngẫu nhiên một món. Có bao nhiêu cách rút để **không bạn nào nhận lại quà của mình**? Đó là số hoán vị không có điểm cố định, kí hiệu D(n). Gọi A~i~ là tập các hoán vị giữ nguyên vị trí i; giao của j tập A~i~ có (n − j)! phần tử, và có C(n, j) cách chọn j vị trí. Bù trừ cho:',
+    { formula: 'D(n) = Σ~j=0..n~ (−1)^j^ · C(n, j) · (n − j)! = n! · (1 − 1/1! + 1/2! − ... ± 1/n!)' },
+    'Ví dụ D(4) = 24 − 24 + 12 − 4 + 1 = 9. Khi lập trình, dùng hệ thức truy hồi D(n) = (n − 1) · (D(n − 1) + D(n − 2)) với D(0) = 1, D(1) = 0 để tính mọi D(n) mod p trong O(n). Tỉ lệ D(n) / n! tiến rất nhanh về 1/e ≈ 0,3679: dù có bao nhiêu bạn, xác suất không ai nhận lại quà của mình luôn xấp xỉ 37%.',
+    { table: { cols: [700, 900, 900, 1100, 1300, 1300, 1500, 918], head: ['n', '1', '2', '3', '4', '5', '6', '7'],
+      rows: [['D(n)', '0', '1', '2', '9', '44', '265', '1854'], ['n!', '1', '2', '6', '24', '120', '720', '5040'], ['D(n) / n!', '0', '0,5', '0,333', '0,375', '0,3667', '0,36806', '0,36786']],
+      aligns: C3([1, 1, 1, 1, 1, 1, 1, 1]) } },
+  ],
+  traps: [
+    '**Giao là bội của tích:** bội chung của a, b là bội của lcm(a, b), không phải a · b. Chỉ bằng nhau khi gcd(a, b) = 1.',
+    '**Tràn số khi tính lcm:** tích (x / g) · a có thể vượt 2^63^. Luôn so sánh x / g > N / a trước khi nhân, gặp lcm > N thì gán N + 1.',
+    '**Nhầm dấu:** tập con có lẻ phần tử mang dấu +, chẵn phần tử mang dấu −. Đổi ngược sẽ ra số âm.',
+    '**Dùng `1 << k` với k lớn:** với k = 20 thì 2^20^ ổn, nhưng nếu k tới 60 thì bù trừ thuần túy không khả thi; cần cắt nhánh hoặc ý tưởng khác.',
+    '**Ngây thơ đếm trùng:** quên `break` sau khi gặp một a~i~ chia hết x thì x được đếm nhiều lần.',
+  ],
+  remember: [
+    'Số bội của a trong [1, N] là ⌊N / a⌋; bội chung của các a~i~ là bội của lcm của chúng.',
+    '|A ∪ B ∪ C| = |A| + |B| + |C| − |A ∩ B| − |A ∩ C| − |B ∩ C| + |A ∩ B ∩ C|; tổng quát: dấu (−1)^|S|+1^ theo mọi tập con S.',
+    'Chứng minh: phần tử thuộc t tập được đếm C(t, 1) − C(t, 2) + ... = 1 lần.',
+    'Duyệt tập con bằng mặt nạ bit; L[S] = lcm(L[S & (S − 1)], a[ctz(S)]); lcm vượt N thì chặn ở N + 1.',
+  ],
+  practice: [
+    ['14.1', 'BỘI SỐ', 'Đếm số trong [L, R] chia hết cho a hoặc b nhưng không chia hết cho c: đếm trên [1, R] trừ [1, L − 1], bù trừ với 3 tập.'],
+    ['14.2', 'NGUYÊN TỐ CÙNG NHAU', 'Q truy vấn: đếm x ≤ N nguyên tố cùng nhau với n (n, N ≤ 10^12^): phân tích n, bù trừ trên các ước nguyên tố.'],
+    ['14.3', 'TẶNG QUÀ', 'Số hoán vị của n phần tử có đúng m điểm cố định, mod 10^9^ + 7: C(n, m) · D(n − m), dùng TOHOP và truy hồi D(n).'],
+  ],
+  quiz: [
+    ['Trong các số từ 1 đến 1000 có bao nhiêu số chia hết cho ít nhất một trong các số 3, 5, 7?', 'Đáp số: 333 + 200 + 142 − 66 − 47 − 28 + 9 = 543'],
+    ['Có bao nhiêu số trong [1, 100] nguyên tố cùng nhau với 30?', 'Đáp số: 100 − 74 = 26'],
+    ['Năm bạn đổi quà sao cho không ai nhận lại quà của mình. Có bao nhiêu cách?', 'Đáp số: D(5) = 120 − 120 + 60 − 20 + 5 − 1 = 44'],
+    ['Với k = 20, chương trình BUTRU duyệt bao nhiêu tập con khác rỗng? Vì sao trong [1, 100] có 8 số chia hết cho cả 4 và 6?', 'Đáp số: 2^20^ − 1 = 1 048 575; vì chúng là bội của lcm(4, 6) = 12'],
+  ],
+  algos: [
+    ['Nguyên lí bù trừ trên k số (đếm bội trong [1, N])', 'O(2^k^ · log N)'],
+    ['Đếm số nguyên tố cùng nhau với n trong [1, N]', 'O(√n + 2^ω(n)^)'],
+    ['Số hoán vị không điểm cố định D(n)', 'O(n)'],
+  ],
+};
