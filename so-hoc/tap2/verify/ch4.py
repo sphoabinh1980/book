@@ -59,8 +59,8 @@ def gen_TOHOPLON(r):
     elif c < 0.9:
         while True:
             ps = r.sample(_SMALLP, r.randint(1, 4)); m = math.prod(ps)
-            if m <= 10**9: break
-    else: m = r.choice([1, 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 * 23, 99991 * 99989, 30])
+            if m <= 10**10: break
+    else: m = r.choice([1, 6469693230, 99991 * 99989, 30, 99991 * 2])
     q = r.randint(1, 6); s = f'{q} {m}\n'
     for _ in range(q):
         n = r.choice([r.randint(0, 30), r.randint(0, 2000), r.randint(0, 2000)])
@@ -71,7 +71,7 @@ def brute_TOHOPLON(inp):
     v = ints(inp); q, m = v[:2]
     return '\n'.join(str(math.comb(v[2 + 2 * i], v[3 + 2 * i]) % m) for i in range(q))
 def big_TOHOPLON(r):
-    q = 10**5; m = 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 * 23
+    q = 10**5; m = r.choice([6469693230, 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19 * 23 * 29])
     s = f'{q} {m}\n'
     for _ in range(q):
         n = r.randint(10**17, 10**18); s += f'{n} {r.randint(0, n)}\n'

@@ -191,7 +191,7 @@ def gen_MUAHANG(r):
         elif m == 1: g = r.randint(1, 50); a, b = g * r.randint(1, 30), g * r.randint(1, 30); c = r.choice([g * r.randint(0, 3000), r.randint(0, 10**5)])
         elif m == 2: a, b = r.randint(10**8, 10**9), r.randint(10**8, 10**9); c = r.randint(0, 10**13)
         elif m == 3: a, b = r.randint(1, 10**5), r.randint(1, 10**9); c = r.choice([r.randint(0, 10**18), 10**18])
-        else: a, b, c = r.choice([(1, 1, 10**18), (10**9, 10**9, 10**18), (999999937, 999999929, 10**18), (2, 4, 10**18 - 1)])
+        else: a, b, c = r.choice([(1, 1, 10**18), (10**9, 10**9, 10**18), (999999937, 99991, 10**18), (2, 4, 10**18 - 1)])
         if r.random() < 0.5: a, b = b, a
         s += f'{a} {b} {c}\n'
     return s

@@ -265,7 +265,7 @@ def brute_NTDOAN(inp):
 def big_NTDOAN(r):
     t = 10; s = f'{t}\n'
     for i in range(t):
-        R = 10**12 - r.randint(0, 10**6) if i else 10**12; s += f'{R - 10**5} {R}\n'
+        R = 10**12 - r.randint(0, 10**6) if i else 10**12; s += f'{R - 10**6} {R}\n'
     return s
 
 # ---------- 8.2 KHOANGCACH
