@@ -252,25 +252,40 @@
     <div class="main-container">
         <div class="content-area">
             
-            <!-- ================= BANNER SLIDER TỰ ĐỘNG CHUYỂN ================= -->
-            <div class="banner-slider p-10 flex items-center justify-between transition-all duration-500 bg-gradient-to-r bg-blue-50 to-slate-100" id="mainBanner">
+            <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
+            <div class="banner-slider p-10 flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-purple-50 to-fuchsia-100 banner-content-wrapper" id="mainBanner">
                 <div class="max-w-lg w-full">
-                    <div class="text-sm font-bold mb-3 uppercase tracking-wider text-blue-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">TOÁN HỌC VÀ CHỐNG TRÂU<br><span class="text-blue-700">SÁCH MỚI CẬP NHẬT</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng sự nhạy bén của Toán học."</p>
+                    <div class="text-sm font-bold mb-3 uppercase tracking-wider text-purple-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
+                    <h1 class="banner-title text-slate-900" id="bannerTitle">CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ<br><span class="text-purple-700">SÁCH MỚI CẬP NHẬT</span></h1>
+                    <p class="banner-desc" id="bannerDesc">"Khám phá vẻ đẹp, tính chất và các thuật toán xử lý dãy số đặc biệt trong Lập trình thi đấu."</p>
                     <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-purple-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib mr-2 text-blue-600" id="bannerIcon"></i>
+                        <i class="fas fa-pen-nib mr-2 text-purple-600" id="bannerIcon"></i>
                         <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
                 <div class="banner-icon-bg">
-                    <i class="fas fa-infinity text-blue-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                    <i class="fas fa-calculator text-purple-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
                 </div>
-                <div class="slider-dots" id="bannerDots"><div class="dot" onclick="goToSlide(0)" style="background-color: rgba(200, 200, 200, 0.8);"></div><div class="dot active" onclick="goToSlide(1)" style="background-color: var(--primary-blue);"></div><div class="dot" onclick="goToSlide(2)" style="background-color: rgba(200, 200, 200, 0.8);"></div></div>
+                <div class="slider-dots" id="bannerDots"></div>
             </div>
 
             <!-- Nơi chứa toàn bộ Khối Sách -->
             <div id="all-books-container">
+
+                <!-- ================= SÁCH 00: CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ ================= -->
+                <div class="book-block" id="book-cacso" data-title="CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ" data-desc="Khám phá vẻ đẹp, tính chất và các thuật toán xử lý dãy số đặc biệt trong Lập trình thi đấu." data-theme="purple" data-icon="fa-calculator">
+                    <div class="section-header">
+                        <div class="section-title purple-theme">ĐỌC THỬ SÁCH CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ</div>
+                    </div>
+                    <!-- Vì chỉ có 1 tập nên grid-cols-1 max-w-md mx-auto -->
+                    <div class="books-container grid grid-cols-1 max-w-md mx-auto gap-10 md:gap-8">
+                        <div class="book-col">
+                            <div class="book-vol-badge purple"><i class="fas fa-book-open"></i> TẬP 1: CÁC SỐ ĐẶC BIỆT</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1VF-Yl7o8U7AeTxJVgn4Cwj6EdR2j3TFx/preview"></iframe></div>
+                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 1', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- ================= SÁCH 0: HƯỚNG DẪN GIẢI ĐỀ THI HSG THPT ================= -->
                 <div class="book-block" id="book-hsgthpt" data-title="GIẢI ĐỀ THI HSG THPT 2025 - 2026" data-desc="Tài liệu luyện thi bám sát cấu trúc đề thi học sinh giỏi THPT." data-theme="blue" data-icon="fa-graduation-cap">
@@ -420,6 +435,11 @@
                     <button class="grid-arrow right" onclick="scrollGrid(320)"><i class="fas fa-chevron-right"></i></button>
                     
                     <div class="book-grid-scroll" id="bookGrid">
+                        <div class="book-card" onclick="document.getElementById('book-cacso').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                            <div class="discount-badge">-15%</div>
+                            <div class="book-image-placeholder"><i class="fas fa-calculator"></i></div>
+                            <div class="book-title">Cấu Trúc Số & Các Số Đặc Biệt</div>
+                        </div>
                         <div class="book-card" onclick="document.getElementById('book-hsgthpt').scrollIntoView({ behavior: 'smooth', block: 'start' });">
                             <div class="discount-badge">-15%</div>
                             <div class="book-image-placeholder"><i class="fas fa-graduation-cap"></i></div>
@@ -464,7 +484,7 @@
     </div>
 
     <!-- LOGIN MODAL -->
-    <div id="loginModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[110] items-center justify-center p-4 md:p-0 hidden">
+    <div id="loginModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[110] hidden items-center justify-center p-4 md:p-0">
         <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 md:p-8 relative">
             <button onclick="document.getElementById('loginModal').classList.add('hidden'); document.getElementById('loginModal').classList.remove('flex');" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-xl"><i class="fas fa-times"></i></button>
             <h2 class="text-xl font-extrabold text-slate-800 mb-6 text-center"><i class="fas fa-lock text-green-500 mr-2"></i>Đăng Nhập Quản Trị</h2>
@@ -481,7 +501,7 @@
     </div>
 
     <!-- ADMIN MODAL -->
-    <div id="adminModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[100] items-center justify-center p-4 md:p-0 overflow-y-auto hidden">
+    <div id="adminModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[100] hidden items-center justify-center p-4 md:p-0 overflow-y-auto">
         <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full p-6 md:p-8 my-8 relative">
             <button onclick="document.getElementById('adminModal').classList.add('hidden'); document.getElementById('adminModal').classList.remove('flex');" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-2xl"><i class="fas fa-times"></i></button>
             
@@ -500,7 +520,7 @@
                     <label class="block text-sm font-bold text-slate-700 mb-2">Màu Sắc Chủ Đạo</label>
                     <select id="admin_theme" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                         <option value="green">Xanh Lá Cây (Green)</option>
-                        <option value="blue" selected>Xanh Dương (Blue)</option>
+                        <option value="blue">Xanh Dương (Blue)</option>
                         <option value="purple">Tím (Purple)</option>
                         <option value="red">Đỏ (Red)</option>
                         <option value="orange">Cam (Orange)</option>
@@ -515,7 +535,7 @@
                         <option value="fa-project-diagram">Đồ thị</option>
                         <option value="fa-infinity">Vô cực / Toán</option>
                         <option value="fa-calculator">Máy tính / Số học</option>
-                        <option value="fa-graduation-cap" selected>Mũ Cử Nhân / Giải Đề</option>
+                        <option value="fa-graduation-cap">Mũ Cử Nhân / Giải Đề</option>
                     </select>
                 </div>
             </div>
@@ -524,8 +544,8 @@
                 <label class="block text-sm font-bold text-slate-700 mb-2">Số lượng sách trong Combo</label>
                 <select id="admin_count" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" onchange="generateBookInputs()">
                     <option value="1">1 Quyển (Hiển thị căn giữa)</option>
-                    <option value="2" selected="">2 Quyển (Chia 2 cột)</option>
-                    <option value="3">3 Quyển (Chia 3 cột)</option>
+                    <option value="2">2 Quyển (Chia 2 cột)</option>
+                    <option value="3" selected>3 Quyển (Chia 3 cột)</option>
                     <option value="4">4 Quyển (Chia 4 cột)</option>
                     <option value="5">5 Quyển (Dàn nhiều cột)</option>
                     <option value="6">6 Quyển (Dàn nhiều cột)</option>
@@ -533,34 +553,12 @@
             </div>
 
             <div id="dynamic_book_inputs" class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6 max-h-[300px] overflow-y-auto">
-                    <div class="mb-5 pb-5 border-b border-slate-200 last:border-0 last:pb-0 last:mb-0">
-                        <p class="font-bold text-slate-800 mb-3"><i class="fas fa-book mr-2 text-slate-400"></i>Quyển thứ 1</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="md:col-span-1">
-                                <input type="text" id="admin_b_title_1" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Tiêu đề (VD: Tập 1: Lý Thuyết)">
-                            </div>
-                            <div class="md:col-span-2">
-                                <input type="text" id="admin_b_link_1" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Link Google Drive (https://drive.google.com/file/d/.../view)">
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="mb-5 pb-5 border-b border-slate-200 last:border-0 last:pb-0 last:mb-0">
-                        <p class="font-bold text-slate-800 mb-3"><i class="fas fa-book mr-2 text-slate-400"></i>Quyển thứ 2</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="md:col-span-1">
-                                <input type="text" id="admin_b_title_2" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Tiêu đề (VD: Tập 1: Lý Thuyết)">
-                            </div>
-                            <div class="md:col-span-2">
-                                <input type="text" id="admin_b_link_2" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Link Google Drive (https://drive.google.com/file/d/.../view)">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Javascript will populate this -->
+            </div>
 
             <div class="flex flex-col md:flex-row gap-4 justify-end border-t pt-6">
-                <button onclick="previewAndAddBook()" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-eye mr-2"></i>Thêm &amp; Xem Thử Trực Tiếp</button>
-                <button onclick="downloadUpdatedHTML()" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-download mr-2"></i>Lưu &amp; Tải File HTML Mới</button>
+                <button onclick="previewAndAddBook()" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-eye mr-2"></i>Thêm & Xem Thử Trực Tiếp</button>
+                <button onclick="downloadUpdatedHTML()" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-download mr-2"></i>Lưu & Tải File HTML Mới</button>
             </div>
             
             <p class="text-xs text-slate-500 mt-4 text-center">Sau khi tải file <span class="font-bold">index.html</span> mới, hãy upload lên GitHub đè lên file cũ để cập nhật cho mọi người.</p>
