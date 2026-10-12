@@ -42,35 +42,12 @@
         .category-menu-btn { background-color: transparent; color: #1e293b; padding: 12px 0; font-weight: 800; display: flex; align-items: center; gap: 10px; cursor: pointer; border: none; font-size: 15px; transition: color 0.2s;}
         .category-menu-btn:hover { color: var(--primary-green); }
 
-        /* SỬA LỖI LỆCH TRANG (HÌNH 1) */
-        .main-container { max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 md:mt-8; display: block; }
-        .content-area { width: 100%; overflow: hidden; margin: 0 auto; }
+        .main-container { max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 md:mt-8 flex justify-center; }
+        .content-area { width: 100%; max-width: 1200px; overflow: hidden; }
         
-        /* CẢI TIẾN BANNER SLIDER TỰ ĐỘNG CHUYỂN (HÌNH 2) */
-        .banner-container {
-            width: 100%; position: relative; overflow: hidden;
-            margin-bottom: 30px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            background: white; border: 1px solid #e2e8f0;
-        }
+        .banner-slider { width: 100%; position: relative; background: white; border: 1px solid #e2e8f0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); padding: 25px 20px;}
         @media (min-width: 768px) {
-            .banner-container { margin-bottom: 40px; border-radius: 16px; }
-        }
-
-        .banner-track {
-            display: flex;
-            transition: transform 0.8s ease-in-out;
-            width: 300%; /* Vì có 3 banner */
-        }
-
-        .banner-slide {
-            width: 33.333333%;
-            padding: 25px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        @media (min-width: 768px) {
-            .banner-slide { padding: 40px; }
+            .banner-slider { padding: 40px; margin-bottom: 40px; border-radius: 16px; }
         }
         
         .banner-title { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 15px; line-height: 1.3;}
@@ -87,10 +64,6 @@
         @media (min-width: 768px) {
             .banner-icon-bg { display: flex; justify-content: center; width: 33.333333%; }
         }
-
-        .slider-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(200,200,200,0.8); cursor: pointer; transition: background 0.3s;}
-        .dot.active { background: var(--primary-green); }
 
         .book-block { margin-bottom: 40px; background: white; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);}
         @media (min-width: 768px) {
@@ -238,6 +211,15 @@
         @media (min-width: 768px) {
             .header-wrapper { flex-direction: row; gap: 0; align-items: center; }
         }
+        
+        .banner-content-wrapper { display: flex; flex-direction: column; }
+        @media (min-width: 768px) {
+            .banner-content-wrapper { flex-direction: row; align-items: center; justify-content: space-between; }
+        }
+
+        /* Thêm style cho slider dots */
+        .slider-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(200,200,200,0.8); cursor: pointer; transition: background 0.3s;}
     </style>
 </head>
 <body>
@@ -266,66 +248,26 @@
         </div>
     </div>
 
-    <!-- MAIN CONTAINER CHỮA LỖI LỆCH (Block thay vì flex) -->
+    <!-- MAIN CONTAINER -->
     <div class="main-container">
         <div class="content-area">
             
-            <!-- ================= BANNER SLIDER TỰ ĐỘNG CHUYỂN ================= -->
-            <div class="banner-container">
-                <div class="banner-track" id="bannerTrack">
-                    <!-- Slide 1: Lý Thuyết Đồ Thị (Màu Tím) -->
-                    <div class="banner-slide bg-gradient-to-r from-purple-50 to-fuchsia-100">
-                        <div class="max-w-lg w-full">
-                            <div class="text-xs md:text-sm font-bold text-purple-600 mb-2 md:mb-3 uppercase tracking-wider">Sách Nổi Bật Mới Nhất</div>
-                            <h1 class="banner-title text-slate-900">LÝ THUYẾT ĐỒ THỊ<br/><span class="text-purple-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
-                            <p class="banner-desc">"Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, luồng cực đại và hơn thế nữa với tư duy logic."</p>
-                            <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-purple-100 mb-4 md:mb-0">
-                                <i class="fas fa-pen-nib text-purple-600 mr-2"></i>
-                                <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
-                            </div>
-                        </div>
-                        <div class="banner-icon-bg">
-                            <i class="fas fa-project-diagram text-purple-700 opacity-20" style="font-size: 10rem;"></i>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2: Toán Học (Màu Xanh Dương) -->
-                    <div class="banner-slide bg-gradient-to-r from-blue-50 to-indigo-100">
-                        <div class="max-w-lg w-full">
-                            <div class="text-xs md:text-sm font-bold text-blue-600 mb-2 md:mb-3 uppercase tracking-wider">Tuyển Tập Luyện Thi HSG</div>
-                            <h1 class="banner-title text-slate-900">TOÁN HỌC VÀ CHỐNG TRÂU<br/><span class="text-blue-700">TỐI ƯU HÓA THUẬT TOÁN</span></h1>
-                            <p class="banner-desc">"Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng sự nhạy bén của Toán học."</p>
-                            <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-blue-100 mb-4 md:mb-0">
-                                <i class="fas fa-pen-nib text-blue-600 mr-2"></i>
-                                <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
-                            </div>
-                        </div>
-                        <div class="banner-icon-bg">
-                            <i class="fas fa-infinity text-blue-700 opacity-20" style="font-size: 10rem;"></i>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3: Quy Hoạch Động (Màu Xanh Lá) -->
-                    <div class="banner-slide bg-gradient-to-r from-green-50 to-emerald-100">
-                        <div class="max-w-lg w-full">
-                            <div class="text-xs md:text-sm font-bold text-green-600 mb-2 md:mb-3 uppercase tracking-wider">Chuyên đề bồi dưỡng HSG</div>
-                            <h1 class="banner-title text-slate-900">QUY HOẠCH ĐỘNG<br/><span class="text-green-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
-                            <p class="banner-desc">"Người không nhớ quá khứ sẽ phải lặp lại nó. Code của em cũng vậy thôi..."</p>
-                            <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-green-100 mb-4 md:mb-0">
-                                <i class="fas fa-pen-nib text-green-600 mr-2"></i>
-                                <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
-                            </div>
-                        </div>
-                        <div class="banner-icon-bg">
-                            <i class="fas fa-laptop-code text-green-700 opacity-20" style="font-size: 10rem;"></i>
-                        </div>
+            <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
+            <div class="banner-slider bg-gradient-to-r from-purple-50 to-fuchsia-100 banner-content-wrapper" id="mainBanner">
+                <div class="max-w-lg w-full">
+                    <div class="text-xs md:text-sm font-bold text-purple-600 mb-2 md:mb-3 uppercase tracking-wider" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
+                    <h1 class="banner-title text-slate-900" id="bannerTitle">LÝ THUYẾT ĐỒ THỊ<br/><span class="text-purple-700">TỪ CƠ BẢN ĐẾN NÂNG CAO</span></h1>
+                    <p class="banner-desc" id="bannerDesc">"Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, luồng cực đại và hơn thế nữa."</p>
+                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-purple-100 mb-4 md:mb-0">
+                        <i class="fas fa-pen-nib text-purple-600 mr-2" id="bannerIcon"></i>
+                        <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
-
+                <div class="banner-icon-bg">
+                    <i class="fas fa-project-diagram text-purple-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                </div>
                 <div class="slider-dots" id="bannerDots">
-                    <div class="dot active" onclick="goToSlide(0)"></div>
-                    <div class="dot" onclick="goToSlide(1)"></div>
-                    <div class="dot" onclick="goToSlide(2)"></div>
+                    <!-- Dots will be populated by JS -->
                 </div>
             </div>
 
@@ -333,7 +275,7 @@
             <div id="all-books-container">
                 
                 <!-- ================= SÁCH 1 ================= -->
-                <div class="book-block" id="book-dothi">
+                <div class="book-block" id="book-dothi" data-title="LÝ THUYẾT ĐỒ THỊ" data-desc='"Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, luồng cực đại và hơn thế nữa với tư duy logic."' data-theme="purple" data-icon="fa-project-diagram">
                     <div class="section-header">
                         <div class="section-title purple-theme">ĐỌC THỬ BỘ SÁCH LÝ THUYẾT ĐỒ THỊ</div>
                     </div>
@@ -357,7 +299,7 @@
                 </div>
 
                 <!-- ================= SÁCH 2 ================= -->
-                <div class="book-block" id="book-toanhoc">
+                <div class="book-block" id="book-toanhoc" data-title="TOÁN HỌC VÀ CHỐNG TRÂU" data-desc='"Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng sự nhạy bén của Toán học."' data-theme="blue" data-icon="fa-infinity">
                     <div class="section-header">
                         <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH TOÁN HỌC & CHỐNG TRÂU</div>
                     </div>
@@ -381,7 +323,7 @@
                 </div>
 
                 <!-- ================= SÁCH 3 ================= -->
-                <div class="book-block" id="book-qhd">
+                <div class="book-block" id="book-qhd" data-title="QUY HOẠCH ĐỘNG" data-desc='"Người không nhớ quá khứ sẽ phải lặp lại nó. Code của em cũng vậy thôi..."' data-theme="green" data-icon="fa-laptop-code">
                     <div class="section-header">
                         <div class="section-title">ĐỌC THỬ BỘ SÁCH QUY HOẠCH ĐỘNG</div>
                     </div>
@@ -481,6 +423,10 @@
                     <input type="text" id="admin_title" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="VD: LẬP TRÌNH C++">
                 </div>
                 <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Slogan / Lời dẫn</label>
+                    <input type="text" id="admin_desc" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="VD: Khám phá những bí ẩn...">
+                </div>
+                <div>
                     <label class="block text-sm font-bold text-slate-700 mb-2">Màu Sắc Chủ Đạo</label>
                     <select id="admin_theme" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                         <option value="green">Xanh Lá Cây (Green)</option>
@@ -488,6 +434,16 @@
                         <option value="purple">Tím (Purple)</option>
                         <option value="red">Đỏ (Red)</option>
                         <option value="orange">Cam (Orange)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Icon Banner (FontAwesome)</label>
+                    <select id="admin_icon" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <option value="fa-book">Sách thường</option>
+                        <option value="fa-code">Mã code</option>
+                        <option value="fa-laptop-code">Laptop</option>
+                        <option value="fa-project-diagram">Đồ thị</option>
+                        <option value="fa-infinity">Vô cực / Toán</option>
                     </select>
                 </div>
             </div>
@@ -519,58 +475,13 @@
 
     <!-- Script tương tác & Admin -->
     <script>
-        // --- LOGIC BANNER TỰ ĐỘNG CHUYỂN SLIDE ---
-        let currentSlide = 0;
-        const totalSlides = 3;
-        let slideInterval;
-
-        function goToSlide(index) {
-            currentSlide = index;
-            const track = document.getElementById('bannerTrack');
-            const dots = document.querySelectorAll('#bannerDots .dot');
-            
-            // Trượt Banner (Dịch sang trái 33.33% cho mỗi slide vì có 3 slide = 100% / 3)
-            track.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
-            
-            // Cập nhật chấm Dot
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentSlide].classList.add('active');
-            
-            // Đặt lại màu sắc Dot cho phù hợp slide đang xem (Tím -> Xanh Dương -> Xanh Lá)
-            if(currentSlide === 0) dots[currentSlide].style.backgroundColor = 'var(--primary-purple)';
-            else if(currentSlide === 1) dots[currentSlide].style.backgroundColor = 'var(--primary-blue)';
-            else dots[currentSlide].style.backgroundColor = 'var(--primary-green)';
-            
-            resetAutoSlide();
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            goToSlide(currentSlide);
-        }
-
-        function startAutoSlide() {
-            slideInterval = setInterval(nextSlide, 5000); // 5 Giây tự trượt 1 lần
-        }
-
-        function resetAutoSlide() {
-            clearInterval(slideInterval);
-            startAutoSlide();
-        }
-
-        // Bắt đầu trượt khi load trang
-        window.onload = function() {
-            startAutoSlide();
-        };
-
-        // --- CÁC HÀM TIỆN ÍCH ---
         function showToast(message, isSuccess = false) {
             const oldToast = document.getElementById('toast');
             if(oldToast) oldToast.remove();
 
             const toast = document.createElement('div');
             toast.id = 'toast';
-            toast.className = `fixed bottom-4 right-4 md:bottom-6 md:right-6 text-white px-4 md:px-6 py-3 md:py-4 rounded-lg shadow-2xl z-50 transform transition-all duration-300 translate-y-10 opacity-0 flex items-center gap-3 ${isSuccess ? 'bg-green-600' : 'bg-slate-800'} text-sm md:text-base max-w-[90vw]`;
+            toast.className = `fixed bottom-4 right-4 md:bottom-6 md:right-6 text-white px-4 md:px-6 py-3 md:py-4 rounded-lg shadow-2xl z-50 transform transition-all duration-300 translate-y-10 opacity-0 flex items-center gap-3 ${isSuccess ? 'bg-green-600' : 'bg-slate-800'} text-sm md:text-base max-w-[90vw] z-[120]`;
             toast.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-info-circle'} text-xl flex-shrink-0"></i><span class="font-medium">${message}</span>`;
             
             document.body.appendChild(toast);
@@ -590,6 +501,114 @@
             grid.scrollBy({ left: amount, behavior: 'smooth' });
         }
 
+        // ==========================================
+        // HỆ THỐNG SLIDER TỰ ĐỘNG THU THẬP TỪ SÁCH
+        // ==========================================
+        let bannerDataList = [];
+        let currentSlide = 0;
+        let slideInterval;
+
+        function loadBannersFromBooks() {
+            bannerDataList = [];
+            const books = document.querySelectorAll('.book-block');
+            
+            books.forEach(book => {
+                const title = book.getAttribute('data-title');
+                if(!title) return; // Bỏ qua nếu không phải khối sách có data
+                
+                const desc = book.getAttribute('data-desc');
+                const theme = book.getAttribute('data-theme');
+                const icon = book.getAttribute('data-icon');
+                
+                let bgClass = 'bg-blue-50';
+                let textClass = 'text-blue-600';
+                let accentClass = 'text-blue-700';
+                
+                if(theme === 'green') { bgClass = 'bg-green-50'; textClass = 'text-green-600'; accentClass = 'text-green-700'; }
+                else if(theme === 'purple') { bgClass = 'bg-purple-50'; textClass = 'text-purple-600'; accentClass = 'text-purple-700'; }
+                else if(theme === 'red') { bgClass = 'bg-red-50'; textClass = 'text-red-600'; accentClass = 'text-red-700'; }
+                else if(theme === 'orange') { bgClass = 'bg-orange-50'; textClass = 'text-orange-600'; accentClass = 'text-orange-700'; }
+
+                bannerDataList.push({
+                    title: `${title}<br/><span class="${accentClass}">SÁCH MỚI CẬP NHẬT</span>`,
+                    desc: desc,
+                    icon: icon,
+                    bgClass: `bg-gradient-to-r ${bgClass} to-slate-100`,
+                    textClass: textClass,
+                    accentClass: accentClass,
+                    theme: theme
+                });
+            });
+
+            renderBannerDots();
+            if(bannerDataList.length > 0) {
+                changeBanner(0);
+                resetAutoSlide();
+            }
+        }
+
+        function renderBannerDots() {
+            const dotsContainer = document.getElementById('bannerDots');
+            dotsContainer.innerHTML = '';
+            for(let i=0; i<bannerDataList.length; i++) {
+                dotsContainer.innerHTML += `<div class="dot ${i===0 ? 'active' : ''}" onclick="goToSlide(${i})"></div>`;
+            }
+        }
+
+        function changeBanner(index) {
+            if(bannerDataList.length === 0) return;
+            const banner = document.getElementById('mainBanner');
+            const data = bannerDataList[index];
+            
+            banner.className = `banner-slider p-10 flex items-center justify-between transition-all duration-500 ${data.bgClass}`;
+            document.getElementById('bannerLabel').className = `text-sm font-bold mb-3 uppercase tracking-wider ${data.textClass}`;
+            document.getElementById('bannerTitle').innerHTML = data.title;
+            document.getElementById('bannerDesc').innerHTML = data.desc;
+            document.getElementById('bannerIcon').className = `fas fa-pen-nib mr-2 ${data.textClass}`;
+            document.getElementById('bannerBigIcon').className = `fas ${data.icon} ${data.accentClass} opacity-20 transform hover:scale-110 transition-transform duration-500`;
+
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots.forEach(dot => dot.style.backgroundColor = 'rgba(200,200,200,0.8)'); 
+            
+            if(dots[index]) {
+                dots[index].classList.add('active');
+                if(data.theme === 'green') dots[index].style.backgroundColor = 'var(--primary-green)';
+                else if(data.theme === 'blue') dots[index].style.backgroundColor = 'var(--primary-blue)';
+                else if(data.theme === 'purple') dots[index].style.backgroundColor = 'var(--primary-purple)';
+                else if(data.theme === 'red') dots[index].style.backgroundColor = '#ef4444';
+                else if(data.theme === 'orange') dots[index].style.backgroundColor = '#f97316';
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            changeBanner(index);
+            resetAutoSlide();
+        }
+
+        function nextSlide() {
+            if(bannerDataList.length <= 1) return;
+            currentSlide = (currentSlide + 1) % bannerDataList.length;
+            changeBanner(currentSlide);
+        }
+
+        function startAutoSlide() {
+            if(bannerDataList.length > 1) {
+                slideInterval = setInterval(nextSlide, 5000); 
+            }
+        }
+
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            startAutoSlide();
+        }
+
+        window.onload = function() {
+            loadBannersFromBooks();
+        };
+
+
         // --- CÁC HÀM XỬ LÝ CHỨC NĂNG ADMIN & ĐĂNG NHẬP ---
         function openLoginModal() {
             document.getElementById('loginModal').classList.remove('hidden');
@@ -601,7 +620,6 @@
             const u = document.getElementById('admin_user').value;
             const p = document.getElementById('admin_pass').value;
             
-            // TÀI KHOẢN VÀ MẶT KHẨU MẶC ĐỊNH
             if (u === 'admin' && p === 'codeplus') { 
                 document.getElementById('loginModal').classList.add('hidden');
                 document.getElementById('loginModal').classList.remove('flex');
@@ -652,7 +670,9 @@
 
         function previewAndAddBook() {
             const title = document.getElementById('admin_title').value.trim() || 'COMBO SÁCH MỚI';
+            const desc = document.getElementById('admin_desc').value.trim() || 'Tuyển tập sách mới nhất của tác giả Lê Thành Nam.';
             const theme = document.getElementById('admin_theme').value;
+            const icon = document.getElementById('admin_icon').value;
             const count = parseInt(document.getElementById('admin_count').value);
             
             let gridClass = 'grid-cols-1 md:grid-cols-3';
@@ -682,9 +702,11 @@
                 `;
             }
 
+            const newBookId = 'book-' + Math.floor(Math.random() * 10000);
+
             const newBlockHtml = `
                 <!-- ================= SÁCH MỚI (TỪ ADMIN) ================= -->
-                <div class="book-block">
+                <div class="book-block" id="${newBookId}" data-title="${title}" data-desc="${desc}" data-theme="${theme}" data-icon="${icon}">
                     <div class="section-header">
                         <div class="section-title ${theme === 'green' ? '' : theme + '-theme'}">ĐỌC THỬ BỘ SÁCH ${title}</div>
                     </div>
@@ -697,18 +719,31 @@
             const allBooksContainer = document.getElementById('all-books-container');
             allBooksContainer.insertAdjacentHTML('afterbegin', newBlockHtml);
             
+            // Tái chạy hàm để thu thập banner slide mới
+            loadBannersFromBooks();
+
+            const exploreGrid = document.getElementById('bookGrid');
+            const newExploreCard = `
+                <div class="book-card" onclick="document.getElementById('${newBookId}').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                    <div class="discount-badge">-15%</div>
+                    <div class="book-image-placeholder"><i class="fas ${icon}"></i></div>
+                    <div class="book-title">Combo ${title}</div>
+                </div>
+            `;
+            exploreGrid.insertAdjacentHTML('afterbegin', newExploreCard);
+            
             document.getElementById('adminModal').classList.add('hidden');
             document.getElementById('adminModal').classList.remove('flex');
-            window.scrollTo({ top: 500, behavior: 'smooth' });
-            showToast('Đã thêm sách thành công!', true);
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+            showToast('Đã thêm sách mới và cập nhật Slider thành công!', true);
         }
 
         function downloadUpdatedHTML() {
             document.getElementById('adminModal').classList.add('hidden');
             document.getElementById('adminModal').classList.remove('flex');
             
-            let htmlContent = "<!DOCTYPE html>
-" + document.documentElement.outerHTML;
+            let htmlContent = `<!DOCTYPE html>
+` + document.documentElement.outerHTML;
             const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
             const url = URL.createObjectURL(blob);
             
