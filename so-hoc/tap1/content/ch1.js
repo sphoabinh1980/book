@@ -133,11 +133,298 @@ const L1 = {
   ],
 };
 
+const L2 = {
+  no: 2, title: 'Ước số: liệt kê, đếm và tính tổng', sub: 'các ước đi theo cặp, chỉ cần duyệt tới √n',
+  goals: [
+    'Hiểu vì sao các ước của n luôn **đi theo cặp** (d, n / d) và trong mỗi cặp có một số không vượt quá √n.',
+    'Đếm số ước và tính tổng các ước của n ≤ 10^12^ trong O(√n) thay vì O(n).',
+    'Tránh được ba lỗi kinh điển: đếm trùng khi n là số chính phương, dùng `sqrt` số thực, tràn số.',
+    'Biết cách tính số ước của **mọi** số từ 1 tới N cùng lúc bằng "sàng điều hòa" O(N log N).',
+  ],
+  warmup: [
+    'Cô giáo có 36 học sinh và muốn xếp cả lớp thành một hình chữ nhật đều đặn: mỗi hàng có cùng số bạn, không bạn nào đứng lẻ. Có bao nhiêu cách xếp? 1 hàng 36 bạn, 2 hàng 18 bạn, 3 hàng 12 bạn... Mỗi cách xếp ứng với một **ước** của 36.',
+    'Với 36 bạn, em đếm nhẩm được. Nhưng nếu là 10^12^ (một nghìn tỉ) "bạn" thì sao? Thử từng số từ 1 tới 10^12^ mất gần một giờ. Bài học này chỉ ra rằng em chỉ cần thử tới **một triệu** số, và chương trình chạy xong trong vài phần nghìn giây.',
+  ],
+  body: [
+    { h: 'Ước số và cặp ước' },
+    { box: 'def', body: ['Số nguyên dương d gọi là **ước** của số nguyên dương n nếu n chia hết cho d (n mod d = 0). Khi đó n gọi là **bội** của d. Kí hiệu d(n) là **số ước** của n, σ(n) (đọc là "xích-ma") là **tổng các ước** của n, kể cả 1 và chính n.'] },
+    'Ví dụ, các ước của 12 là 1, 2, 3, 4, 6, 12, nên d(12) = 6 và σ(12) = 1 + 2 + 3 + 4 + 6 + 12 = 28. Hãy để ý cách các ước "bắt cặp" với nhau: 1 · 12 = 2 · 6 = 3 · 4 = 12.',
+    { box: 'imagine', body: [
+      'Mỗi ước d của n là một cách xếp n ô vuông thành hình chữ nhật d hàng, n / d cột. Hình chữ nhật d × (n / d) và hình (n / d) × d là cùng một hình xoay ngang, nên các ước luôn đi thành từng **cặp** (d, n / d).',
+    ] },
+    { fig: 'f2_hcn', w: 6.0, cap: 'Ba hình chữ nhật gồm 12 ô vuông ứng với ba cặp ước (1, 12), (2, 6), (3, 4).' },
+    { box: 'theorem', title: 'ĐỊNH LÍ (CẶP ƯỚC)', body: [
+      'Nếu d là ước của n thì n / d cũng là ước của n. Trong hai số d và n / d, có ít nhất một số **không vượt quá √n**.',
+    ] },
+    { box: 'why', body: [
+      'n / d là số nguyên và d · (n / d) = n, nên n / d là ước của n. Nếu cả hai số đều lớn hơn √n thì tích của chúng lớn hơn √n · √n = n: vô lí. Vậy có ít nhất một số ≤ √n.',
+    ] },
+    { fig: 'f2_capuoc', w: 6.0, cap: 'Chín ước của 36 bắt cặp đối xứng qua √36 = 6. Ước 6 tự bắt cặp với chính nó.' },
+
+    { h: 'Bài toán DEMUOC' },
+    { problem: { code: 'DEMUOC', statement: ['Cho số nguyên dương n. Hãy đếm số ước của n và tính tổng các ước của n.'],
+      input: 'Một dòng chứa n (1 ≤ n ≤ 10^12^).', output: 'Hai số nguyên d(n) và σ(n), cách nhau một dấu cách.' } },
+    { examples: 'DEMUOC', explain: ['Các ước 1, 2, 3, 4, 6, 12.', '36 là số chính phương: ước 6 chỉ được đếm một lần.', 'Số 1 chỉ có một ước là chính nó.', '10^12^ = 2^12^ · 5^12^ có 13 · 13 = 169 ước (công thức này em sẽ học ở Bài 7).'] },
+
+    { h: 'Ý tưởng ngây thơ: Thử mọi số từ 1 tới n' },
+    'Định nghĩa nói d là ước khi n mod d = 0. Vậy cứ thử lần lượt d = 1, 2, ..., n: số nào chia hết thì đếm và cộng vào tổng.',
+    { fig: 'f2_ngaytho', w: 2.8, cap: 'Sơ đồ khối của cách thử mọi số.' },
+    { file: 'DEMUOC_ngaytho', title: 'DEMUOC.CPP (ngây thơ): thử d = 1, 2, ..., n' },
+    { box: 'count', body: [
+      'Vòng lặp chạy đúng n lần, mỗi lần một phép chia lấy dư: O(n). Trên máy tính thông thường, chương trình mất khoảng **3,2 giây** với n = 10^9^. Với n = 10^12^ gấp một nghìn lần, tức gần **một giờ**.',
+    ] },
+    { box: 'stuck', body: [
+      'Hầu hết các số d mà ta thử đều không phải ước: 10^12^ chỉ có 169 ước trong một nghìn tỉ số được thử. Hơn nữa, mỗi khi tìm được một ước d, ta "biết luôn" ước n / d, nhưng chương trình vẫn đi tìm lại nó một lần nữa ở rất xa phía sau. Liệu có thể dừng sớm hơn nhiều không?',
+    ] },
+
+    { h: 'Phá bế tắc: Chỉ duyệt tới √n' },
+    { step: 'Mỗi ước nhỏ cho ta một ước lớn' },
+    'Theo định lí cặp ước, mỗi cặp (d, n / d) có một số ≤ √n. Vậy chỉ cần duyệt d từ 1 tới √n: mỗi khi d là ước, ta ghi nhận **cả hai** ước d và n / d. Mọi ước lớn hơn √n đều được tìm thấy qua "bạn đôi" nhỏ của nó.',
+    { step: 'Cẩn thận với số chính phương' },
+    'Nếu n là số chính phương, ước d = √n bắt cặp với chính nó (6 · 6 = 36). Khi đó d = n / d và ta chỉ được đếm **một lần**. Điều kiện dừng viết là `d * d <= n`, hoàn toàn bằng số nguyên, để khỏi dùng `sqrt` cho kết quả số thực có thể sai lệch.',
+    { step: 'Chạy tay với n = 36' },
+    { table: { cols: [1100, 1800, 2400, 1600, 1718], head: ['d', 'd · d ≤ 36?', '36 mod d', 'Ghi nhận', 'cnt, sum'],
+      rows: [['1', 'có', '0', '1 và 36', '2, 37'], ['2', 'có', '0', '2 và 18', '4, 57'], ['3', 'có', '0', '3 và 12', '6, 72'], ['4', 'có', '0', '4 và 9', '8, 85'], ['5', 'có', '1', 'không', '8, 85'], ['6', 'có', '0', '**chỉ 6**', '9, 91'], ['7', '**không** (49 > 36)', '', 'dừng', '**9, 91**']],
+      aligns: ['center', 'center', 'center', 'center', 'center'] } },
+    'Chỉ 6 lần thử (thay vì 36) đã tìm đủ 9 ước, tổng 91.',
+    { step: 'Chương trình' },
+    { fig: 'f2_toiuu', w: 2.8, cap: 'Sơ đồ khối của cách duyệt tới √n.' },
+    { file: 'DEMUOC', title: 'DEMUOC.CPP: duyệt d ≤ √n, ghi nhận cả cặp ước' },
+    { box: 'count', body: [
+      'Vòng lặp chạy khoảng √n lần: với n = 10^12^ chỉ là 10^6^ lần, chương trình chạy trong khoảng **0,006 giây** thay vì gần một giờ. Đây là một trong những cải tiến đơn giản mà hiệu quả nhất của số học: từ O(n) xuống O(√n).',
+      'Tổng các ước của n ≤ 10^12^ có thể vượt 2^31^ (với n = 10^12^ là 2 499 694 822 171), nên cnt và sum phải là `long long`.',
+    ] },
+  ],
+  ext: [
+    { sub: 'Mở rộng 1: Liệt kê các ước theo thứ tự tăng dần' },
+    'Khi duyệt d tăng dần, các ước nhỏ d xuất hiện theo thứ tự **tăng**, còn các ước lớn n / d xuất hiện theo thứ tự **giảm**. Hãy đưa chúng vào hai mảng riêng, rồi in mảng thứ nhất, sau đó in mảng thứ hai theo chiều ngược lại. Không cần sắp xếp.',
+    { sub: 'Mở rộng 2: Số ước của mọi số từ 1 tới N (sàng điều hòa)' },
+    'Nếu cần d(k) và σ(k) cho **mọi** k ≤ N (chẳng hạn N = 10^6^), gọi O(√k) cho từng số tốn tổng cộng khoảng N√N ≈ 10^9^ phép tính. Hãy đảo ngược câu hỏi: thay vì hỏi "k có những ước nào?", hãy hỏi "d là ước của những số nào?". Câu trả lời là d, 2d, 3d, ...: chỉ việc nhảy theo bước d và cộng d vào các số ấy.',
+    { file: 'DEMUOC_sang', title: 'Sàng điều hòa: số ước và tổng ước của mọi số 1..N' },
+    'Số phép tính là N/1 + N/2 + N/3 + ... + N/N = N · (1 + 1/2 + ... + 1/N) ≈ N ln N. Với N = 10^6^, tổng này đúng bằng 13 970 034: chưa tới 1,4 · 10^7^ phép tính. Tên gọi "điều hòa" đến từ chuỗi 1 + 1/2 + 1/3 + ..., gọi là chuỗi điều hòa.',
+    { sub: 'Mở rộng 3: Số hoàn hảo và số ước lẻ' },
+    { ul: ['Số **hoàn hảo** là số bằng tổng các ước thực sự (khác chính nó), tức σ(n) = 2n: 6 = 1 + 2 + 3, 28, 496, 8128.', 'n có **số ước lẻ** khi và chỉ khi n là số chính phương: các ước bắt cặp hai-hai, chỉ trừ ước √n tự bắt cặp với mình.', 'Một số ≤ 10^9^ có không quá 1344 ước, một số ≤ 10^18^ có không quá 103 680 ước (Phụ lục B). Con số này giúp em ước lượng khi phải duyệt qua mọi ước.'] },
+  ],
+  traps: [
+    '**Đếm trùng ước √n:** với n = 36, ước 6 bị đếm hai lần nếu quên kiểm tra `d != n / d`.',
+    '**Dùng `sqrt(n)` số thực:** với n cỡ 10^12^ trở lên, `(long long)sqrt(n)` có thể lệch 1 do sai số làm tròn. Viết `d * d <= n` an toàn hơn.',
+    '**`int` cho d:** khi n tới 10^18^, d tới 10^9^ và `d * d` tràn `int`. Dùng `long long` cho d.',
+    '**`int` cho tổng ước:** σ(n) với n ≤ 10^12^ có thể vượt 2 · 10^12^.',
+    '**Quên ước 1 và chính n:** định nghĩa trong bài đếm cả hai. Một số đề chỉ đếm **ước thực sự** (khác n): đọc kĩ đề.',
+  ],
+  remember: [
+    'Các ước đi theo cặp (d, n / d), mỗi cặp có một số ≤ √n.',
+    'Duyệt `for (d = 1; d * d <= n; d++)`, mỗi ước d ghi nhận cả n / d, trừ khi d = n / d: O(√n).',
+    'Sàng điều hòa: với mỗi d, cộng vào d, 2d, 3d, ...: O(N log N) cho mọi số tới N.',
+    'n có số ước lẻ ⇔ n là số chính phương.',
+  ],
+  practice: [
+    ['2.1', 'XẾP HÀNG', 'Đếm số cách xếp n học sinh thành hình chữ nhật có ít nhất 2 hàng và 2 cột: d(n) trừ đi các trường hợp suy biến.'],
+    ['2.2', 'ƯỚC TĂNG DẦN', 'In mọi ước của n ≤ 10^12^ theo thứ tự tăng dần; Mở rộng 1.'],
+    ['2.3', 'SỐ BẠN BÈ', 'Đếm các cặp (a, b) với a < b ≤ N, σ(a) − a = b và σ(b) − b = a (cặp số bạn bè): sàng điều hòa.'],
+  ],
+  quiz: [
+    ['Tính số ước và tổng các ước của 360.', 'Đáp số: 24 ước, tổng 1170'],
+    ['Vòng lặp trong DEMUOC.CPP chạy bao nhiêu lần với n = 10^12^? Với n = 999 999 999 989 (một số nguyên tố)?', 'Đáp số: 10^6^ lần trong cả hai trường hợp (d chạy tới khi d · d > n)'],
+    ['Những số nào từ 1 đến 100 có số ước lẻ?', 'Đáp số: các số chính phương 1, 4, 9, ..., 100 (10 số)'],
+  ],
+  algos: [['Đếm ước, tổng ước bằng cặp ước (d, n / d)', 'O(√n)'], ['Sàng điều hòa: d(k), σ(k) với mọi k ≤ N', 'O(N log N)']],
+};
+
+const L3 = {
+  no: 3, title: 'Ước chung lớn nhất và bội chung nhỏ nhất', sub: 'thuật toán Euclid',
+  goals: [
+    'Hiểu ƯCLN và BCNN, và hệ thức gcd(a, b) · lcm(a, b) = a · b.',
+    'Chứng minh và cài đặt **thuật toán Euclid**: gcd(a, b) = gcd(b, a mod b).',
+    'Giải thích vì sao Euclid chỉ cần không quá vài chục bước kể cả với số cỡ 10^18^.',
+    'Tính BCNN mà không bị tràn số, và phát hiện khi BCNN vượt giới hạn.',
+  ],
+  warmup: [
+    'Một tấm gạch men hình chữ nhật 252 cm × 105 cm cần được cắt thành những miếng **hình vuông bằng nhau**, không thừa mẩu nào. Miếng vuông lớn nhất có cạnh bao nhiêu?',
+    'Cạnh hình vuông phải là ước của cả 252 lẫn 105, và ta muốn nó lớn nhất: đó là **ước chung lớn nhất**. Hơn 2300 năm trước, Euclid đã tìm ra một cách cắt rất khéo cho câu hỏi này, và cách cắt ấy chính là thuật toán nhanh nhất mà em sẽ học hôm nay.',
+  ],
+  body: [
+    { h: 'ƯCLN và BCNN' },
+    { box: 'def', body: [
+      '**Ước chung lớn nhất** của hai số nguyên dương a, b, kí hiệu gcd(a, b) (viết tắt của *greatest common divisor*), là số lớn nhất chia hết cả a và b. **Bội chung nhỏ nhất** lcm(a, b) (*least common multiple*) là số dương nhỏ nhất chia hết cho cả a và b. Hai số có gcd bằng 1 gọi là **nguyên tố cùng nhau**.',
+    ] },
+    { fig: 'f3_ucchung', w: 5.2, cap: 'Các ước chung của 252 và 105 là 1, 3, 7, 21; lớn nhất là 21.' },
+    'Một quan sát quan trọng: **mọi ước chung đều là ước của ƯCLN** (ở hình trên: 1, 3, 7 đều là ước của 21). Và giữa ƯCLN và BCNN có một hệ thức rất đẹp:',
+    { formula: 'gcd(a, b) · lcm(a, b) = a · b' },
+    'Ví dụ: gcd(252, 105) = 21, lcm(252, 105) = 1260, và 21 · 1260 = 26 460 = 252 · 105. Nhờ hệ thức này, tính được ƯCLN là tính được BCNN: lcm(a, b) = a / gcd(a, b) · b.',
+
+    { h: 'Bài toán UCLN' },
+    { problem: { code: 'UCLN', statement: ['Cho hai số nguyên dương a và b. Hãy tính ƯCLN và BCNN của chúng.'],
+      input: 'Một dòng chứa a và b (1 ≤ a, b ≤ 10^18^).', output: 'Dòng 1: gcd(a, b). Dòng 2: lcm(a, b) nếu lcm(a, b) ≤ 10^18^, ngược lại in −1.' } },
+    { examples: 'UCLN', explain: ['Như ở phần khởi động.', '17 và 5 nguyên tố cùng nhau: BCNN là tích 85.', 'Hai số liên tiếp luôn nguyên tố cùng nhau; BCNN gần 10^36^ quá lớn.', 'gcd(a, a) = lcm(a, a) = a.'] },
+
+    { h: 'Ý tưởng ngây thơ: Thử giảm dần' },
+    'ƯCLN không vượt quá số nhỏ hơn. Vậy thử g = min(a, b), rồi giảm dần g cho tới khi g chia hết cả a và b. Số đầu tiên tìm được chính là ƯCLN (vì ta thử từ lớn xuống).',
+    { fig: 'f3_ngaytho', w: 2.6, cap: 'Sơ đồ khối của cách thử giảm dần.' },
+    { file: 'UCLN_ngaytho', title: 'UCLN.CPP (ngây thơ): thử g giảm dần từ min(a, b)' },
+    { box: 'count', body: ['Trường hợp xấu nhất là khi a, b nguyên tố cùng nhau: vòng lặp chạy min(a, b) lần, tới 10^18^ lần ở ví dụ 3. Kể cả máy tính nhanh nhất thế giới cũng không chạy xong trong đời người.'] },
+    { box: 'stuck', body: ['Thử từng ứng viên là vô vọng. Ta cần một cách **thu nhỏ bài toán**: thay cặp (a, b) bằng một cặp số nhỏ hơn mà có **cùng ƯCLN**, rồi lặp lại cho tới khi câu trả lời hiển nhiên.'] },
+
+    { h: 'Phá bế tắc: Thuật toán Euclid' },
+    { step: 'Trừ số lớn cho số nhỏ' },
+    'Nếu d chia hết a và b thì d chia hết a − b. Ngược lại nếu d chia hết b và a − b thì d chia hết (a − b) + b = a. Vậy hai cặp (a, b) và (a − b, b) có **cùng tập ước chung**, nên cùng ƯCLN:',
+    { formula: 'gcd(a, b) = gcd(a − b, b)' },
+    'Ở bài toán cắt gạch: cắt bỏ một hình vuông b × b khỏi tấm a × b, phần còn lại (a − b) × b vẫn cắt được bằng đúng những miếng vuông như cũ.',
+    { step: 'Trừ nhiều lần một lúc: phép chia lấy dư' },
+    'Khi a lớn hơn b nhiều, ta trừ b liên tiếp q lần cho tới khi phần còn lại nhỏ hơn b. Phần còn lại ấy chính là a mod b. Thay cả chuỗi phép trừ bằng một phép chia:',
+    { formula: 'gcd(a, b) = gcd(b, a mod b),   gcd(a, 0) = a' },
+    { fig: 'f3_euclid', w: 6.2, cap: 'Cắt tấm 252 × 105 thành hình vuông: mỗi bước Euclid cắt đi các hình vuông lớn nhất có thể.' },
+    { step: 'Chạy tay với a = 252, b = 105' },
+    { table: { cols: [1600, 1600, 1600, 1900, 1918], head: ['a', 'b', 'q = a / b', 'r = a mod b', 'Cặp mới (b, r)'],
+      rows: [['252', '105', '2', '42', '(105, 42)'], ['105', '42', '2', '21', '(42, 21)'], ['42', '21', '2', '0', '(21, 0)'], ['**21**', '0', '', '', 'dừng: gcd = **21**']],
+      aligns: ['center', 'center', 'center', 'center', 'center'] } },
+    { box: 'why', title: 'VÌ SAO ĐÚNG? VÌ SAO DỪNG?', body: [
+      '**Đúng:** a = b · q + r nên r = a − q · b. Mọi ước chung của a, b chia hết r; mọi ước chung của b, r chia hết a = b · q + r. Hai cặp có cùng tập ước chung nên cùng ƯCLN. Khi b = 0, mọi số chia hết 0, nên gcd(a, 0) = a.',
+      '**Dừng:** số thứ hai giảm nghiêm ngặt (r < b) và luôn không âm, nên sau hữu hạn bước nó về 0.',
+    ] },
+    { step: 'Chương trình' },
+    { fig: 'f3_toiuu', w: 2.4, cap: 'Sơ đồ khối của thuật toán Euclid.' },
+    { file: 'UCLN', title: 'UCLN.CPP: thuật toán Euclid, BCNN không tràn số' },
+    'Để tính BCNN, ta **chia trước, nhân sau**: x = a / gcd(a, b) là số nguyên, rồi lcm = x · b. Trước khi nhân, kiểm tra x > 10^18^ / b: nếu đúng thì x · b > 10^18^ và ta in −1, không bao giờ để phép nhân tràn số.',
+    { box: 'count', title: 'ĐẾM SỐ PHÉP TÍNH: EUCLID NHANH ĐẾN MỨC NÀO?', body: [
+      'Sau **hai** bước liên tiếp, số thứ nhất giảm ít nhất một nửa. Thật vậy, xét a mod b: nếu b ≤ a / 2 thì a mod b < b ≤ a / 2; còn nếu b > a / 2 thì a mod b = a − b < a / 2. Vậy số bước không quá 2 · log~2~ a ≈ 120 với a ≤ 10^18^.',
+      'Thực tế còn tốt hơn: trường hợp xấu nhất là hai số Fibonacci liên tiếp (định lí Lamé). Với các số ≤ 10^18^, cặp xấu nhất là F~87~ = 679 891 637 638 612 258 và F~86~ = 420 196 140 727 489 673, cần **85 bước**. Độ phức tạp O(log min(a, b)).',
+    ] },
+  ],
+  ext: [
+    { sub: 'Mở rộng 1: ƯCLN và BCNN của cả một dãy' },
+    'gcd(a~1~, a~2~, ..., a~n~) = gcd(gcd(a~1~, a~2~), a~3~, ...): gộp dần từ trái sang phải. Thời gian thực tế gần O(n + log max), vì giá trị gcd chỉ giảm và mỗi lần giảm là ít nhất chia đôi. Với BCNN của dãy thì gộp tương tự, nhưng BCNN tăng rất nhanh: phải kiểm tra tràn sau mỗi bước (hoặc tính theo mô-đun bằng phân tích thừa số ở Bài 7).',
+    { sub: 'Mở rộng 2: Bỏ đi một phần tử' },
+    'Bài toán hay gặp: bỏ đi đúng một phần tử của dãy để gcd các phần tử còn lại lớn nhất. Tính trước gcd tiền tố L[i] = gcd(a~1~..a~i~) và gcd hậu tố R[i] = gcd(a~i~..a~n~). Bỏ phần tử i thì gcd còn lại là gcd(L[i − 1], R[i + 1]): O(n log max) cho cả dãy.',
+    { sub: 'Mở rộng 3: Hàm có sẵn và các tính chất hay dùng' },
+    { ul: ['Trong C++14 có hàm `__gcd(a, b)` (thư viện GNU); từ C++17 có `gcd` và `lcm` trong `<numeric>`.', 'gcd(a, 0) = a; gcd(a, b) = gcd(|a|, |b|) với số âm.', 'gcd(k · a, k · b) = k · gcd(a, b); nếu gcd(a, b) = g thì a / g và b / g nguyên tố cùng nhau.', 'Với dãy Fibonacci: gcd(F~m~, F~n~) = F~gcd(m, n)~, một sự liên hệ bất ngờ giữa Euclid và Fibonacci.'] },
+  ],
+  traps: [
+    '**Tính BCNN bằng a · b / gcd:** tích a · b tràn số trước khi kịp chia. Luôn chia trước: `a / g * b`.',
+    '**Không kiểm tra BCNN vượt giới hạn:** với a, b ≤ 10^18^, BCNN có thể tới 10^36^. Kiểm tra `x > LIM / b` trước khi nhân.',
+    '**Gọi gcd với số âm** mà không lấy trị tuyệt đối: `%` của C++ với số âm có thể cho kết quả âm.',
+    '**Dùng `int`** cho a, b cỡ 10^18^.',
+    '**Dùng phép trừ thay cho phép chia** (bản Euclid cổ): gcd(10^18^, 1) cần 10^18^ phép trừ.',
+  ],
+  remember: [
+    'gcd(a, b) = gcd(b, a mod b), gcd(a, 0) = a: thuật toán Euclid, O(log min(a, b)).',
+    'Mọi ước chung là ước của ƯCLN; gcd(a, b) · lcm(a, b) = a · b.',
+    'BCNN: chia trước, nhân sau, và kiểm tra tràn: `x = a / g; if (x > LIM / b) ...`.',
+    'Trường hợp xấu nhất của Euclid là hai số Fibonacci liên tiếp: vẫn chỉ khoảng 85 bước với số 10^18^.',
+  ],
+  practice: [
+    ['3.1', 'CẮT GẠCH', 'Cắt tấm a × b thành hình vuông bằng nhau lớn nhất: in cạnh và số miếng, a, b ≤ 10^18^.'],
+    ['3.2', 'BỎ MỘT SỐ', 'Bỏ một phần tử của dãy để ƯCLN còn lại lớn nhất: gcd tiền tố và hậu tố (Mở rộng 2).'],
+    ['3.3', 'ĐÈN NHÁY', 'n đèn, đèn i nháy sau mỗi t~i~ giây; lần đầu mọi đèn cùng nháy: BCNN của dãy, phát hiện vượt 10^18^.'],
+  ],
+  quiz: [
+    ['Chạy tay Euclid với a = 1071, b = 462. Có bao nhiêu bước và ƯCLN bằng bao nhiêu?', 'Đáp số: 1071 → 462 → 147 → 21 → 0, ba phép chia, gcd = 21'],
+    ['Vì sao gcd(n, n + 1) luôn bằng 1?', 'Đáp số: gcd(n + 1, n) = gcd(n, 1) = 1'],
+    ['Tính lcm(4, 6, 10) theo cách gộp dần.', 'Đáp số: lcm(4, 6) = 12, lcm(12, 10) = 60'],
+  ],
+  algos: [['Thuật toán Euclid: gcd(a, b) = gcd(b, a mod b)', 'O(log min(a, b))'], ['BCNN không tràn: a / gcd(a, b) · b, kiểm tra trước khi nhân', 'O(log min(a, b))'], ['gcd tiền tố / hậu tố cho bài "bỏ một phần tử"', 'O(n log max)']],
+};
+
+const L4 = {
+  no: 4, title: 'Euclid mở rộng và phương trình ax + by = c', sub: 'định lí Bézout và họ nghiệm',
+  goals: [
+    'Hiểu **định lí Bézout**: ax + by = c có nghiệm nguyên khi và chỉ khi gcd(a, b) chia hết c.',
+    'Cài đặt **thuật toán Euclid mở rộng** để tìm x, y với ax + by = gcd(a, b).',
+    'Viết được **mọi** nghiệm của phương trình từ một nghiệm, và chọn ra nghiệm theo yêu cầu.',
+    'Trả lời 10^5^ phương trình mỗi giây, thay vì thử từng giá trị của x.',
+  ],
+  warmup: [
+    'Một cửa hàng chỉ có hai loại can: can 3 lít và can 5 lít. Có đong được đúng 7 lít nước bằng cách đổ đầy và đổ đi những chiếc can ấy không? Đổ đầy 4 lần can 3 lít vào bể (12 lít), rồi múc ra một lần can 5 lít: còn đúng 7 lít. Ta vừa giải phương trình 3x + 5y = 7 với x = 4, y = −1.',
+    'Nếu chỉ có can 6 lít và can 4 lít thì sao? Thử mãi cũng không ra 7 lít. Vì sao vậy? Và với những chiếc can dung tích cả tỉ lít, làm sao tìm được cách đong ngay lập tức? Câu trả lời nằm trong một phiên bản "mở rộng" của thuật toán Euclid.',
+  ],
+  body: [
+    { h: 'Định lí Bézout' },
+    'Phương trình ax + by = c với x, y là **số nguyên** (có thể âm) gọi là **phương trình Diophantine tuyến tính**. Một quan sát đơn giản: g = gcd(a, b) chia hết a và b, nên chia hết ax + by với mọi x, y. Vậy nếu g không chia hết c thì phương trình **vô nghiệm**. Với can 6 lít và 4 lít: gcd(6, 4) = 2 không chia hết 7, nên không bao giờ đong được 7 lít.',
+    { box: 'theorem', title: 'ĐỊNH LÍ (BÉZOUT)', body: [
+      'Với hai số nguyên dương a, b và g = gcd(a, b), luôn tồn tại các số nguyên x, y sao cho ax + by = g. Hệ quả: phương trình ax + by = c có nghiệm nguyên **khi và chỉ khi g chia hết c**.',
+    ] },
+    'Nếu tìm được x~0~, y~0~ với ax~0~ + by~0~ = g thì nhân cả hai vế với c / g, ta được một nghiệm của ax + by = c. Vậy việc chính là tìm x~0~, y~0~, và thuật toán Euclid sẽ làm việc đó (đồng thời chứng minh luôn định lí).',
+
+    { h: 'Bài toán PTNGUYEN' },
+    { problem: { code: 'PTNGUYEN', statement: ['Cho Q phương trình ax + by = c. Với mỗi phương trình, hãy tìm nghiệm nguyên (x, y) có **x nhỏ nhất mà không âm**, hoặc cho biết phương trình vô nghiệm.'],
+      input: 'Dòng đầu chứa Q (1 ≤ Q ≤ 10^5^). Mỗi dòng trong Q dòng tiếp theo chứa a, b, c (1 ≤ a, b ≤ 10^9^, |c| ≤ 10^18^).', output: 'Với mỗi phương trình, in x và y của nghiệm cần tìm, hoặc −1 nếu vô nghiệm.' } },
+    { examples: 'PTNGUYEN', explain: [['30 · 6 + 21 · (−8) = 12. Không có nghiệm nào với 0 ≤ x < 6.', 'gcd(6, 4) = 2 không chia hết 7: vô nghiệm.', '3 · 4 + 5 · (−1) = 7: cách đong của phần khởi động.']] },
+
+    { h: 'Ý tưởng ngây thơ: Thử x = 0, 1, 2, ...' },
+    'Với mỗi x, phương trình có nghiệm nguyên y khi và chỉ khi c − ax chia hết cho b. Thử x = 0, 1, 2, ...: giá trị đầu tiên thỏa mãn chính là x nhỏ nhất không âm. Nên thử tới đâu? Khi x tăng thêm b, số dư của c − ax khi chia cho b lặp lại như cũ; vậy nếu thử hết x = 0, 1, ..., b − 1 mà không được thì vô nghiệm.',
+    { fig: 'f4_ngaytho', w: 2.9, cap: 'Sơ đồ khối của cách thử x.' },
+    { file: 'PTNGUYEN_ngaytho', title: 'PTNGUYEN.CPP (ngây thơ): thử x = 0, 1, ..., b − 1' },
+    { box: 'count', body: ['Mỗi phương trình tốn tới b ≤ 10^9^ lần thử; với Q = 10^5^ phương trình là 10^14^ lần thử: hoàn toàn không thể.'] },
+    { box: 'stuck', body: ['Ta đang mò từng x mà không hề dùng đến cấu trúc của a và b. Thuật toán Euclid "biết" rất nhiều về a và b: nó biến (a, b) thành (b, a mod b) cho tới (g, 0). Liệu có thể **lần ngược** các bước ấy để dựng ra x, y?'] },
+
+    { h: 'Phá bế tắc: Euclid mở rộng' },
+    { step: 'Nghiệm ở cuối chuỗi là hiển nhiên' },
+    'Euclid kết thúc ở cặp (g, 0), và với cặp này phương trình g · x + 0 · y = g có nghiệm hiển nhiên **x = 1, y = 0**.',
+    { step: 'Lần ngược một bước' },
+    'Giả sử với cặp (b, a mod b) ta đã có x~1~, y~1~ thỏa b · x~1~ + (a mod b) · y~1~ = g. Thay a mod b = a − ⌊a / b⌋ · b:',
+    { formula: 'b · x₁ + (a − ⌊a/b⌋ · b) · y₁ = a · y₁ + b · (x₁ − ⌊a/b⌋ · y₁) = g' },
+    'Vậy với cặp (a, b): **x = y~1~, y = x~1~ − ⌊a / b⌋ · y~1~**. Mỗi bước lần ngược chỉ tốn vài phép tính, và số bước bằng số bước của Euclid.',
+    { step: 'Chạy tay với a = 30, b = 21' },
+    'Ba cột đầu là các bước Euclid thường (đi từ trên xuống). Cột thứ tư được điền **từ dưới lên**: mỗi dòng dùng cặp (x, y) của dòng ngay dưới nó làm (x~1~, y~1~).',
+    { table: { cols: [1200, 1200, 1400, 2200, 2618], head: ['a', 'b', '⌊a / b⌋', 'x, y (lần ngược)', 'Kiểm tra a · x + b · y'],
+      rows: [['30', '21', '1', 'x = −2, y = 1 − 1 · (−2) = **3**', '30 · (−2) + 21 · 3 = 3'], ['21', '9', '2', 'x = 1, y = 0 − 2 · 1 = −2', '21 · 1 + 9 · (−2) = 3'], ['9', '3', '3', 'x = 0, y = 1 − 3 · 0 = 1', '9 · 0 + 3 · 1 = 3'], ['3', '0', '', 'x = 1, y = 0 (khởi đầu)', '3 · 1 + 0 · 0 = 3']],
+      aligns: ['center', 'center', 'center', 'center', 'center'] } },
+    { box: 'why', title: 'VÌ SAO ĐÚNG? (CŨNG LÀ CHỨNG MINH ĐỊNH LÍ BÉZOUT)', body: [
+      'Quy nạp ngược theo các bước của Euclid: ở bước cuối, (1, 0) là nghiệm của g · x + 0 · y = g. Nếu (x~1~, y~1~) là nghiệm cho cặp (b, a mod b) thì phép biến đổi ở Bước 2 cho nghiệm của cặp (a, b). Vì Euclid luôn dừng, ta luôn dựng được x, y với ax + by = g. Đó chính là định lí Bézout.',
+    ] },
+    { step: 'Từ một nghiệm tới mọi nghiệm' },
+    'Có một nghiệm (x~0~, y~0~) của ax + by = c rồi, ta tìm được mọi nghiệm khác. Nếu (x, y) cũng là nghiệm thì a(x − x~0~) = −b(y − y~0~). Chia hai vế cho g: (a / g)(x − x~0~) = −(b / g)(y − y~0~), mà a / g, b / g nguyên tố cùng nhau, nên b / g chia hết x − x~0~. Vậy:',
+    { formula: 'x = x₀ + (b / g) · t,   y = y₀ − (a / g) · t,   t ∈ ℤ' },
+    { fig: 'f4_nghiem', w: 5.4, cap: 'Các nghiệm nguyên của 3x + 5y = 7 nằm cách đều trên đường thẳng, mỗi bước (+5, −3).' },
+    'Các giá trị x của nghiệm cách nhau đúng b / g, nên x nhỏ nhất không âm là **x~0~ mod (b / g)** (lấy số dư không âm, như ở Bài 1). Với ví dụ 1: 30 · (−2) + 21 · 3 = 3, nhân với 12 / 3 = 4 được x~0~ = −8, y~0~ = 12; b / g = 7, nên x = (−8) mod 7 = 6 và y = (12 − 30 · 6) / 21 = −8.',
+    { step: 'Chương trình' },
+    { fig: 'f4_toiuu', w: 3.0, cap: 'Sơ đồ khối của lời giải bằng Euclid mở rộng.' },
+    { file: 'PTNGUYEN', title: 'PTNGUYEN.CPP: Euclid mở rộng và họ nghiệm' },
+    { box: 'count', body: [
+      'Mỗi phương trình tốn O(log min(a, b)) cho Euclid mở rộng, tức vài chục phép tính: 10^5^ phương trình chạy trong khoảng một phần trăm giây.',
+      'Chú ý tràn số: x~0~ có thể lớn cỡ b ≤ 10^9^ và c / g cỡ 10^18^, tích cỡ 10^27^ vượt `long long`. Chương trình dùng `__int128` cho phép nhân này rồi lấy dư ngay.',
+    ] },
+  ],
+  ext: [
+    { sub: 'Mở rộng 1: Đếm số nghiệm tự nhiên' },
+    'Muốn đếm số nghiệm với **x ≥ 0 và y ≥ 0** (số cách đong bằng can, chỉ đổ vào mà không múc ra), dùng họ nghiệm: x = x~0~ + (b / g)t ≥ 0 và y = y~0~ − (a / g)t ≥ 0 cho một khoảng các giá trị t, đếm số nguyên trong khoảng ấy. Ví dụ 3x + 5y = 30 có ba nghiệm tự nhiên: (0, 6), (5, 3), (10, 0).',
+    { sub: 'Mở rộng 2: Số lớn nhất không đổi được (bài toán đồng xu Frobenius)' },
+    'Với a, b nguyên tố cùng nhau, mọi số c > ab − a − b đều viết được thành ax + by với x, y ≥ 0, còn ab − a − b thì không. Với can 3 lít và 5 lít: 3 · 5 − 3 − 5 = 7, nên 7 lít là lượng lớn nhất **không** đong được nếu chỉ được đổ vào; mọi lượng từ 8 lít trở lên đều đong được.',
+    { sub: 'Mở rộng 3: Phương trình đồng dư ax ≡ c (mod m)' },
+    'ax ≡ c (mod m) nghĩa là ax − c = my với y nguyên nào đó, tức ax + m(−y) = c: chính là bài toán PTNGUYEN. Trường hợp đặc biệt ax ≡ 1 (mod m) cho ta **nghịch đảo** của a theo mô-đun m, công cụ để "chia" trong đồng dư mà em sẽ học ở Bài 10.',
+  ],
+  traps: [
+    '**Quên kiểm tra g chia hết c:** khi đó mọi "nghiệm" in ra đều sai.',
+    '**Tràn số khi nhân x~0~ · (c / g):** dùng `__int128` hoặc lấy dư theo b / g trước khi nhân.',
+    '**Lấy dư ra số âm:** x~0~ mod (b / g) trong C++ có thể âm; cộng thêm b / g.',
+    '**Chia cho b thay vì b / g** khi chuẩn hóa x: được một nghiệm đúng, nhưng chưa chắc là nghiệm có x nhỏ nhất.',
+    '**Nhầm thứ tự x, y khi lần ngược:** công thức là x = y~1~, y = x~1~ − ⌊a / b⌋ · y~1~. Hãy luôn thử lại a · x + b · y.',
+  ],
+  remember: [
+    'Bézout: ax + by = c có nghiệm nguyên ⇔ gcd(a, b) | c.',
+    'Euclid mở rộng: ở đáy (g, 0) có (1, 0); lần ngược x = y~1~, y = x~1~ − ⌊a / b⌋ · y~1~.',
+    'Họ nghiệm: x = x~0~ + (b / g)t, y = y~0~ − (a / g)t.',
+    'x nhỏ nhất không âm: lấy x~0~ mod (b / g) theo nghĩa không âm.',
+  ],
+  practice: [
+    ['4.1', 'ĐONG NƯỚC', 'Có đong được c lít bằng hai loại can a, b lít (được đổ vào và múc ra) không: Bézout.'],
+    ['4.2', 'MUA HÀNG', 'Đếm số cách mua đúng c đồng bằng hai loại hàng giá a, b (x, y ≥ 0): Mở rộng 1.'],
+    ['4.3', 'ĐỒNG HỒ HỎNG', 'Kim đồng hồ nhảy a nấc mỗi lần trên mặt m nấc; sau ít nhất bao nhiêu lần nhảy thì tới nấc c: phương trình đồng dư ax ≡ c (mod m).'],
+  ],
+  quiz: [
+    ['Phương trình 6x + 9y = 20 có nghiệm nguyên không? Còn 6x + 9y = 21?', 'Đáp số: không (gcd = 3 không chia hết 20); có, ví dụ x = 2, y = 1'],
+    ['Dùng Euclid mở rộng, tìm x, y với 30x + 21y = 3.', 'Đáp số: x = −2, y = 3'],
+    ['3x + 5y = 30 có bao nhiêu nghiệm tự nhiên?', 'Đáp số: 3 nghiệm: (0, 6), (5, 3), (10, 0)'],
+    ['Với can 3 lít và 5 lít (chỉ đổ vào), lượng nước lớn nhất không đong được là bao nhiêu?', 'Đáp số: 7 lít'],
+  ],
+  algos: [['Euclid mở rộng: x, y với ax + by = gcd(a, b)', 'O(log min(a, b))'], ['Phương trình ax + by = c: Bézout + họ nghiệm x₀ + (b/g)t', 'O(log min(a, b))']],
+};
+
 module.exports = {
   no: 1, title: 'CHIA HẾT VÀ ƯỚC SỐ',
   intro: [
     'Mọi thứ trong số học bắt đầu từ một phép tính em đã biết từ năm lớp 3: phép chia có dư. Từ đó nảy ra những câu hỏi rất "Tin học": số dư của một số dài một triệu chữ số là bao nhiêu? Một số có bao nhiêu ước? Làm sao tìm ước chung lớn nhất của hai số cỡ 10^18^ trong nháy mắt? Phương trình 3x + 5y = 2026 có nghiệm nguyên không?',
     'Chương này xây nền móng cho cả cuốn sách: đồng dư, ước số, ước chung lớn nhất và thuật toán Euclid. Thuật toán Euclid ra đời hơn 2300 năm trước, nhưng đến nay vẫn là một trong những thuật toán được dùng nhiều nhất trong lập trình thi đấu.',
   ],
-  lessons: [L1],
+  lessons: [L1, L2, L3, L4],
 };
