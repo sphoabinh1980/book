@@ -52,7 +52,7 @@ def f13_chon():
 
 def f13_pascal():
     f, ax = fig(8.6, 5.4)
-    R = 9; dy = 0.68; cw = 0.92
+    R = 9; dy = 0.6; cw = 0.92
     pos = lambda n, k: ((k - n / 2) * cw, -n * dy)
     sty = {}
     sty[(5, 2)] = (YEL, RED); sty[(4, 1)] = sty[(4, 2)] = (AMB, AMBER)
@@ -70,10 +70,10 @@ def f13_pascal():
         for p in (a, b):
             x0, y0 = pos(*p); x1, y1 = pos(*c)
             arr(ax, (x0 + (x1 - x0) * 0.25, y0 - 0.22), (x1 - (x1 - x0) * 0.3, y1 + 0.24), color=col, lw=1.8, ms=11, z=6)
-    ax.text(-2.6, -8 * dy - 0.75, 'C(4, 1) + C(4, 2) = C(5, 2):  4 + 6 = 10', ha='center', va='center', fontsize=10.5, color=RED, fontweight='bold')
-    ax.text(2.6, -8 * dy - 0.75, 'C(7, 2) + C(7, 3) = C(8, 3):  21 + 35 = 56', ha='center', va='center', fontsize=10.5, color=TEAL, fontweight='bold')
+    ax.text(0, -8 * dy - 0.65, 'C(4, 1) + C(4, 2) = C(5, 2):  4 + 6 = 10', ha='center', va='center', fontsize=10.5, color=RED, fontweight='bold')
+    ax.text(0, -8 * dy - 1.15, 'C(7, 2) + C(7, 3) = C(8, 3):  21 + 35 = 56', ha='center', va='center', fontsize=10.5, color=TEAL, fontweight='bold')
     ax.text(0, 0.62, 'k = 0, 1, 2, ... từ trái sang phải', ha='center', fontsize=9.5, color='#404040')
-    ax.set_xlim(-5.9, 5.9); ax.set_ylim(-8 * dy - 1.05, 0.9)
+    ax.set_xlim(-5.9, 5.9); ax.set_ylim(-8 * dy - 1.4, 0.9)
     save(f, 'f13_pascal')
 
 def f13_xich():
@@ -86,17 +86,17 @@ def f13_xich():
         x = i * dx
         cellbox(ax, x, 1.0, fv[i], fc=BLU, ec=NAVY, w=0.95, h=0.55, fs=11)
         cellbox(ax, x, -0.9, f'1/{i}!', fc=YEL if i == N else AMB, ec=RED if i == N else AMBER, w=0.95, h=0.55, fs=10.5)
-        ax.text(x, 1.5, f'i = {i}', ha='center', fontsize=9.5, color='#404040')
+        ax.text(x, 1.58, f'i = {i}', ha='center', fontsize=10.5, color='#404040')
         if i:
             arr(ax, ((i - 1) * dx + 0.5, 1.0), (x - 0.5, 1.0), color=NAVY)
-            ax.text(x - dx / 2, 1.1, f'·{i}', ha='center', va='bottom', fontsize=9.5, color=NAVY, fontweight='bold')
+            ax.text(x - dx / 2, 1.13, f'· {i}', ha='center', va='bottom', fontsize=11, color=NAVY, fontweight='bold')
             arr(ax, (x - 0.5, -0.9), ((i - 1) * dx + 0.5, -0.9), color=RED)
-            ax.text(x - dx / 2, -1.0, f'·{i}', ha='center', va='top', fontsize=9.5, color=RED, fontweight='bold')
+            ax.text(x - dx / 2, -1.03, f'· {i}', ha='center', va='top', fontsize=11, color=RED, fontweight='bold')
     x = N * dx
     arr(ax, (x, 0.7), (x, -0.6), color=PURPLE, lw=1.8)
-    ax.text(x + 0.15, 0.05, 'lũy thừa p − 2\n(chỉ MỘT lần)', ha='left', va='center', fontsize=9.5, color=PURPLE, fontweight='bold')
-    ax.text(3 * dx, -1.65, 'đi ngược: 1/(i − 1)!  =  (1/i!) · i', ha='center', fontsize=10.5, color=RED, fontweight='bold')
-    ax.set_xlim(-1.9, N * dx + 1.9); ax.set_ylim(-1.9, 1.75)
+    ax.text(x + 0.15, 0.05, 'lũy thừa p − 2\n(chỉ MỘT lần)', ha='left', va='center', fontsize=10.5, color=PURPLE, fontweight='bold')
+    ax.text(3 * dx, -1.75, 'đi ngược: 1/(i − 1)!  =  (1/i!) · i', ha='center', fontsize=11.5, color=RED, fontweight='bold')
+    ax.set_xlim(-1.9, N * dx + 2.1); ax.set_ylim(-2.0, 1.85)
     save(f, 'f13_xich')
 
 def f13_keo():
@@ -184,19 +184,19 @@ def f14_tapcon():
 
 def f14_tran():
     """lcm của ba số nguyên tố lớn: chặn ngay khi vượt N"""
-    f, ax = fig(8.6, 2.6)
-    xs = [0, 4.7, 10.2]; ws = [2.2, 4.0, 3.4]
-    rbox(ax, xs[0], 0, ws[0], 0.85, 'L = 10⁹ + 7', fc=BLU, ec=NAVY, fs=10.5)
-    rbox(ax, xs[1], 0, ws[1], 0.85, 'L ≈ 1,000000016 · 10¹⁸\n> N = 10¹⁸', fc=YEL, ec=RED, fs=10, bold=False)
-    rbox(ax, xs[2], 0, ws[2], 0.85, 'L ≈ 9,98 · 10²⁶ > 2⁶³\n(nhân thẳng: TRÀN SỐ)', fc=GRY, ec='#9A9A9A', fs=10, color='#7F7F7F', bold=False)
-    for t, (lab, c) in enumerate([('lcm với\n10⁹ + 9', NAVY), ('lcm với\n998244353', GRAY)]):
-        x0, x1 = xs[t] + ws[t] / 2 + 0.05, xs[t + 1] - ws[t + 1] / 2 - 0.05
+    f, ax = fig(9.2, 2.6)
+    xs = [0, 3.7, 7.55]; ws = [1.9, 2.8, 2.2]
+    rbox(ax, xs[0], 0, ws[0], 0.95, 'L = 10⁹ + 7', fc=BLU, ec=NAVY, fs=11)
+    rbox(ax, xs[1], 0, ws[1], 0.95, 'L ≈ 1,000000016 · 10¹⁸\nđã > N = 10¹⁸', fc=YEL, ec=RED, fs=10, bold=False)
+    rbox(ax, xs[2], 0, ws[2], 0.95, 'L ≈ 9,98 · 10²⁶\ntràn 2⁶³ !', fc=GRY, ec='#9A9A9A', fs=10.5, color='#7F7F7F', bold=False)
+    for t, (lab, c) in enumerate([('lcm với\n10⁹ + 9', NAVY), ('lcm với\n998 244 353', GRAY)]):
+        x0, x1 = xs[t] + ws[t] / 2 + 0.04, xs[t + 1] - ws[t + 1] / 2 - 0.04
         arr(ax, (x0, 0), (x1, 0), color=c)
-        ax.text((x0 + x1) / 2, 0.12, lab, ha='center', va='bottom', fontsize=9.5, color=c, fontweight='bold')
+        ax.text((x0 + x1) / 2, 0.1, lab, ha='center', va='bottom', fontsize=9.5, color=c, fontweight='bold')
     xm = (xs[1] + ws[1] / 2 + xs[2] - ws[2] / 2) / 2
-    ax.plot([xm - 0.2, xm + 0.2], [-0.32, 0.08], color=RED, lw=3); ax.plot([xm - 0.2, xm + 0.2], [0.08, -0.32], color=RED, lw=3)
-    ax.text(xs[1], -0.7, 'đã vượt N: gán L = N + 1; mọi tập chứa nó đều có ⌊N / L⌋ = 0', ha='center', va='top', fontsize=10, color=RED)
-    ax.set_xlim(-1.25, 12.0); ax.set_ylim(-1.2, 1.0)
+    ax.plot([xm - 0.15, xm + 0.15], [-0.35, -0.05], color=RED, lw=3); ax.plot([xm - 0.15, xm + 0.15], [-0.05, -0.35], color=RED, lw=3)
+    ax.text(xs[1], -0.7, 'vượt N: gán L = N + 1, không nhân tiếp; mọi tập chứa nó cho ⌊N / L⌋ = 0', ha='center', va='top', fontsize=10.5, color=RED)
+    ax.set_xlim(-1.05, 8.75); ax.set_ylim(-1.15, 1.05)
     save(f, 'f14_tran')
 
 # ======================= Bài 15

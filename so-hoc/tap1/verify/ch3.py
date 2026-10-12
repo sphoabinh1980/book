@@ -29,10 +29,10 @@ def pick_a(r):
     return r.choice([0, 1, 2, r.randint(0, 100), r.randint(0, BIG), BIG, BIG - 1])
 def gen_LUYTHUA(r):      # b nhỏ để chương trình ngây thơ chạy kịp
     b = r.choice([0, 1, 2, 3, r.randint(0, 64), r.randint(0, 5000), r.randint(0, 200000)])
-    return f'{pick_a(r)} {b} {pick_m(r)}\n'
+    return f'{pick_a(r)} {b}\n{pick_m(r)}\n'
 def gen_LUYTHUA_lon(r):  # b tới 10^18: chỉ các cách nhanh và Python
     b = r.choice([0, 1, r.randint(0, BIG), BIG, 2**59 - 1, 2**59, r.randint(0, 10**9)])
-    return f'{pick_a(r)} {b} {pick_m(r)}\n'
+    return f'{pick_a(r)} {b}\n{pick_m(r)}\n'
 def brute_LUYTHUA(inp):
     a, b, m = map(int, inp.split()); return str(pow(a, b, m))
 
