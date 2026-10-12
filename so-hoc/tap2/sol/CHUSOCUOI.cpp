@@ -1,7 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    if (fopen("CHUSOCUOI.INP", "r")) { freopen("CHUSOCUOI.INP", "r", stdin); freopen("CHUSOCUOI.OUT", "w", stdout); }
+    if (fopen("CHUSOCUOI.INP", "r")) {
+        freopen("CHUSOCUOI.INP", "r", stdin);
+        freopen("CHUSOCUOI.OUT", "w", stdout);
+    }
     int T; cin >> T;
     while (T--) {
         string a, b; cin >> a >> b;
