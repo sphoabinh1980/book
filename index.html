@@ -46,9 +46,9 @@
         .main-container { max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 md:mt-8 flex justify-center; }
         .content-area { width: 100%; max-width: 1200px; overflow: hidden; }
         
-        .banner-slider { width: 100%; position: relative; background: white; border: 1px solid #e2e8f0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); padding: 25px 20px;}
+        .banner-slider { width: 100%; position: relative; background: white; border: 1px solid #e2e8f0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); padding: 20px 20px 30px 20px;}
         @media (min-width: 768px) {
-            .banner-slider { padding: 40px; margin-bottom: 40px; border-radius: 16px; }
+            .banner-slider { padding: 30px 40px 30px 40px; margin-bottom: 40px; border-radius: 16px; }
         }
         
         .banner-title { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 15px; line-height: 1.3;}
@@ -222,7 +222,7 @@
         }
 
         /* Thêm style cho slider dots */
-        .slider-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+        .slider-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
         .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(200,200,200,0.8); cursor: pointer; transition: background 0.3s;}
     </style>
 </head>
@@ -257,18 +257,18 @@
         <div class="content-area">
             
             <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
-            <div class="banner-slider p-10 flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-orange-50 to-amber-100 banner-content-wrapper" id="mainBanner">
+            <div class="banner-slider flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-blue-50 to-indigo-100 banner-content-wrapper" id="mainBanner">
                 <div class="max-w-lg w-full">
-                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-orange-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">TÍNH CHẴN LẺ (PARITY)<br/><span class="text-orange-700">SÁCH MỚI CẬP NHẬT</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Khám phá sức mạnh của Parity trong việc tối ưu hóa và giải quyết các bài toán Tin học."</p>
-                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-orange-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib mr-2 text-orange-600" id="bannerIcon"></i>
+                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-blue-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
+                    <h1 class="banner-title text-slate-900" id="bannerTitle">THUẬT TOÁN ĐƯỜNG QUÉT (SWEEP-LINE)<br/><span class="text-blue-700">SÁCH MỚI CẬP NHẬT</span></h1>
+                    <p class="banner-desc" id="bannerDesc">"Tuyệt kỹ quét không gian, tối ưu hóa các bài toán trên trục tọa độ và hình học tính toán."</p>
+                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-blue-100 mb-4 md:mb-0">
+                        <i class="fas fa-pen-nib mr-2 text-blue-600" id="bannerIcon"></i>
                         <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
                 <div class="banner-icon-bg">
-                    <i class="fas fa-balance-scale text-orange-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                    <i class="fas fa-layer-group text-blue-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
                 </div>
                 <div class="slider-dots" id="bannerDots">
                     <!-- Dots will be populated by JS -->
@@ -278,7 +278,35 @@
             <!-- Nơi chứa toàn bộ Khối Sách -->
             <div id="all-books-container">
 
-                <!-- ================= SÁCH MỚI: TÍNH CHẴN LẺ TRONG TIN HỌC ================= -->
+                <!-- ================= SÁCH MỚI: THUẬT TOÁN ĐƯỜNG QUÉT ================= -->
+                <div class="book-block" id="book-sweepline" data-title="THUẬT TOÁN ĐƯỜNG QUÉT (SWEEP-LINE)" data-desc="Tuyệt kỹ quét không gian, tối ưu hóa các bài toán trên trục tọa độ và hình học tính toán." data-theme="blue" data-icon="fa-layer-group">
+                    <div class="section-header">
+                        <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH THUẬT TOÁN ĐƯỜNG QUÉT (SWEEP-LINE)</div>
+                    </div>
+                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+                        <div class="book-col">
+                            <div class="book-vol-badge blue"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1tQUFYBi1K3fQvV2acRAQH876VALATjm4/preview"></iframe></div>
+                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 1', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge blue"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/12pJeBsp771e5jJ7AixI-jRtHWmaPdYBf/preview"></iframe></div>
+                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 2', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge bg-slate-100 border-slate-200 text-slate-500 shadow-none"><i class="fas fa-clock text-slate-400 mr-2"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
+                            <div class="preview-wrapper flex items-center justify-center bg-slate-50 text-slate-400 flex-col border-dashed border-2 border-slate-200">
+                                <i class="fas fa-spinner fa-spin text-4xl mb-3"></i>
+                                <p class="font-bold text-slate-500">Đang hoàn thành nốt...</p>
+                                <p class="text-xs text-slate-400 mt-2">Sẽ sớm được cập nhật</p>
+                            </div>
+                            <button class="buy-btn bg-slate-300 hover:bg-slate-300 text-slate-500 rounded font-bold shadow-none cursor-not-allowed" onclick="showToast('Sách đang trong quá trình biên soạn!', false)"><i class="fas fa-tools mr-2"></i> Sắp ra mắt</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= SÁCH: TÍNH CHẴN LẺ TRONG TIN HỌC ================= -->
                 <div class="book-block" id="book-parity" data-title="TÍNH CHẴN LẺ (PARITY)" data-desc="Khám phá sức mạnh của Parity trong việc tối ưu hóa và giải quyết các bài toán Tin học." data-theme="orange" data-icon="fa-balance-scale">
                     <div class="section-header">
                         <div class="section-title orange-theme">ĐỌC THỬ BỘ SÁCH TÍNH CHẴN LẺ TRONG TIN HỌC (PARITY)</div>
@@ -504,6 +532,11 @@
                     <button class="grid-arrow right" onclick="scrollGrid(320)"><i class="fas fa-chevron-right"></i></button>
                     
                     <div class="book-grid-scroll" id="bookGrid">
+                        <div class="book-card" onclick="document.getElementById('book-sweepline').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                            <div class="discount-badge">-15%</div>
+                            <div class="book-image-placeholder"><i class="fas fa-layer-group"></i></div>
+                            <div class="book-title">Combo Đường Quét (Sweep-line)</div>
+                        </div>
                         <div class="book-card" onclick="document.getElementById('book-parity').scrollIntoView({ behavior: 'smooth', block: 'start' });">
                             <div class="discount-badge">-15%</div>
                             <div class="book-image-placeholder"><i class="fas fa-balance-scale"></i></div>
@@ -735,7 +768,7 @@
             const banner = document.getElementById('mainBanner');
             const data = bannerDataList[index];
             
-            banner.className = `banner-slider p-10 flex items-center justify-between transition-all duration-500 ${data.bgClass}`;
+            banner.className = `banner-slider flex items-center justify-between transition-all duration-500 ${data.bgClass}`;
             document.getElementById('bannerLabel').className = `text-sm font-bold mb-3 uppercase tracking-wider ${data.textClass}`;
             document.getElementById('bannerTitle').innerHTML = data.title;
             // Xử lý chuỗi an toàn
