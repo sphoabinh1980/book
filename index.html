@@ -257,18 +257,18 @@
         <div class="content-area">
             
             <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
-            <div class="banner-slider flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-blue-50 to-indigo-100 banner-content-wrapper" id="mainBanner">
+            <div class="banner-slider flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-teal-50 to-emerald-100 banner-content-wrapper" id="mainBanner">
                 <div class="max-w-lg w-full">
-                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-blue-600" id="bannerLabel">Tuyển Tập Luyện Thi HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">THUẬT TOÁN ĐƯỜNG QUÉT (SWEEP-LINE)<br/><span class="text-blue-700">SÁCH MỚI CẬP NHẬT</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Tuyệt kỹ quét không gian, tối ưu hóa các bài toán trên trục tọa độ và hình học tính toán."</p>
-                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-blue-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib mr-2 text-blue-600" id="bannerIcon"></i>
+                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-teal-600" id="bannerLabel">Chuyên đề bồi dưỡng HSG</div>
+                    <h1 class="banner-title text-slate-900" id="bannerTitle">PHÂN RÃ TRỌNG TÂM<br/><span class="text-teal-700">SÁCH MỚI CẬP NHẬT</span></h1>
+                    <p class="banner-desc" id="bannerDesc">"Kỹ thuật đỉnh cao xử lý các bài toán trên cây và đường đi trong Lập trình thi đấu."</p>
+                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-teal-100 mb-4 md:mb-0">
+                        <i class="fas fa-pen-nib mr-2 text-teal-600" id="bannerIcon"></i>
                         <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
                 <div class="banner-icon-bg">
-                    <i class="fas fa-layer-group text-blue-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                    <i class="fas fa-sitemap text-teal-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
                 </div>
                 <div class="slider-dots" id="bannerDots">
                     <!-- Dots will be populated by JS -->
@@ -277,6 +277,35 @@
 
             <!-- Nơi chứa toàn bộ Khối Sách -->
             <div id="all-books-container">
+
+                <!-- ================= SÁCH MỚI: PHÂN RÃ TRỌNG TÂM ================= -->
+                <div class="book-block" id="book-centroid" data-title="PHÂN RÃ TRỌNG TÂM (CENTROID)" data-desc="Kỹ thuật đỉnh cao xử lý các bài toán trên cây và đường đi trong Lập trình thi đấu." data-theme="teal" data-icon="fa-sitemap">
+                    <div class="section-header">
+                        <div class="section-title teal-theme">ĐỌC THỬ BỘ SÁCH PHÂN RÃ TRỌNG TÂM TRÊN CÂY</div>
+                    </div>
+                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+                        <div class="book-col">
+                            <div class="book-vol-badge teal"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1K3xxlhIa6bgUnR_Ysji1nOY7AiN8xvkU/preview"></iframe></div>
+                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 1', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge teal"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1b6DX8-yqMqT4513w_i9e30YGEF7yaM8D/preview"></iframe></div>
+                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 2', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge bg-slate-100 border-slate-200 text-slate-500 shadow-none"><i class="fas fa-clock text-slate-400 mr-2"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
+                            <div class="preview-wrapper flex items-center justify-center bg-slate-50 text-slate-400 flex-col border-dashed border-2 border-slate-200">
+                                <i class="fas fa-spinner fa-spin text-4xl mb-3"></i>
+                                <p class="font-bold text-slate-500">Đang hoàn thành nốt...</p>
+                                <p class="text-xs text-slate-400 mt-2">Sẽ sớm được cập nhật</p>
+                            </div>
+                            <button class="buy-btn bg-slate-300 hover:bg-slate-300 text-slate-500 rounded font-bold shadow-none cursor-not-allowed" onclick="showToast('Sách đang trong quá trình biên soạn!', false)"><i class="fas fa-tools mr-2"></i> Sắp ra mắt</button>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- ================= SÁCH MỚI: THUẬT TOÁN ĐƯỜNG QUÉT ================= -->
                 <div class="book-block" id="book-sweepline" data-title="THUẬT TOÁN ĐƯỜNG QUÉT (SWEEP-LINE)" data-desc="Tuyệt kỹ quét không gian, tối ưu hóa các bài toán trên trục tọa độ và hình học tính toán." data-theme="blue" data-icon="fa-layer-group">
@@ -528,6 +557,12 @@
                     <button class="grid-arrow right" onclick="scrollGrid(320)"><i class="fas fa-chevron-right"></i></button>
                     
                     <div class="book-grid-scroll" id="bookGrid">
+
+                        <div class="book-card" onclick="document.getElementById('book-centroid').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                            <div class="discount-badge">-15%</div>
+                            <div class="book-image-placeholder"><i class="fas fa-sitemap"></i></div>
+                            <div class="book-title">Combo Phân Rã Trọng Tâm</div>
+                        </div>
                         <div class="book-card" onclick="document.getElementById('book-sweepline').scrollIntoView({ behavior: 'smooth', block: 'start' });">
                             <div class="discount-badge">-15%</div>
                             <div class="book-image-placeholder"><i class="fas fa-layer-group"></i></div>
@@ -648,6 +683,7 @@
                         <option value="fa-balance-scale">Cán Cân / Chẵn Lẻ</option>
                         <option value="fa-cogs">Bánh răng / Thuật toán</option>
                         <option value="fa-layer-group">Nhiều lớp / Đường quét</option>
+                        <option value="fa-sitemap">Sơ đồ / Cây / Centroid</option>
                     </select>
                 </div>
             </div>
