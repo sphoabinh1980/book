@@ -295,13 +295,9 @@
                             <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 2', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
                         </div>
                         <div class="book-col">
-                            <div class="book-vol-badge bg-slate-100 border-slate-200 text-slate-500 shadow-none"><i class="fas fa-clock text-slate-400 mr-2"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper flex items-center justify-center bg-slate-50 text-slate-400 flex-col border-dashed border-2 border-slate-200">
-                                <i class="fas fa-spinner fa-spin text-4xl mb-3"></i>
-                                <p class="font-bold text-slate-500">Đang hoàn thành nốt...</p>
-                                <p class="text-xs text-slate-400 mt-2">Sẽ sớm được cập nhật</p>
-                            </div>
-                            <button class="buy-btn bg-slate-300 hover:bg-slate-300 text-slate-500 rounded font-bold shadow-none cursor-not-allowed" onclick="showToast('Sách đang trong quá trình biên soạn!', false)"><i class="fas fa-tools mr-2"></i> Sắp ra mắt</button>
+                            <div class="book-vol-badge blue"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1dx4ZI2JKbssW18v2NTTdcMZcpRhlZ1IH/preview"></iframe></div>
+                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 3', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
                         </div>
                     </div>
                 </div>
@@ -651,6 +647,7 @@
                         <option value="fa-brain">Bộ Não / Tư Duy</option>
                         <option value="fa-balance-scale">Cán Cân / Chẵn Lẻ</option>
                         <option value="fa-cogs">Bánh răng / Thuật toán</option>
+                        <option value="fa-layer-group">Nhiều lớp / Đường quét</option>
                     </select>
                 </div>
             </div>
@@ -768,7 +765,7 @@
             const banner = document.getElementById('mainBanner');
             const data = bannerDataList[index];
             
-            banner.className = `banner-slider flex items-center justify-between transition-all duration-500 ${data.bgClass}`;
+            banner.className = `banner-slider p-10 flex items-center justify-between transition-all duration-500 ${data.bgClass}`;
             document.getElementById('bannerLabel').className = `text-sm font-bold mb-3 uppercase tracking-wider ${data.textClass}`;
             document.getElementById('bannerTitle').innerHTML = data.title;
             // Xử lý chuỗi an toàn
@@ -973,7 +970,8 @@
             
             // Lấy toàn bộ HTML của DOM hiện tại
             let htmlContent = document.documentElement.outerHTML;
-            htmlContent = '<!DOCTYPE html>\n' + htmlContent;
+            htmlContent = '<!DOCTYPE html>
+' + htmlContent;
 
             const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
             const url = URL.createObjectURL(blob);
