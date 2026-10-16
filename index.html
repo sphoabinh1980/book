@@ -257,18 +257,18 @@
         <div class="content-area">
             
             <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
-            <div class="banner-slider flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-red-50 to-rose-100 banner-content-wrapper" id="mainBanner">
+            <div class="banner-slider flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-purple-50 to-fuchsia-100 banner-content-wrapper" id="mainBanner">
                 <div class="max-w-lg w-full">
-                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-red-600" id="bannerLabel">Chuyên đề bồi dưỡng HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">CHUYÊN ĐỀ LHD<br/><span class="text-red-700">SÁCH MỚI CẬP NHẬT</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Khám phá trọn bộ tài liệu LHD từ cơ bản đến nâng cao dành cho Lập trình thi đấu."</p>
-                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-red-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib mr-2 text-red-600" id="bannerIcon"></i>
+                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-purple-600" id="bannerLabel">Chuyên đề bồi dưỡng HSG</div>
+                    <h1 class="banner-title text-slate-900" id="bannerTitle">BAO LỒI (CONVEX HULL)<br/><span class="text-purple-700">SÁCH MỚI CẬP NHẬT</span></h1>
+                    <p class="banner-desc" id="bannerDesc">"Bí kíp chinh phục các bài toán Hình học tính toán và thuật toán tìm Bao lồi tối ưu."</p>
+                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-purple-100 mb-4 md:mb-0">
+                        <i class="fas fa-pen-nib mr-2 text-purple-600" id="bannerIcon"></i>
                         <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
                 <div class="banner-icon-bg">
-                    <i class="fas fa-book-open text-red-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                    <i class="fas fa-draw-polygon text-purple-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
                 </div>
                 <div class="slider-dots" id="bannerDots">
                     <!-- Dots will be populated by JS -->
@@ -277,6 +277,31 @@
 
             <!-- Nơi chứa toàn bộ Khối Sách -->
             <div id="all-books-container">
+
+                <!-- ================= SÁCH MỚI: BAO LỒI ================= -->
+                <div class="book-block" id="book-baoloi" data-title="BAO LỒI (CONVEX HULL)" data-desc="Bí kíp chinh phục các bài toán Hình học tính toán và thuật toán tìm Bao lồi tối ưu." data-theme="purple" data-icon="fa-draw-polygon">
+                    <div class="section-header">
+                        <div class="section-title purple-theme">ĐỌC THỬ BỘ SÁCH BAO LỒI (CONVEX HULL)</div>
+                    </div>
+                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+                        <div class="book-col">
+                            <div class="book-vol-badge purple"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1nNjvflkROdrdJLPeelIBI5oyvIvvptkw/preview"></iframe></div>
+                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 1', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge purple"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1LfkaP8SfMsc9JKdxgacT82wG9fEFWHlf/preview"></iframe></div>
+                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 2', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge purple"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1h89rD8rK0IpdgurEeRS21k-Ul6w1Cmx1/preview"></iframe></div>
+                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 3', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- ================= SÁCH MỚI: LHD ================= -->
                 <div class="book-block" id="book-lhd" data-title="CHUYÊN ĐỀ LHD" data-desc="Khám phá trọn bộ tài liệu LHD từ cơ bản đến nâng cao dành cho Lập trình thi đấu." data-theme="red" data-icon="fa-book-open">
@@ -604,6 +629,12 @@
                     
                     <div class="book-grid-scroll" id="bookGrid">
 
+                        <div class="book-card" onclick="document.getElementById('book-baoloi').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                            <div class="discount-badge">-15%</div>
+                            <div class="book-image-placeholder"><i class="fas fa-draw-polygon"></i></div>
+                            <div class="book-title">Combo Bao Lồi (Convex Hull)</div>
+                        </div>
+
                         <div class="book-card" onclick="document.getElementById('book-lhd').scrollIntoView({ behavior: 'smooth', block: 'start' });">
                             <div class="discount-badge">-15%</div>
                             <div class="book-image-placeholder"><i class="fas fa-book-open"></i></div>
@@ -743,6 +774,7 @@
                         <option value="fa-layer-group">Nhiều lớp / Đường quét</option>
                         <option value="fa-sitemap">Sơ đồ / Cây / Centroid</option>
                         <option value="fa-network-wired">Mạng lưới / Cây / LCA</option>
+                        <option value="fa-draw-polygon">Đa giác / Hình học / Bao lồi</option>
                     </select>
                 </div>
             </div>
