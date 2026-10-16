@@ -1,1142 +1,1171 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CODEPLUS Books - Nhà Sách Chuyên Khảo Tin Học & Toán Học</title>
+    <title>CODEPLUS Books - Thư Viện Chuyên Khảo Tin Học & Toán Học</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-green: #00b14f;
-            --primary-blue: #2563eb;
-            --primary-purple: #9333ea;
-            --primary-teal: #0d9488;
-            --header-dark: #00893d;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            -webkit-font-smoothing: antialiased;
         }
-        body { 
-            font-family: 'Roboto', 'Inter', -apple-system, sans-serif;
-            background-color: #f8fafc; 
-            color: #334155; 
-            -webkit-font-smoothing: antialiased; 
-        }
+        /* Tùy chỉnh thanh cuộn ngang cho danh mục */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        .top-header { background-color: var(--primary-green); color: white; padding: 15px 0; }
-        .logo-text { font-size: 24px; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; letter-spacing: -0.5px;}
-        
-        .search-bar { display: flex; flex-grow: 1; max-width: 600px; margin: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-radius: 8px;}
-        .search-input { width: 100%; padding: 12px 15px; border: none; outline: none; font-size: 14px; border-radius: 8px 0 0 8px; font-family: inherit;}
-        .search-btn { background-color: #f1f5f9; color: #334155; border: none; padding: 12px 15px; cursor: pointer; border-radius: 0 8px 8px 0; font-size: 14px; font-weight: 600; transition: all 0.2s; white-space: nowrap;}
-        .search-btn:hover { background-color: #e2e8f0; color: var(--primary-green);}
-        
-        .header-links { display: none; gap: 24px; align-items: center; font-size: 14px; font-weight: 600;}
-        @media (min-width: 768px) {
-            .header-links { display: flex; }
-        }
-        .header-links a { color: white; text-decoration: none; transition: opacity 0.2s; cursor: pointer;}
-        .header-links a:hover { opacity: 0.8; }
-
-        .nav-bar { background-color: white; border-bottom: 2px solid var(--primary-green); display: flex; justify-content: space-between; align-items: center; padding: 0 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);}
-        .category-menu-btn { background-color: transparent; color: #1e293b; padding: 12px 0; font-weight: 800; display: flex; align-items: center; gap: 10px; cursor: pointer; border: none; font-size: 15px; transition: color 0.2s;}
-        .category-menu-btn:hover { color: var(--primary-green); }
-
-        .main-container { max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 md:mt-8 flex justify-center; }
-        .content-area { width: 100%; max-width: 1200px; overflow: hidden; }
-        
-        .banner-slider { width: 100%; position: relative; background: white; border: 1px solid #e2e8f0; margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); padding: 20px 20px 30px 20px;}
-        @media (min-width: 768px) {
-            .banner-slider { padding: 30px 40px 30px 40px; margin-bottom: 40px; border-radius: 16px; }
-        }
-        
-        .banner-title { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 15px; line-height: 1.3;}
-        @media (min-width: 768px) {
-            .banner-title { font-size: 2.25rem; margin-bottom: 20px; line-height: 1.2;}
-        }
-        
-        .banner-desc { font-size: 0.9rem; color: #475569; margin-bottom: 20px; font-style: italic; line-height: 1.5;}
-        @media (min-width: 768px) {
-            .banner-desc { font-size: 1rem; margin-bottom: 32px;}
-        }
-        
-        .banner-icon-bg { display: none; }
-        @media (min-width: 768px) {
-            .banner-icon-bg { display: flex; justify-content: center; width: 33.333333%; }
-        }
-
-        .book-block { margin-bottom: 40px; background: white; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);}
-        @media (min-width: 768px) {
-            .book-block { margin-bottom: 60px; padding: 40px; border-radius: 16px; }
-        }
-        
-        .section-header { 
-            display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
-            border-bottom: 2px solid #f1f5f9; margin-bottom: 35px; padding-bottom: 12px;
+        /* Hiệu ứng mượt cho khung PDF */
+        .pdf-frame-container {
             position: relative;
+            width: 100%;
+            height: 460px;
+            background: #f8fafc;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         @media (min-width: 768px) {
-            .section-header { flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 40px;}
-        }
-        
-        .section-title { 
-            color: #0f172a; 
-            font-weight: 800; font-size: 16px; 
-            position: relative; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        @media (min-width: 768px) {
-            .section-title { font-size: 22px; }
-        }
-        
-        .section-title::after { 
-            content: ''; position: absolute; left: 0; bottom: -14px; width: 40px; height: 3px; 
-            background-color: var(--primary-green); border-radius: 2px;
-        }
-        @media (min-width: 768px) {
-            .section-title::after { width: 60px; height: 4px; }
-        }
-        
-        /* THEMES CSS */
-        .section-title.blue-theme::after { background-color: var(--primary-blue); }
-        .section-title.purple-theme::after { background-color: var(--primary-purple); }
-        .section-title.red-theme::after { background-color: #ef4444; }
-        .section-title.orange-theme::after { background-color: #f97316; }
-        .section-title.teal-theme::after { background-color: var(--primary-teal); }
-
-        .view-all { font-size: 14px; color: #64748b; text-decoration: none; font-weight: 600; cursor: pointer; transition: color 0.2s; display: inline-block; padding-top: 5px;}
-        @media (min-width: 768px) {
-            .view-all { font-size: 15px; padding-top: 0; padding-right: 15px; }
-        }
-        .view-all:hover { color: var(--primary-green); }
-        .view-all i { font-size: 12px; margin-left: 5px; }
-
-        .books-container { padding: 0; }
-        
-        .book-col { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;}
-        @media (min-width: 768px) {
-            .book-col { margin-bottom: 0; }
-        }
-
-        .book-vol-badge {
-            display: inline-flex; align-items: center; justify-content: center;
-            padding: 8px 20px; background-color: #f8fafc; border: 1px solid #e2e8f0;
-            border-radius: 30px; font-weight: 800; font-size: 12px; color: #1e293b;
-            letter-spacing: 1px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            margin-bottom: 15px; transition: all 0.3s ease; text-transform: uppercase;
-        }
-        @media (min-width: 768px) {
-            .book-vol-badge { padding: 12px 28px; font-size: 15px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);}
-        }
-        .book-vol-badge.blue i { color: var(--primary-blue); margin-right: 8px; font-size: 14px;}
-        .book-vol-badge.green i { color: var(--primary-green); margin-right: 8px; font-size: 14px;}
-        .book-vol-badge.purple i { color: var(--primary-purple); margin-right: 8px; font-size: 14px;}
-        .book-vol-badge.red i { color: #ef4444; margin-right: 8px; font-size: 14px;}
-        .book-vol-badge.orange i { color: #f97316; margin-right: 8px; font-size: 14px;}
-        .book-vol-badge.teal i { color: var(--primary-teal); margin-right: 8px; font-size: 14px;}
-        @media (min-width: 768px) {
-            .book-vol-badge i { font-size: 18px; }
-        }
-        
-        .preview-wrapper { 
-            width: 100%; height: 480px; 
-            background: #ffffff; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        @media (min-width: 768px) {
-            .preview-wrapper { 
-                height: 650px; 
-                border-radius: 16px; 
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-            }
-            .preview-wrapper:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.08);
-                border-color: #cbd5e1;
+            .pdf-frame-container { height: 580px; }
+            .pdf-frame-container:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+                border-color: #94a3b8;
             }
         }
-        .preview-wrapper iframe { width: 100%; height: 100%; border: none;}
-        
-        .buy-btn { background-color: var(--primary-green); transition: all 0.2s; transform: scale(1); width: 100%; padding: 12px 0; margin-top: 15px;}
-        .buy-btn:hover { background-color: #00893d; }
-        .buy-btn:active { transform: scale(0.95); }
-        .buy-btn.blue { background-color: var(--primary-blue); } .buy-btn.blue:hover { background-color: #1d4ed8; }
-        .buy-btn.purple { background-color: var(--primary-purple); } .buy-btn.purple:hover { background-color: #7e22ce; }
-        .buy-btn.red { background-color: #ef4444; } .buy-btn.red:hover { background-color: #dc2626; }
-        .buy-btn.orange { background-color: #f97316; } .buy-btn.orange:hover { background-color: #ea580c; }
-        .buy-btn.teal { background-color: var(--primary-teal); } .buy-btn.teal:hover { background-color: #0f766e; }
-
-        /* Scrollable Book Grid (Khám Phá Sách Khác) */
-        .book-slider-container { position: relative; padding: 0 10px; margin-bottom: 10px; background: transparent; padding-top: 10px;}
-        @media (min-width: 768px) {
-            .book-slider-container { padding: 0 40px; margin-bottom: 30px; padding-top: 20px;}
+        .pdf-frame-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: relative;
+            z-index: 10;
         }
-        .book-grid-scroll { display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 16px; padding-bottom: 20px; scrollbar-width: none; }
-        @media (min-width: 768px) {
-            .book-grid-scroll { gap: 24px; }
+        .pdf-loading-bg {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            z-index: 1;
         }
-        .book-grid-scroll::-webkit-scrollbar { display: none; }
-        .book-card { background: white; padding: 0; text-align: center; position: relative; border: 1px solid #e2e8f0; transition: all 0.3s; min-width: 180px; flex-shrink: 0; cursor: pointer; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05);}
-        @media (min-width: 768px) {
-            .book-card { min-width: 240px; border-radius: 12px; }
-            .book-card:hover { border-color: var(--primary-green); box-shadow: 0 12px 20px -3px rgba(0,0,0,0.1); transform: translateY(-6px);}
-        }
-        
-        .book-image-placeholder { height: 180px; background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 40px; transition: all 0.3s;}
-        @media (min-width: 768px) {
-            .book-image-placeholder { height: 240px; font-size: 60px; }
-            .book-card:hover .book-image-placeholder { color: var(--primary-green); transform: scale(1.05); }
-        }
-        
-        .book-title { font-size: 13px; color: #1e293b; padding: 12px 10px; height: 65px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-align: left; font-weight: 600; line-height: 1.4; transition: color 0.2s;}
-        @media (min-width: 768px) {
-            .book-title { font-size: 15px; padding: 20px 15px; height: 85px; line-height: 1.5; }
-            .book-card:hover .book-title { color: var(--primary-green); }
-        }
-        
-        .discount-badge { position: absolute; top: 10px; right: 10px; background-color: #ef4444; color: white; padding: 3px 8px; font-size: 11px; font-weight: 800; border-radius: 4px; box-shadow: 0 2px 4px rgba(239,68,68,0.3); z-index: 2;}
-        @media (min-width: 768px) {
-            .discount-badge { top: 15px; right: 15px; padding: 4px 10px; font-size: 13px; border-radius: 6px; }
-        }
-        
-        .grid-arrow { display: none; }
-        @media (min-width: 768px) {
-            .grid-arrow { position: absolute; top: 40%; transform: translateY(-50%); font-size: 18px; color: #475569; cursor: pointer; background: white; border: 1px solid #cbd5e1; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
-            .grid-arrow:hover { color: white; background: var(--primary-green); border-color: var(--primary-green); }
-            .grid-arrow.left { left: -22px; }
-            .grid-arrow.right { right: -22px; }
-        }
-
-        .header-wrapper { display: flex; flex-direction: column; gap: 15px; }
-        @media (min-width: 768px) {
-            .header-wrapper { flex-direction: row; gap: 0; align-items: center; }
-        }
-        
-        .banner-content-wrapper { display: flex; flex-direction: column; }
-        @media (min-width: 768px) {
-            .banner-content-wrapper { flex-direction: row; align-items: center; justify-content: space-between; }
-        }
-
-        /* Thêm style cho slider dots */
-        .slider-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(200,200,200,0.8); cursor: pointer; transition: background 0.3s;}
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
 
-    <div class="top-header">
-        <div class="max-w-7xl mx-auto px-4 max-w-[1200px] m-auto header-wrapper">
-            <a href="#" class="logo-text" onclick="showToast('Đang tải lại trang chủ...')">
-                <i class="fas fa-robot mr-2 md:mr-3"></i> CODEPLUS
-            </a>
-            <div class="search-bar">
-                <input type="text" id="searchInput" class="search-input" placeholder="Tìm tựa sách, tác giả...">
-                <button class="search-btn" onclick="handleSearch()"><i class="fas fa-search md:mr-2"></i><span class="hidden md:inline">Tìm</span></button>
+    <!-- ================= TOP HEADER ================= -->
+    <header class="bg-emerald-600 text-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <!-- Logo & Mobile Menu Button -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleSidebar()" class="lg:hidden p-2 rounded-lg hover:bg-emerald-700 transition" title="Danh mục sách">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <a href="#" class="flex items-center gap-2.5 font-black text-xl md:text-2xl tracking-tight">
+                    <div class="w-9 h-9 rounded-lg bg-white text-emerald-600 flex items-center justify-center shadow-sm">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <span>CODEPLUS</span>
+                    <span class="hidden sm:inline-block text-xs font-semibold bg-emerald-800 text-emerald-100 px-2.5 py-0.5 rounded-full">Tủ Sách HSG</span>
+                </a>
             </div>
-            <div class="header-links">
-                <a onclick="showToast('Tính năng đăng nhập đang cập nhật!')">Tài khoản</a>
-                <a onclick="showToast('Giỏ hàng trống!')">Giỏ hàng</a>
+
+            <!-- Thanh tìm kiếm nhanh -->
+            <div class="flex-1 max-w-md mx-2">
+                <div class="relative">
+                    <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Tìm tên chuyên đề (VD: Đồ thị, Quy hoạch động, LCA...)" class="w-full pl-10 pr-9 py-2 rounded-lg text-slate-800 bg-white/95 focus:bg-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-300 shadow-inner">
+                    <i class="fas fa-search absolute left-3.5 top-2.5 text-slate-400"></i>
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-2 text-slate-400 hover:text-slate-600">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Thống kê & Nút mở mục lục -->
+            <div class="hidden md:flex items-center gap-3 text-sm font-medium">
+                <div class="bg-emerald-700/70 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                    <i class="fas fa-book text-emerald-200"></i>
+                    <span id="totalBooksBadge">15 Bộ chuyên đề</span>
+                </div>
+                <button onclick="toggleSidebar()" class="bg-white text-emerald-700 hover:bg-emerald-50 font-bold px-3.5 py-1.5 rounded-lg shadow-sm transition flex items-center gap-2">
+                    <i class="fas fa-list-ul"></i> Mục lục đầy đủ
+                </button>
             </div>
         </div>
-    </div>
 
-    <div class="bg-white border-b-2 border-[#00b14f]">
-        <div class="nav-bar max-w-[1200px] mx-auto">
-            <button class="category-menu-btn">
-                <i class="fas fa-bars"></i> <span class="text-sm md:text-base">DANH MỤC SẢN PHẨM</span>
+        <!-- THANH DANH MỤC SÁCH HIỆN CÓ (CUỘN NGANG) -->
+        <div class="bg-white border-b border-slate-200 text-slate-700 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 py-2 overflow-x-auto no-scrollbar" id="quickNavContainer">
+                <!-- JS tự động điền các nút danh mục sách vào đây -->
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= DRAWER MENU (MỤC LỤC ĐẦY ĐỦ) ================= -->
+    <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+    <aside id="sidebarDrawer" class="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-4 bg-emerald-600 text-white flex items-center justify-between">
+            <div class="font-bold text-lg flex items-center gap-2">
+                <i class="fas fa-bookmark"></i> Danh Mục Tài Liệu Đã Có
+            </div>
+            <button onclick="toggleSidebar()" class="w-8 h-8 rounded-full hover:bg-emerald-700 flex items-center justify-center">
+                <i class="fas fa-times"></i>
             </button>
         </div>
-    </div>
+        <div class="p-3 bg-slate-50 border-b text-xs text-slate-500 font-medium">
+            Chọn một đầu sách bên dưới để di chuyển nhanh đến phần đọc thử:
+        </div>
+        <div id="sidebarList" class="flex-1 overflow-y-auto p-3 space-y-1.5">
+            <!-- JS tự động điền danh sách đầy đủ kèm số tập -->
+        </div>
+        <div class="p-4 border-t bg-slate-50 text-center text-xs text-slate-500">
+            Tác giả & Biên soạn: <strong class="text-slate-700">Lê Thành Nam</strong>
+        </div>
+    </aside>
 
-    <!-- MAIN CONTAINER -->
-    <div class="main-container">
-        <div class="content-area">
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+
+        <!-- BANNER SLIDER TỰ ĐỘNG -->
+        <section id="heroBanner" class="relative rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm mb-8 transition-all duration-500 bg-gradient-to-r from-emerald-50 via-teal-50 to-slate-100">
+            <div class="p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div class="max-w-2xl z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-white shadow-xs mb-3 text-emerald-700" id="bannerTag">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Chuyên Đề Bồi Dưỡng HSG
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-3" id="bannerTitle">
+                        THUẬT TOÁN THAM LAM (GREEDY)
+                    </h1>
+                    <p class="text-slate-600 text-sm sm:text-base italic mb-5 leading-relaxed" id="bannerDesc">
+                        "Nắm bắt chiến lược tối ưu cục bộ để chạm đến kết quả toàn cục một cách nhanh chóng và thanh lịch."
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button id="bannerActionBtn" onclick="scrollToBook('book-thamlam')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-sm transition flex items-center gap-2 cursor-pointer">
+                            <i class="fas fa-book-reader"></i> Đọc thử bộ này ngay
+                        </button>
+                        <div class="inline-flex items-center px-3.5 py-2 bg-white/90 rounded-xl border border-slate-200/80 text-xs sm:text-sm font-semibold text-slate-700">
+                            <i class="fas fa-pen-nib mr-2 text-emerald-600"></i> Tác giả: Lê Thành Nam
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Icon lớn trang trí bên phải Banner -->
+                <div class="hidden md:flex items-center justify-center w-48 h-48 rounded-2xl bg-white/60 backdrop-blur-xs border border-white shadow-inner shrink-0 mr-4">
+                    <i id="bannerIcon" class="fas fa-gem text-7xl text-emerald-600/80 transition-transform duration-500 hover:scale-110"></i>
+                </div>
+            </div>
+
+            <!-- Nút điều hướng Trái/Phải trên Banner -->
+            <button onclick="prevSlide()" class="hidden sm:flex absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-slate-700 shadow items-center justify-center transition z-20">
+                <i class="fas fa-chevron-left text-sm"></i>
+            </button>
+            <button onclick="nextSlide()" class="hidden sm:flex absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-slate-700 shadow items-center justify-center transition z-20">
+                <i class="fas fa-chevron-right text-sm"></i>
+            </button>
+
+            <!-- Dots chỉ mục Slide -->
+            <div class="flex items-center justify-center gap-1.5 pb-3.5 px-4 flex-wrap" id="bannerDots"></div>
+        </section>
+
+        <!-- KHỐI TỔNG QUAN TÀI LIỆU HIỆN CÓ (GIÚP NGƯỜI ĐỌC NHÌN THẤY NGAY TẤT CẢ ĐẦU SÁCH) -->
+        <section class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-xs mb-10">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-100">
+                <div>
+                    <h2 class="text-base sm:text-lg font-extrabold text-slate-900 flex items-center gap-2 uppercase tracking-wide">
+                        <i class="fas fa-th-large text-emerald-600"></i> Danh mục các bộ chuyên đề hiện có
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Nhấn vào bất kỳ chuyên đề nào bên dưới để chuyển nhanh tới khu vực đọc thử PDF</p>
+                </div>
+                <span class="text-xs font-bold bg-slate-100 text-slate-700 px-3 py-1 rounded-full self-start sm:self-auto" id="catalogSummaryCount">
+                    Đang hiển thị: 15 bộ
+                </span>
+            </div>
+            <div id="catalogOverviewGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <!-- JS tự động render thẻ tóm tắt từng đầu sách tại đây -->
+            </div>
+        </section>
+
+        <!-- NƠI HIỂN THỊ CHI TIẾT TOÀN BỘ KHỐI SÁCH PDF -->
+        <div id="booksMainContainer" class="space-y-10">
+            <!-- JS tự động render từng bộ sách với layout 1, 2, 3, 4, 5, 6 quyển tương ứng -->
+        </div>
+
+        <!-- ================= SLIDER KHÁM PHÁ NHANH CUỐI TRANG ================= -->
+        <section class="mt-14 bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
+            <div class="flex items-center justify-between mb-5">
+                <div>
+                    <h2 class="text-lg sm:text-xl font-black text-slate-900 uppercase tracking-tight">
+                        <i class="fas fa-compass text-emerald-600 mr-1.5"></i> Khám Phá Nhanh Các Bộ Sách
+                    </h2>
+                    <p class="text-xs text-slate-500">Kéo ngang hoặc dùng mũi tên để duyệt nhanh qua các bộ tài liệu</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="scrollBottomCarousel(-340)" class="w-9 h-9 rounded-full border border-slate-300 bg-white hover:bg-emerald-600 hover:text-white hover:border-emerald-600 text-slate-600 flex items-center justify-center transition shadow-2xs cursor-pointer">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button onclick="scrollBottomCarousel(340)" class="w-9 h-9 rounded-full border border-slate-300 bg-white hover:bg-emerald-600 hover:text-white hover:border-emerald-600 text-slate-600 flex items-center justify-center transition shadow-2xs cursor-pointer">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="bottomCarousel" class="flex gap-4 overflow-x-auto scroll-smooth pb-2 no-scrollbar">
+                <!-- JS tự động render các thẻ bài dưới cùng -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER & NÚT QUẢN TRỊ VIÊN ================= -->
+    <footer class="bg-slate-900 text-slate-400 py-8 mt-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-emerald-600 text-white flex items-center justify-center font-black">
+                    <i class="fas fa-layer-group text-sm"></i>
+                </div>
+                <div class="text-sm">
+                    <p class="text-white font-bold">Thư Viện Sách Chuyên Khảo CODEPLUS © 2026</p>
+                    <p class="text-xs text-slate-400">Biên soạn bởi Tác giả Lê Thành Nam - Tài liệu Bồi dưỡng Học sinh giỏi Tin học & Toán học</p>
+                </div>
+            </div>
+            <div>
+                <button onclick="openAdminAuth()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 transition flex items-center gap-2 cursor-pointer">
+                    <i class="fas fa-user-shield text-emerald-400"></i> Quản trị viên (Thêm / Quản lý sách)
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODAL 1: ĐĂNG NHẬP QUẢN TRỊ ================= -->
+    <div id="loginModal" class="fixed inset-0 bg-slate-900/75 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 relative border border-slate-100">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-700 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mx-auto mb-3">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 text-center mb-1">Đăng Nhập Quản Trị</h3>
+            <p class="text-xs text-slate-500 text-center mb-5">Dành cho tác giả cập nhật và xuất file dữ liệu mới</p>
             
-            <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
-            <div class="banner-slider flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-orange-50 to-amber-100 banner-content-wrapper" id="mainBanner">
-                <div class="max-w-lg w-full">
-                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-orange-600" id="bannerLabel">Chuyên đề bồi dưỡng HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">THUẬT TOÁN THAM LAM (GREEDY)<br/><span class="text-orange-700">SÁCH MỚI CẬP NHẬT</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Nắm bắt chiến lược tối ưu cục bộ để chạm đến kết quả toàn cục một cách nhanh chóng và thanh lịch."</p>
-                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-orange-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib mr-2 text-orange-600" id="bannerIcon"></i>
-                        <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
-                    </div>
+            <div class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Tài khoản</label>
+                    <input type="text" id="loginUser" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Nhập tài khoản..." onkeydown="if(event.key==='Enter') handleAdminLogin()">
                 </div>
-                <div class="banner-icon-bg">
-                    <i class="fas fa-gem text-orange-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Mật khẩu</label>
+                    <input type="password" id="loginPass" class="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Nhập mật khẩu..." onkeydown="if(event.key==='Enter') handleAdminLogin()">
                 </div>
-                <div class="slider-dots" id="bannerDots">
-                    <!-- Dots will be populated by JS -->
-                </div>
-            </div>
-
-            <!-- Nơi chứa toàn bộ Khối Sách -->
-            <div id="all-books-container">
-
-                <!-- ================= SÁCH: THUẬT TOÁN THAM LAM (GREEDY) ================= -->
-                <div class="book-block" id="book-thamlam" data-title="THUẬT TOÁN THAM LAM (GREEDY)" data-desc="Nắm bắt chiến lược tối ưu cục bộ để chạm đến kết quả toàn cục một cách nhanh chóng và thanh lịch." data-theme="orange" data-icon="fa-gem">
-                    <div class="section-header">
-                        <div class="section-title orange-theme">ĐỌC THỬ BỘ SÁCH THUẬT TOÁN THAM LAM (GREEDY)</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge orange"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1wY6uurW6pnyNvZuDI2tsfcBu1zkrfQSP/preview"></iframe></div>
-                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge orange"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1Wz6GFhqyKvE94ZLKNsCyHkcSOALjxxXH/preview"></iframe></div>
-                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge orange"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1-46QTM8n8e7zLciprPXDcXW8op9kHg-t/preview"></iframe></div>
-                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: LCA (TỔ TIÊN CHUNG GẦN NHẤT) ================= -->
-                <div class="book-block" id="book-lca" data-title="LCA (TỔ TIÊN CHUNG GẦN NHẤT)" data-desc="Làm chủ thuật toán tìm tổ tiên chung gần nhất và tối ưu hóa các bài toán trên cây." data-theme="green" data-icon="fa-network-wired">
-                    <div class="section-header">
-                        <div class="section-title green-theme">ĐỌC THỬ BỘ SÁCH LCA (TỔ TIÊN CHUNG GẦN NHẤT)</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge green"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1QU7OvhF7ZUqI2F05BIOHDoIWGJjZLOCk/preview"></iframe></div>
-                            <button class="buy-btn green text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge green"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1vrnnrHmot8tlyplchG381do4cgOavrSb/preview"></iframe></div>
-                            <button class="buy-btn green text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge green"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1HFXCpS2B5iCioMY5W2nxowAV9fNg1Elk/preview"></iframe></div>
-                            <button class="buy-btn green text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: BAO LỒI (CONVEX HULL) ================= -->
-                <div class="book-block" id="book-baoloi" data-title="BAO LỒI (CONVEX HULL)" data-desc="Bí kíp chinh phục các bài toán Hình học tính toán và thuật toán tìm Bao lồi tối ưu." data-theme="purple" data-icon="fa-draw-polygon">
-                    <div class="section-header">
-                        <div class="section-title purple-theme">ĐỌC THỬ BỘ SÁCH BAO LỒI (CONVEX HULL)</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge purple"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1nNjvflkROdrdJLPeelIBI5oyvIvvptkw/preview"></iframe></div>
-                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge purple"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1LfkaP8SfMsc9JKdxgacT82wG9fEFWHlf/preview"></iframe></div>
-                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge purple"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1h89rD8rK0IpdgurEeRS21k-Ul6w1Cmx1/preview"></iframe></div>
-                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: CHUYÊN ĐỀ LHD ================= -->
-                <div class="book-block" id="book-lhd" data-title="CHUYÊN ĐỀ LHD" data-desc="Khám phá trọn bộ tài liệu LHD từ cơ bản đến nâng cao dành cho Lập trình thi đấu." data-theme="red" data-icon="fa-book-open">
-                    <div class="section-header">
-                        <div class="section-title red-theme">ĐỌC THỬ BỘ SÁCH CHUYÊN ĐỀ LHD</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge red"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1mKlf-IROkhQihL0MJ_EVMFa4TNr9bPqA/preview"></iframe></div>
-                            <button class="buy-btn red text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge red"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/10BdZyFdbHgL4y0QEvysGjwuxReW1mLhg/preview"></iframe></div>
-                            <button class="buy-btn red text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge red"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1mV_-w1L1T7zDf5O6CzcGxQAFcvN3E2i-/preview"></iframe></div>
-                            <button class="buy-btn red text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: PHÂN RÃ TRỌNG TÂM (CENTROID) ================= -->
-                <div class="book-block" id="book-centroid" data-title="PHÂN RÃ TRỌNG TÂM (CENTROID)" data-desc="Kỹ thuật đỉnh cao xử lý các bài toán trên cây và đường đi trong Lập trình thi đấu." data-theme="teal" data-icon="fa-sitemap">
-                    <div class="section-header">
-                        <div class="section-title teal-theme">ĐỌC THỬ BỘ SÁCH PHÂN RÃ TRỌNG TÂM (CENTROID)</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge teal"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1K3xxlhIa6bgUnR_Ysji1nOY7AiN8xvkU/preview"></iframe></div>
-                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge teal"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1b6DX8-yqMqT4513w_i9e30YGEF7yaM8D/preview"></iframe></div>
-                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge teal"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/109bw7EELE2xQp6c_KnnRz0zGeigaPDYt/preview"></iframe></div>
-                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: THUẬT TOÁN ĐƯỜNG QUÉT (SWEEP-LINE) ================= -->
-                <div class="book-block" id="book-sweepline" data-title="THUẬT TOÁN ĐƯỜNG QUÉT (SWEEP-LINE)" data-desc="Tuyệt kỹ quét không gian, tối ưu hóa các bài toán trên trục tọa độ và hình học tính toán." data-theme="blue" data-icon="fa-layer-group">
-                    <div class="section-header">
-                        <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH THUẬT TOÁN ĐƯỜNG QUÉT (SWEEP-LINE)</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge blue"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1tQUFYBi1K3fQvV2acRAQH876VALATjm4/preview"></iframe></div>
-                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge blue"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/12pJeBsp771e5jJ7AixI-jRtHWmaPdYBf/preview"></iframe></div>
-                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge blue"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1dx4ZI2JKbssW18v2NTTdcMZcpRhlZ1IH/preview"></iframe></div>
-                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: TÍNH CHẴN LẺ (PARITY) ================= -->
-                <div class="book-block" id="book-parity" data-title="TÍNH CHẴN LẺ (PARITY)" data-desc="Khám phá sức mạnh của Parity trong việc tối ưu hóa và giải quyết các bài toán Tin học." data-theme="orange" data-icon="fa-balance-scale">
-                    <div class="section-header">
-                        <div class="section-title orange-theme">ĐỌC THỬ BỘ SÁCH TÍNH CHẴN LẺ (PARITY)</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge orange"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1L6tIdC0TwZb72ihUFE3P78ZiimLbAYS5/preview"></iframe></div>
-                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge orange"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1o-rQdkaUp1fk-mdlRezJQ4MF6N_d6jzL/preview"></iframe></div>
-                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge orange"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1SAAENcXnwx5LATlV86g-Ej90yD4JOT51/preview"></iframe></div>
-                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: TƯ DUY THUẬT TOÁN ================= -->
-                <div class="book-block" id="book-tuduy" data-title="TƯ DUY THUẬT TOÁN" data-desc="Rèn luyện tư duy logic, xây dựng nền tảng thuật toán vững chắc để giải quyết mọi bài toán khó." data-theme="teal" data-icon="fa-brain">
-                    <div class="section-header">
-                        <div class="section-title teal-theme">ĐỌC THỬ BỘ SÁCH TƯ DUY THUẬT TOÁN</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge teal"><i class="fas fa-book-open"></i> TẬP 1</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1CPUBR57COoryMrsetp7zwHhSpRGKSv5r/preview"></iframe></div>
-                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge teal"><i class="fas fa-tasks"></i> TẬP 2</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/16CgK5z8hjlY6t8onKRZiyOX5zshv88-W/preview"></iframe></div>
-                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge teal"><i class="fas fa-lightbulb"></i> TẬP 3</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1w63s4Xaz8lm7T3tCUBLD5iDddwWpxyfU/preview"></iframe></div>
-                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge teal"><i class="fas fa-cogs"></i> TẬP 4</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1JWoaBO2tx-SbRxaL3eK0M3-d2uveVGwF/preview"></iframe></div>
-                            <button class="buy-btn teal text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 4', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 4</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ ================= -->
-                <div class="book-block" id="book-cacso" data-title="CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ" data-desc="Khám phá vẻ đẹp, tính chất và các thuật toán xử lý dãy số đặc biệt trong Lập trình thi đấu." data-theme="purple" data-icon="fa-calculator">
-                    <div class="section-header">
-                        <div class="section-title purple-theme">ĐỌC THỬ BỘ SÁCH CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge purple"><i class="fas fa-book-open"></i> TẬP 1: CÁC SỐ ĐẶC BIỆT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1VF-Yl7o8U7AeTxJVgn4Cwj6EdR2j3TFx/preview"></iframe></div>
-                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: CÁC SỐ ĐẶC BIỆT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge purple"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1kuioE2GTpnz1omnVDWJSC8qBK5gOBXoM/preview"></iframe></div>
-                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge purple"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/15NK6fToRehmGh_woZnxoI4bLOgpS2pWN/preview"></iframe></div>
-                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: GIẢI ĐỀ THI HSG THPT 2025 - 2026 ================= -->
-                <div class="book-block" id="book-hsgthpt" data-title="GIẢI ĐỀ THI HSG THPT 2025 - 2026" data-desc="Tài liệu luyện thi bám sát cấu trúc đề thi học sinh giỏi THPT." data-theme="blue" data-icon="fa-graduation-cap">
-                    <div class="section-header">
-                        <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH GIẢI ĐỀ THI HSG THPT 2025 - 2026</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge blue"><i class="fas fa-book-open"></i> TẬP 1: KIẾN THỨC NỀN TẢNG</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1E8KJSWTpzeazV453meaqHkTgk9YI9fBC/preview"></iframe></div>
-                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: KIẾN THỨC NỀN TẢNG', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge blue"><i class="fas fa-tasks"></i> TẬP 2: HƯỚNG DẪN GIẢI ĐỀ</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1gFb4HfMBYu8W-8sxUHdMTRL96HYuK98n/preview"></iframe></div>
-                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: HƯỚNG DẪN GIẢI ĐỀ', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: LẬP TRÌNH C++ ================= -->
-                <div class="book-block" id="book-cpp" data-title="LẬP TRÌNH C++" data-desc="Làm chủ C++, tự tin chinh phục đỉnh cao lập trình thi đấu." data-theme="orange" data-icon="fa-code">
-                    <div class="section-header">
-                        <div class="section-title orange-theme">ĐỌC THỬ BỘ SÁCH LẬP TRÌNH C++</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge orange"><i class="fas fa-book-open"></i> TẬP 1: CPP TỪ CON SỐ 0</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1Yaq0iZlepJT6owtETjeTRzHNpUg43tP_/preview"></iframe></div>
-                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: CPP TỪ CON SỐ 0', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge orange"><i class="fas fa-tasks"></i> TẬP 2: STL NÂNG CAO</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1BKtxfI_iIUQAqBmVC1_4vQxIi6xDXIxP/preview"></iframe></div>
-                            <button class="buy-btn orange text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: STL NÂNG CAO', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: SỐ HỌC ================= -->
-                <div class="book-block" id="book-sohoc" data-title="SỐ HỌC" data-desc="Nền tảng vững chắc cho mọi thuật toán, từ số nguyên tố, đồng dư đến các định lý nâng cao." data-theme="red" data-icon="fa-calculator">
-                    <div class="section-header">
-                        <div class="section-title red-theme">ĐỌC THỬ BỘ SÁCH SỐ HỌC</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge red"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1oGeInL1Rp_Da6GUqXnffHS9vvTtW9gep/preview"></iframe></div>
-                            <button class="buy-btn red text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge red"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1Zm-f0qzx7f9yIvGHGaRQgSrJzmQkUbhM/preview"></iframe></div>
-                            <button class="buy-btn red text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge red"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/17D_k5L5oyIEyu1FPOju20WYi8mchWDvv/preview"></iframe></div>
-                            <button class="buy-btn red text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: LÝ THUYẾT ĐỒ THỊ ================= -->
-                <div class="book-block" id="book-dothi" data-title="LÝ THUYẾT ĐỒ THỊ" data-desc="Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, luồng cực đại và hơn thế nữa với tư duy logic." data-theme="purple" data-icon="fa-project-diagram">
-                    <div class="section-header">
-                        <div class="section-title purple-theme">ĐỌC THỬ BỘ SÁCH LÝ THUYẾT ĐỒ THỊ</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge purple"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1LabrYYHAOoC3JdqzQ7zFUTIqn-wG6pKa/preview"></iframe></div>
-                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge purple"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1RMfmwVTty40Pt9PFV7SytduB15QjBKVj/preview"></iframe></div>
-                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge purple"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1C4txJF9xdFlg3jH7fFFXwWqG_loymzri/preview"></iframe></div>
-                            <button class="buy-btn purple text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: TOÁN HỌC VÀ CHỐNG TRÂU ================= -->
-                <div class="book-block" id="book-toanhoc" data-title="TOÁN HỌC VÀ CHỐNG TRÂU" data-desc="Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng sự nhạy bén của Toán học." data-theme="blue" data-icon="fa-infinity">
-                    <div class="section-header">
-                        <div class="section-title blue-theme">ĐỌC THỬ BỘ SÁCH TOÁN HỌC VÀ CHỐNG TRÂU</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge blue"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1r4NanrxLmjAYc8DUIjvBtjDgXDdCh7MA/preview"></iframe></div>
-                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge blue"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1Ue4HnH_gfumU8h-434Opq8xewlvxDEku/preview"></iframe></div>
-                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge blue"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/12uio721j_LU_7VXHYSG167CJvnmCGP9t/preview"></iframe></div>
-                            <button class="buy-btn blue text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================= SÁCH: QUY HOẠCH ĐỘNG ================= -->
-                <div class="book-block" id="book-qhd" data-title="QUY HOẠCH ĐỘNG" data-desc="Người không nhớ quá khứ sẽ phải lặp lại nó. Code của em cũng vậy thôi..." data-theme="green" data-icon="fa-laptop-code">
-                    <div class="section-header">
-                        <div class="section-title green-theme">ĐỌC THỬ BỘ SÁCH QUY HOẠCH ĐỘNG</div>
-                    </div>
-                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                        <div class="book-col">
-                            <div class="book-vol-badge green"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1qYnLIlwhtUBEdhA6Pe1dNmkNWulCgBKV/preview"></iframe></div>
-                            <button class="buy-btn green text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 1: LÝ THUYẾT', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge green"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1p01zxnWoO7Px16X6bNrc-OnN97h7u_vA/preview"></iframe></div>
-                            <button class="buy-btn green text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 2: BÀI TẬP', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
-                        </div>
-                        <div class="book-col">
-                            <div class="book-vol-badge green"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
-                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1xCVa9W2ZJRn6D-dKbpOtoTdwYSYvn9Jt/preview"></iframe></div>
-                            <button class="buy-btn green text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: TẬP 3: HƯỚNG DẪN GIẢI', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- ================= KHÁM PHÁ THÊM ================= -->
-            <div class="book-block" style="border: none; box-shadow: none; background: transparent; padding: 0;">
-                <div class="section-header">
-                    <div class="section-title">KHÁM PHÁ THÊM SÁCH KHÁC</div>
-                    <a onclick="showToast('Đang tải thêm danh sách...')" class="view-all">Xem tất cả <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="book-slider-container">
-                    <button class="grid-arrow left" onclick="scrollGrid(-320)"><i class="fas fa-chevron-left"></i></button>
-                    <button class="grid-arrow right" onclick="scrollGrid(320)"><i class="fas fa-chevron-right"></i></button>
-                    
-                    <div class="book-grid-scroll" id="bookGrid">
-
-                        <div class="book-card" onclick="document.getElementById('book-thamlam').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-gem"></i></div>
-                            <div class="book-title">Combo Thuật Toán Tham Lam (Greedy)</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-lca').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-network-wired"></i></div>
-                            <div class="book-title">Combo Lca (Tổ Tiên Chung Gần Nhất)</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-baoloi').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-draw-polygon"></i></div>
-                            <div class="book-title">Combo Bao Lồi (Convex Hull)</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-lhd').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-book-open"></i></div>
-                            <div class="book-title">Combo Chuyên Đề Lhd</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-centroid').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-sitemap"></i></div>
-                            <div class="book-title">Combo Phân Rã Trọng Tâm (Centroid)</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-sweepline').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-layer-group"></i></div>
-                            <div class="book-title">Combo Thuật Toán Đường Quét (Sweep-Line)</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-parity').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-balance-scale"></i></div>
-                            <div class="book-title">Combo Tính Chẵn Lẻ (Parity)</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-tuduy').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-brain"></i></div>
-                            <div class="book-title">Combo Tư Duy Thuật Toán</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-cacso').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-calculator"></i></div>
-                            <div class="book-title">Combo Các Số Đặc Biệt Và Cấu Trúc Số</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-hsgthpt').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-graduation-cap"></i></div>
-                            <div class="book-title">Combo Giải Đề Thi Hsg Thpt 2025 - 2026</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-cpp').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-code"></i></div>
-                            <div class="book-title">Combo Lập Trình C++</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-sohoc').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-calculator"></i></div>
-                            <div class="book-title">Combo Số Học</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-dothi').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-project-diagram"></i></div>
-                            <div class="book-title">Combo Lý Thuyết Đồ Thị</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-toanhoc').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-infinity"></i></div>
-                            <div class="book-title">Combo Toán Học Và Chống Trâu</div>
-                        </div>
-                        <div class="book-card" onclick="document.getElementById('book-qhd').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                            <div class="discount-badge">-15%</div>
-                            <div class="book-image-placeholder"><i class="fas fa-laptop-code"></i></div>
-                            <div class="book-title">Combo Quy Hoạch Động</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center text-slate-500 mt-8 mb-4 font-medium tracking-wide text-sm md:text-base">Nhà sách CODEPLUS © 2026</div>
-
-            <!-- Giao diện Admin Ẩn (Phục vụ thêm sách) -->
-            <div class="text-center mb-12">
-                <button onclick="openLoginModal()" class="px-5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-600 rounded-full text-sm font-bold transition-all"><i class="fas fa-cog mr-2"></i>Quản trị viên (Thêm sách)</button>
+                <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md transition text-sm cursor-pointer">
+                    Đăng nhập hệ thống
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- LOGIN MODAL -->
-    <div id="loginModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[110] hidden items-center justify-center p-4 md:p-0">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 md:p-8 relative">
-            <button onclick="document.getElementById('loginModal').classList.add('hidden'); document.getElementById('loginModal').classList.remove('flex');" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-xl"><i class="fas fa-times"></i></button>
-            <h2 class="text-xl font-extrabold text-slate-800 mb-6 text-center"><i class="fas fa-lock text-green-500 mr-2"></i>Đăng Nhập Quản Trị</h2>
-            <div class="mb-4">
-                <label class="block text-sm font-bold text-slate-700 mb-2">Tài khoản</label>
-                <input type="text" id="admin_user" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Nhập tài khoản" onkeypress="if(event.key==='Enter') checkAdminLogin()">
+    <!-- ================= MODAL 2: BẢNG ĐIỀU KHIỂN QUẢN TRỊ VIÊN ================= -->
+    <div id="adminPanelModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-xs z-50 hidden items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full my-auto overflow-hidden border border-slate-200 flex flex-col max-h-[92vh]">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-2.5">
+                    <i class="fas fa-cogs text-emerald-400 text-xl"></i>
+                    <div>
+                        <h2 class="text-base sm:text-lg font-extrabold">Hệ Thống Quản Trị Tủ Sách CODEPLUS</h2>
+                        <p class="text-xs text-slate-400">Thêm sách mới (1-6 quyển), sắp xếp hoặc xóa sách và tải về file index.html chuẩn</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminPanel()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-red-500 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <div class="mb-6">
-                <label class="block text-sm font-bold text-slate-700 mb-2">Mật khẩu</label>
-                <input type="password" id="admin_pass" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Nhập mật khẩu" onkeypress="if(event.key==='Enter') checkAdminLogin()">
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-6 overflow-y-auto space-y-8 flex-1">
+                
+                <!-- PHẦN 1: FORM THÊM / CẬP NHẬT BỘ SÁCH MỚI -->
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                    <h3 class="text-sm font-black uppercase tracking-wider text-emerald-700 mb-4 flex items-center gap-2">
+                        <i class="fas fa-plus-circle"></i> 1. Thêm Bộ Chuyên Đề / Sách Mới
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Tên Bộ Sách / Chuyên Đề *</label>
+                            <input type="text" id="admTitle" class="w-full px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="VD: CÂY PHÂN ĐOẠN (SEGMENT TREE)">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Lời dẫn / Slogan hiển thị trên Banner</label>
+                            <input type="text" id="admDesc" class="w-full px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="VD: Làm chủ cấu trúc dữ liệu truy vấn trên đoạn...">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Tông màu chủ đạo</label>
+                            <select id="admTheme" class="w-full px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                <option value="emerald">Xanh Lá (Emerald)</option>
+                                <option value="blue">Xanh Dương (Blue)</option>
+                                <option value="purple">Tím (Purple)</option>
+                                <option value="orange">Cam (Orange)</option>
+                                <option value="red">Đỏ (Red)</option>
+                                <option value="teal">Xanh Cổ Vịt (Teal)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Biểu tượng (Icon)</label>
+                            <select id="admIcon" class="w-full px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                <option value="fa-gem">Viên ngọc (Tham lam / Nổi bật)</option>
+                                <option value="fa-network-wired">Mạng lưới / Cây (LCA / Đồ thị)</option>
+                                <option value="fa-draw-polygon">Đa giác (Hình học / Bao lồi)</option>
+                                <option value="fa-sitemap">Sơ đồ phân nhánh (Centroid / Cây)</option>
+                                <option value="fa-layer-group">Nhiều lớp (Đường quét / Sweep-line)</option>
+                                <option value="fa-balance-scale">Cán cân (Tính chẵn lẻ / Parity)</option>
+                                <option value="fa-brain">Bộ não (Tư duy thuật toán)</option>
+                                <option value="fa-calculator">Máy tính (Số học / Cấu trúc số)</option>
+                                <option value="fa-graduation-cap">Mũ cử nhân (Giải đề HSG)</option>
+                                <option value="fa-code">Mã nguồn (Lập trình C++ / STL)</option>
+                                <option value="fa-project-diagram">Đồ thị (Graph Theory)</option>
+                                <option value="fa-infinity">Vô cực (Toán học & Chống trâu)</option>
+                                <option value="fa-laptop-code">Laptop (Quy hoạch động)</option>
+                                <option value="fa-book-open">Sách mở (Chuyên đề chung)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Số lượng quyển (Layout 1 - 6 tập)</label>
+                            <select id="admCount" onchange="renderAdminVolumeInputs()" class="w-full px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-sm font-bold text-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                <option value="1">1 Quyển (Khung lớn căn giữa)</option>
+                                <option value="2">2 Quyển (Chia 2 cột cân đối)</option>
+                                <option value="3" selected>3 Quyển (Chia 3 cột tiêu chuẩn)</option>
+                                <option value="4">4 Quyển (Lưới 4 cột màn hình rộng)</option>
+                                <option value="5">5 Quyển (Dàn lưới 5 quyển)</option>
+                                <option value="6">6 Quyển (Chia 2 hàng x 3 cột)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Khung nhập chi tiết từng tập -->
+                    <div id="admVolumesList" class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 mb-4">
+                        <!-- JS sinh ô nhập cho Tập 1..6 -->
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button onclick="addNewBookFromAdmin()" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl shadow transition flex items-center gap-2 cursor-pointer">
+                            <i class="fas fa-check-circle"></i> Thêm bộ sách này vào Trang (Xem trực tiếp)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PHẦN 2: QUẢN LÝ DANH SÁCH HIỆN CÓ (SẮP XẾP / XÓA) -->
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-black uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                            <i class="fas fa-list-ol text-emerald-600"></i> 2. Danh Sách Các Đầu Sách Đang Có (<span id="admCurrentCount">15</span> bộ)
+                        </h3>
+                        <span class="text-xs text-slate-500">Bộ ở vị trí số 1 sẽ xuất hiện đầu tiên trên trang</span>
+                    </div>
+                    <div id="admExistingBooksList" class="divide-y divide-slate-200 border border-slate-200 rounded-xl bg-white max-h-64 overflow-y-auto">
+                        <!-- JS liệt kê danh sách để xóa hoặc đưa lên đầu -->
+                    </div>
+                </div>
+
             </div>
-            <button onclick="checkAdminLogin()" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all shadow-md">Xác Nhận</button>
+
+            <!-- Modal Footer (Nút Tải File HTML Mới) -->
+            <div class="px-6 py-4 bg-slate-100 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+                <p class="text-xs text-slate-600">
+                    <i class="fas fa-info-circle text-blue-600 mr-1"></i> Sau khi Thêm hoặc Xóa sách, hãy bấm nút màu xanh lá bên phải để tải file <strong>index.html</strong> về và đẩy lên GitHub.
+                </p>
+                <button onclick="exportCleanHTML()" class="w-full sm:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer shrink-0">
+                    <i class="fas fa-download"></i> Lưu & Tải File index.html Chuẩn
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- ADMIN MODAL -->
-    <div id="adminModal" class="fixed inset-0 bg-slate-900 bg-opacity-70 z-[100] hidden items-center justify-center p-4 md:p-0 overflow-y-auto">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full p-6 md:p-8 my-8 relative">
-            <button onclick="document.getElementById('adminModal').classList.add('hidden'); document.getElementById('adminModal').classList.remove('flex');" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 text-2xl"><i class="fas fa-times"></i></button>
-            
-            <h2 class="text-2xl font-extrabold text-slate-800 mb-6 border-b pb-4"><i class="fas fa-plus-circle text-green-500 mr-2"></i>Thêm Combo Sách Mới</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Tên Combo / Tiêu Đề</label>
-                    <input type="text" id="admin_title" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="VD: LẬP TRÌNH C++">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Slogan / Lời dẫn</label>
-                    <input type="text" id="admin_desc" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="VD: Khám phá những bí ẩn...">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Màu Sắc Chủ Đạo</label>
-                    <select id="admin_theme" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <option value="green">Xanh Lá Cây (Green)</option>
-                        <option value="blue">Xanh Dương (Blue)</option>
-                        <option value="purple">Tím (Purple)</option>
-                        <option value="red">Đỏ (Red)</option>
-                        <option value="orange" selected>Cam (Orange)</option>
-                        <option value="teal">Xanh Cổ Vịt (Teal)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Icon Banner (FontAwesome)</label>
-                    <select id="admin_icon" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <option value="fa-book">Sách thường</option>
-                        <option value="fa-code">Mã code</option>
-                        <option value="fa-laptop-code">Laptop</option>
-                        <option value="fa-project-diagram">Đồ thị</option>
-                        <option value="fa-infinity">Vô cực / Toán</option>
-                        <option value="fa-calculator">Máy tính / Số học</option>
-                        <option value="fa-graduation-cap">Mũ Cử Nhân / Giải Đề</option>
-                        <option value="fa-brain">Bộ Não / Tư Duy</option>
-                        <option value="fa-balance-scale">Cán Cân / Chẵn Lẻ</option>
-                        <option value="fa-cogs">Bánh răng / Thuật toán</option>
-                        <option value="fa-layer-group">Nhiều lớp / Đường quét</option>
-                        <option value="fa-sitemap">Sơ đồ / Cây / Centroid</option>
-                        <option value="fa-network-wired">Mạng lưới / Cây / LCA</option>
-                        <option value="fa-draw-polygon">Đa giác / Hình học / Bao lồi</option>
-                        <option value="fa-gem" selected>Viên ngọc / Tham lam / Greedy</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="mb-6">
-                <label class="block text-sm font-bold text-slate-700 mb-2">Số lượng sách trong Combo</label>
-                <select id="admin_count" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" onchange="generateBookInputs()">
-                    <option value="1">1 Quyển (Hiển thị căn giữa)</option>
-                    <option value="2">2 Quyển (Chia 2 cột)</option>
-                    <option value="3" selected>3 Quyển (Chia 3 cột)</option>
-                    <option value="4">4 Quyển (Chia 4 cột)</option>
-                    <option value="5">5 Quyển (Dàn nhiều cột)</option>
-                    <option value="6">6 Quyển (Dàn nhiều cột)</option>
-                </select>
-            </div>
-
-            <div id="dynamic_book_inputs" class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6 max-h-[300px] overflow-y-auto">
-                <!-- Javascript will populate this -->
-            </div>
-
-            <div class="flex flex-col md:flex-row gap-4 justify-end border-t pt-6">
-                <button onclick="previewAndAddBook()" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-eye mr-2"></i>Thêm & Xem Thử Trực Tiếp</button>
-                <button onclick="downloadUpdatedHTML()" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all shadow-md"><i class="fas fa-download mr-2"></i>Lưu & Tải File HTML Mới</button>
-            </div>
-            
-            <p class="text-xs text-slate-500 mt-4 text-center">Sau khi tải file <span class="font-bold">index.html</span> mới, hãy upload lên GitHub đè lên file cũ để cập nhật cho mọi người.</p>
-        </div>
-    </div>
-
-    <!-- Script tương tác & Admin -->
-    <script>
-        function showToast(message, isSuccess = false) {
-            const oldToast = document.getElementById('toast');
-            if(oldToast) oldToast.remove();
-
-            const toast = document.createElement('div');
-            toast.id = 'toast';
-            toast.className = `fixed bottom-4 right-4 md:bottom-6 md:right-6 text-white px-4 md:px-6 py-3 md:py-4 rounded-lg shadow-2xl z-50 transform transition-all duration-300 translate-y-10 opacity-0 flex items-center gap-3 ${isSuccess ? 'bg-green-600' : 'bg-slate-800'} text-sm md:text-base max-w-[90vw] z-[120]`;
-            toast.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-info-circle'} text-xl flex-shrink-0"></i><span class="font-medium">${message}</span>`;
-            
-            document.body.appendChild(toast);
-            setTimeout(() => { toast.classList.remove('translate-y-10', 'opacity-0'); }, 50);
-            setTimeout(() => { toast.classList.add('translate-y-10', 'opacity-0'); setTimeout(() => toast.remove(), 300); }, 3000);
-        }
-
-        function handleSearch() {
-            const val = document.getElementById('searchInput').value.trim();
-            if(val) { showToast(`Đang tìm kiếm sách: "${val}"...`); } 
-            else { showToast("Vui lòng nhập từ khóa tìm kiếm!"); document.getElementById('searchInput').focus(); }
-        }
-        document.getElementById('searchInput').addEventListener('keypress', function(e) { if (e.key === 'Enter') handleSearch(); });
-
-        function scrollGrid(amount) {
-            const grid = document.getElementById('bookGrid');
-            grid.scrollBy({ left: amount, behavior: 'smooth' });
-        }
-
-        // ==========================================
-        // HỆ THỐNG SLIDER TỰ ĐỘNG THU THẬP TỪ SÁCH
-        // ==========================================
-        let bannerDataList = [];
-        let currentSlide = 0;
-        let slideInterval;
-
-        function loadBannersFromBooks() {
-            bannerDataList = [];
-            const books = document.querySelectorAll('.book-block');
-            
-            books.forEach(book => {
-                const title = book.getAttribute('data-title');
-                if(!title) return; 
-                
-                const desc = book.getAttribute('data-desc');
-                const theme = book.getAttribute('data-theme');
-                const icon = book.getAttribute('data-icon');
-                
-                let bgClass = 'bg-blue-50';
-                let textClass = 'text-blue-600';
-                let accentClass = 'text-blue-700';
-                
-                if(theme === 'green') { bgClass = 'bg-green-50'; textClass = 'text-green-600'; accentClass = 'text-green-700'; }
-                else if(theme === 'purple') { bgClass = 'bg-purple-50'; textClass = 'text-purple-600'; accentClass = 'text-purple-700'; }
-                else if(theme === 'red') { bgClass = 'bg-red-50'; textClass = 'text-red-600'; accentClass = 'text-red-700'; }
-                else if(theme === 'orange') { bgClass = 'bg-orange-50'; textClass = 'text-orange-600'; accentClass = 'text-orange-700'; }
-                else if(theme === 'teal') { bgClass = 'bg-teal-50'; textClass = 'text-teal-600'; accentClass = 'text-teal-700'; }
-
-                bannerDataList.push({
-                    title: `${title}<br/><span class="${accentClass}">SÁCH MỚI CẬP NHẬT</span>`,
-                    desc: desc,
-                    icon: icon,
-                    bgClass: `bg-gradient-to-r ${bgClass} to-slate-100`,
-                    textClass: textClass,
-                    accentClass: accentClass,
-                    theme: theme
-                });
-            });
-
-            renderBannerDots();
-            if(bannerDataList.length > 0) {
-                changeBanner(0);
-                resetAutoSlide();
+    <!-- ================= JAVASCRIPT ENGINE (DATA-DRIVEN) ================= -->
+    <script id="mainAppScript">
+        // 1. CƠ SỞ DỮ LIỆU TẬP TRUNG (15 ĐẦU SÁCH)
+        /*__BOOKS_DATA_START__*/
+        let BOOKS_DATA = [
+            {
+                id: "book-thamlam",
+                title: "THUẬT TOÁN THAM LAM (GREEDY)",
+                desc: "Nắm bắt chiến lược tối ưu cục bộ để chạm đến kết quả toàn cục một cách nhanh chóng và thanh lịch.",
+                theme: "orange",
+                icon: "fa-gem",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1wY6uurW6pnyNvZuDI2tsfcBu1zkrfQSP/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1Wz6GFhqyKvE94ZLKNsCyHkcSOALjxxXH/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/1-46QTM8n8e7zLciprPXDcXW8op9kHg-t/preview" }
+                ]
+            },
+            {
+                id: "book-baoloi",
+                title: "BAO LỒI (CONVEX HULL)",
+                desc: "Bí kíp chinh phục các bài toán Hình học tính toán và thuật toán tìm Bao lồi tối ưu.",
+                theme: "purple",
+                icon: "fa-draw-polygon",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1nNjvflkROdrdJLPeelIBI5oyvIvvptkw/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1LfkaP8SfMsc9JKdxgacT82wG9fEFWHlf/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/1h89rD8rK0IpdgurEeRS21k-Ul6w1Cmx1/preview" }
+                ]
+            },
+            {
+                id: "book-lhd",
+                title: "CHUYÊN ĐỀ LHD",
+                desc: "Khám phá trọn bộ tài liệu LHD từ cơ bản đến nâng cao dành cho Lập trình thi đấu.",
+                theme: "red",
+                icon: "fa-book-open",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1mKlf-IROkhQihL0MJ_EVMFa4TNr9bPqA/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/10BdZyFdbHgL4y0QEvysGjwuxReW1mLhg/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/1mV_-w1L1T7zDf5O6CzcGxQAFcvN3E2i-/preview" }
+                ]
+            },
+            {
+                id: "book-lca",
+                title: "LCA (TỔ TIÊN CHUNG GẦN NHẤT)",
+                desc: "Làm chủ thuật toán tìm tổ tiên chung gần nhất và tối ưu hóa các bài toán trên cây.",
+                theme: "emerald",
+                icon: "fa-network-wired",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1QU7OvhF7ZUqI2F05BIOHDoIWGJjZLOCk/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1vrnnrHmot8tlyplchG381do4cgOavrSb/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/1HFXCpS2B5iCioMY5W2nxowAV9fNg1Elk/preview" }
+                ]
+            },
+            {
+                id: "book-centroid",
+                title: "PHÂN RÃ TRỌNG TÂM (CENTROID)",
+                desc: "Kỹ thuật đỉnh cao xử lý các bài toán trên cây và đường đi trong Lập trình thi đấu.",
+                theme: "teal",
+                icon: "fa-sitemap",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1K3xxlhIa6bgUnR_Ysji1nOY7AiN8xvkU/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1b6DX8-yqMqT4513w_i9e30YGEF7yaM8D/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/109bw7EELE2xQp6c_KnnRz0zGeigaPDYt/preview" }
+                ]
+            },
+            {
+                id: "book-sweepline",
+                title: "THUẬT TOÁN ĐƯỜNG QUÉT (SWEEP-LINE)",
+                desc: "Tuyệt kỹ quét không gian, tối ưu hóa các bài toán trên trục tọa độ và hình học tính toán.",
+                theme: "blue",
+                icon: "fa-layer-group",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1tQUFYBi1K3fQvV2acRAQH876VALATjm4/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/12pJeBsp771e5jJ7AixI-jRtHWmaPdYBf/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/1dx4ZI2JKbssW18v2NTTdcMZcpRhlZ1IH/preview" }
+                ]
+            },
+            {
+                id: "book-parity",
+                title: "TÍNH CHẴN LẺ TRONG TIN HỌC (PARITY)",
+                desc: "Khám phá sức mạnh của tính bất biến và Parity trong việc tối ưu hóa các bài toán Tin học.",
+                theme: "orange",
+                icon: "fa-balance-scale",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1L6tIdC0TwZb72ihUFE3P78ZiimLbAYS5/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1o-rQdkaUp1fk-mdlRezJQ4MF6N_d6jzL/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/1SAAENcXnwx5LATlV86g-Ej90yD4JOT51/preview" }
+                ]
+            },
+            {
+                id: "book-tuduy",
+                title: "TUYỂN TẬP TƯ DUY THUẬT TOÁN",
+                desc: "Rèn luyện tư duy logic, phân tích và xây dựng nền tảng thuật toán vững chắc qua 4 tập sách.",
+                theme: "teal",
+                icon: "fa-brain",
+                vols: [
+                    { name: "TẬP 1", link: "https://drive.google.com/file/d/1CPUBR57COoryMrsetp7zwHhSpRGKSv5r/preview" },
+                    { name: "TẬP 2", link: "https://drive.google.com/file/d/16CgK5z8hjlY6t8onKRZiyOX5zshv88-W/preview" },
+                    { name: "TẬP 3", link: "https://drive.google.com/file/d/1w63s4Xaz8lm7T3tCUBLD5iDddwWpxyfU/preview" },
+                    { name: "TẬP 4", link: "https://drive.google.com/file/d/1JWoaBO2tx-SbRxaL3eK0M3-d2uveVGwF/preview" }
+                ]
+            },
+            {
+                id: "book-cacso",
+                title: "CÁC SỐ ĐẶC BIỆT VÀ CẤU TRÚC SỐ",
+                desc: "Khám phá vẻ đẹp, tính chất và các thuật toán xử lý dãy số đặc biệt trong Lập trình thi đấu.",
+                theme: "purple",
+                icon: "fa-calculator",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1VF-Yl7o8U7AeTxJVgn4Cwj6EdR2j3TFx/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1kuioE2GTpnz1omnVDWJSC8qBK5gOBXoM/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/15NK6fToRehmGh_woZnxoI4bLOgpS2pWN/preview" }
+                ]
+            },
+            {
+                id: "book-hsgthpt",
+                title: "GIẢI ĐỀ THI HSG THPT 2025 - 2026",
+                desc: "Tài liệu luyện thi bám sát cấu trúc đề thi học sinh giỏi THPT với phân tích chi tiết.",
+                theme: "blue",
+                icon: "fa-graduation-cap",
+                vols: [
+                    { name: "TẬP 1: KIẾN THỨC NỀN TẢNG", link: "https://drive.google.com/file/d/1E8KJSWTpzeazV453meaqHkTgk9YI9fBC/preview" },
+                    { name: "TẬP 2: HƯỚNG DẪN GIẢI ĐỀ", link: "https://drive.google.com/file/d/1gFb4HfMBYu8W-8sxUHdMTRL96HYuK98n/preview" }
+                ]
+            },
+            {
+                id: "book-cpp",
+                title: "LẬP TRÌNH C++ & STL NÂNG CAO",
+                desc: "Làm chủ ngôn ngữ C++ từ con số 0 đến các cấu trúc thư viện STL nâng cao trong thi đấu.",
+                theme: "orange",
+                icon: "fa-code",
+                vols: [
+                    { name: "TẬP 1: CPP TỪ CON SỐ 0", link: "https://drive.google.com/file/d/1Yaq0iZlepJT6owtETjeTRzHNpUg43tP_/preview" },
+                    { name: "TẬP 2: STL NÂNG CAO", link: "https://drive.google.com/file/d/1BKtxfI_iIUQAqBmVC1_4vQxIi6xDXIxP/preview" }
+                ]
+            },
+            {
+                id: "book-sohoc",
+                title: "CHUYÊN ĐỀ SỐ HỌC",
+                desc: "Nền tảng vững chắc cho mọi thuật toán, từ số nguyên tố, đồng dư đến các định lý nâng cao.",
+                theme: "red",
+                icon: "fa-calculator",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1oGeInL1Rp_Da6GUqXnffHS9vvTtW9gep/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1Zm-f0qzx7f9yIvGHGaRQgSrJzmQkUbhM/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/17D_k5L5oyIEyu1FPOju20WYi8mchWDvv/preview" }
+                ]
+            },
+            {
+                id: "book-dothi",
+                title: "LÝ THUYẾT ĐỒ THỊ",
+                desc: "Phá đảo các bài toán về đồ thị, đường đi ngắn nhất, cây khung, luồng cực đại với tư duy logic.",
+                theme: "purple",
+                icon: "fa-project-diagram",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1LabrYYHAOoC3JdqzQ7zFUTIqn-wG6pKa/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1RMfmwVTty40Pt9PFV7SytduB15QjBKVj/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/1C4txJF9xdFlg3jH7fFFXwWqG_loymzri/preview" }
+                ]
+            },
+            {
+                id: "book-toanhoc",
+                title: "TOÁN HỌC VÀ CHỐNG TRÂU",
+                desc: "Vượt qua giới hạn thời gian (Time Limit Exceeded) bằng sự nhạy bén của Toán học.",
+                theme: "blue",
+                icon: "fa-infinity",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1r4NanrxLmjAYc8DUIjvBtjDgXDdCh7MA/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1Ue4HnH_gfumU8h-434Opq8xewlvxDEku/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/12uio721j_LU_7VXHYSG167CJvnmCGP9t/preview" }
+                ]
+            },
+            {
+                id: "book-qhd",
+                title: "QUY HOẠCH ĐỘNG",
+                desc: "Người không nhớ quá khứ sẽ phải lặp lại nó. Tối ưu hóa đệ quy bằng nghệ thuật lưu trữ trạng thái.",
+                theme: "emerald",
+                icon: "fa-laptop-code",
+                vols: [
+                    { name: "TẬP 1: LÝ THUYẾT", link: "https://drive.google.com/file/d/1qYnLIlwhtUBEdhA6Pe1dNmkNWulCgBKV/preview" },
+                    { name: "TẬP 2: BÀI TẬP", link: "https://drive.google.com/file/d/1p01zxnWoO7Px16X6bNrc-OnN97h7u_vA/preview" },
+                    { name: "TẬP 3: HƯỚNG DẪN GIẢI", link: "https://drive.google.com/file/d/1xCVa9W2ZJRn6D-dKbpOtoTdwYSYvn9Jt/preview" }
+                ]
             }
+        ];
+        /*__BOOKS_DATA_END__*/
+
+        // Bảng cấu hình màu sắc theo Theme
+        const THEME_STYLES = {
+            emerald: {
+                bannerBg: "from-emerald-50 via-teal-50 to-slate-100",
+                badgeBg: "bg-emerald-50 text-emerald-800 border-emerald-200",
+                accentText: "text-emerald-600",
+                btnBg: "bg-emerald-600 hover:bg-emerald-700",
+                borderTop: "border-t-4 border-t-emerald-500",
+                dotActive: "bg-emerald-600 w-6"
+            },
+            blue: {
+                bannerBg: "from-blue-50 via-indigo-50 to-slate-100",
+                badgeBg: "bg-blue-50 text-blue-800 border-blue-200",
+                accentText: "text-blue-600",
+                btnBg: "bg-blue-600 hover:bg-blue-700",
+                borderTop: "border-t-4 border-t-blue-500",
+                dotActive: "bg-blue-600 w-6"
+            },
+            purple: {
+                bannerBg: "from-purple-50 via-fuchsia-50 to-slate-100",
+                badgeBg: "bg-purple-50 text-purple-800 border-purple-200",
+                accentText: "text-purple-600",
+                btnBg: "bg-purple-600 hover:bg-purple-700",
+                borderTop: "border-t-4 border-t-purple-500",
+                dotActive: "bg-purple-600 w-6"
+            },
+            orange: {
+                bannerBg: "from-orange-50 via-amber-50 to-slate-100",
+                badgeBg: "bg-orange-50 text-orange-800 border-orange-200",
+                accentText: "text-orange-600",
+                btnBg: "bg-orange-600 hover:bg-orange-700",
+                borderTop: "border-t-4 border-t-orange-500",
+                dotActive: "bg-orange-500 w-6"
+            },
+            red: {
+                bannerBg: "from-red-50 via-rose-50 to-slate-100",
+                badgeBg: "bg-red-50 text-red-800 border-red-200",
+                accentText: "text-red-600",
+                btnBg: "bg-red-600 hover:bg-red-700",
+                borderTop: "border-t-4 border-t-red-500",
+                dotActive: "bg-red-600 w-6"
+            },
+            teal: {
+                bannerBg: "from-teal-50 via-cyan-50 to-slate-100",
+                badgeBg: "bg-teal-50 text-teal-800 border-teal-200",
+                accentText: "text-teal-600",
+                btnBg: "bg-teal-600 hover:bg-teal-700",
+                borderTop: "border-t-4 border-t-teal-500",
+                dotActive: "bg-teal-600 w-6"
+            }
+        };
+
+        // Hàm quyết định chia cột cho 1, 2, 3, 4, 5, 6 quyển
+        function getGridColumnsClass(count) {
+            switch (parseInt(count)) {
+                case 1: return "grid-cols-1 max-w-xl mx-auto";
+                case 2: return "grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto";
+                case 3: return "grid-cols-1 md:grid-cols-3";
+                case 4: return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+                case 5: return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+                case 6: return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+                default: return "grid-cols-1 md:grid-cols-3";
+            }
+        }
+
+        // Chuyển đổi link preview về link mở tab mới để đọc toàn màn hình
+        function getFullViewLink(previewLink) {
+            if (!previewLink) return "#";
+            return previewLink.replace('/preview', '/view');
+        }
+
+        // ================= RENDER TOÀN BỘ GIAO DIỆN TỪ MẢNG DỮ LIỆU =================
+        function renderAllUI(filterKeyword = "") {
+            const keyword = filterKeyword.trim().toLowerCase();
+            const filteredBooks = BOOKS_DATA.filter(b => 
+                b.title.toLowerCase().includes(keyword) || 
+                b.desc.toLowerCase().includes(keyword)
+            );
+
+            // Cập nhật số lượng trên Header
+            const totalVols = BOOKS_DATA.reduce((acc, b) => acc + b.vols.length, 0);
+            document.getElementById('totalBooksBadge').textContent = `${BOOKS_DATA.length} Bộ (${totalVols} Tập)`;
+            document.getElementById('catalogSummaryCount').textContent = `Đang hiển thị: ${filteredBooks.length} bộ chuyên đề`;
+
+            // 1. Render Thanh điều hướng nhanh trên Header (Quick Nav)
+            const quickNav = document.getElementById('quickNavContainer');
+            quickNav.innerHTML = BOOKS_DATA.map((b, idx) => `
+                <button onclick="scrollToBook('${b.id}')" class="shrink-0 px-3 py-1 rounded-full text-xs font-bold border border-slate-200 bg-slate-50 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition flex items-center gap-1.5 cursor-pointer">
+                    <span class="opacity-60">${idx + 1}.</span>
+                    <span>${b.title}</span>
+                    <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200/80 text-slate-700">${b.vols.length} tập</span>
+                </button>
+            `).join('');
+
+            // 2. Render Mục lục trong Sidebar Drawer
+            const sidebarList = document.getElementById('sidebarList');
+            sidebarList.innerHTML = BOOKS_DATA.map((b, idx) => {
+                const t = THEME_STYLES[b.theme] || THEME_STYLES.emerald;
+                return `
+                    <button onclick="scrollToBook('${b.id}'); toggleSidebar();" class="w-full text-left p-2.5 rounded-xl hover:bg-slate-100 transition flex items-center justify-between gap-2 group cursor-pointer">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <div class="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-white flex items-center justify-center shrink-0 ${t.accentText}">
+                                <i class="fas ${b.icon}"></i>
+                            </div>
+                            <div class="truncate">
+                                <div class="text-xs font-bold text-slate-800 truncate">${idx + 1}. ${b.title}</div>
+                                <div class="text-[11px] text-slate-400">Trọn bộ ${b.vols.length} quyển</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-right text-xs text-slate-300 group-hover:text-emerald-600"></i>
+                    </button>
+                `;
+            }).join('');
+
+            // 3. Render Bảng danh mục tổng quan (Giúp người đọc thấy ngay tất cả các đầu sách)
+            const catalogGrid = document.getElementById('catalogOverviewGrid');
+            if (filteredBooks.length === 0) {
+                catalogGrid.innerHTML = `<div class="col-span-full py-6 text-center text-slate-400 text-sm">Không tìm thấy đầu sách nào khớp với từ khóa "${filterKeyword}"</div>`;
+            } else {
+                catalogGrid.innerHTML = filteredBooks.map((b, idx) => {
+                    const t = THEME_STYLES[b.theme] || THEME_STYLES.emerald;
+                    return `
+                        <div onclick="scrollToBook('${b.id}')" class="group p-3.5 rounded-xl border border-slate-200 hover:border-emerald-500 bg-slate-50/60 hover:bg-white hover:shadow-md transition flex items-center justify-between gap-3 cursor-pointer">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <div class="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shrink-0 ${t.accentText} shadow-2xs group-hover:scale-105 transition">
+                                    <i class="fas ${b.icon} text-lg"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <h3 class="text-xs sm:text-sm font-extrabold text-slate-800 group-hover:text-emerald-700 truncate">${b.title}</h3>
+                                    <p class="text-[11px] text-slate-500 truncate">${b.desc}</p>
+                                </div>
+                            </div>
+                            <span class="shrink-0 text-xs font-extrabold px-2.5 py-1 rounded-lg border ${t.badgeBg}">
+                                ${b.vols.length} tập
+                            </span>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // 4. Render Khối đọc thử từng bộ sách (Main Books Container)
+            const mainContainer = document.getElementById('booksMainContainer');
+            mainContainer.innerHTML = filteredBooks.map((b, bookIdx) => {
+                const t = THEME_STYLES[b.theme] || THEME_STYLES.emerald;
+                const gridClass = getGridColumnsClass(b.vols.length);
+
+                const volsHTML = b.vols.map((v, vIdx) => {
+                    const hasLink = v.link && v.link.trim() !== "";
+                    const fullLink = getFullViewLink(v.link);
+                    const volTitle = v.name || `TẬP ${vIdx + 1}`;
+
+                    return `
+                        <div class="flex flex-col">
+                            <!-- Tiêu đề từng quyển rõ ràng -->
+                            <div class="flex items-center justify-between gap-2 mb-2.5 px-3.5 py-2 rounded-xl border ${t.badgeBg}">
+                                <div class="font-extrabold text-xs sm:text-sm uppercase tracking-wide flex items-center gap-2 truncate">
+                                    <i class="fas fa-book-open"></i>
+                                    <span class="truncate">${b.title} - ${volTitle}</span>
+                                </div>
+                                <span class="text-[11px] font-bold opacity-75 shrink-0">#${vIdx + 1}/${b.vols.length}</span>
+                            </div>
+
+                            <!-- Khung nhúng PDF -->
+                            ${hasLink ? `
+                                <div class="pdf-frame-container">
+                                    <div class="pdf-loading-bg">
+                                        <i class="fas fa-circle-notch fa-spin text-2xl mb-2 text-emerald-600"></i>
+                                        <span class="text-xs font-medium">Đang tải bản đọc thử PDF...</span>
+                                    </div>
+                                    <iframe src="${v.link}" loading="lazy" title="${b.title} -${volTitle}" allow="autoplay"></iframe>
+                                </div>
+                                <a href="${fullLink}" target="_blank" rel="noopener noreferrer" class="mt-3 w-full py-2.5 px-4 rounded-xl ${t.btnBg} text-white font-bold text-xs sm:text-sm text-center shadow-xs transition flex items-center justify-center gap-2">
+                                    <i class="fas fa-expand-arrows-alt"></i> Mở đọc toàn màn hình (${volTitle})
+                                </a>
+                            ` : `
+                                <div class="pdf-frame-container flex flex-col items-center justify-center bg-slate-50 border-dashed border-2 border-slate-300 text-slate-400 p-6 text-center">
+                                    <i class="fas fa-spinner fa-spin text-3xl mb-3 text-slate-400"></i>
+                                    <p class="font-bold text-slate-600 text-sm">Đang hoàn thiện nội dung...</p>
+                                    <p class="text-xs text-slate-400 mt-1">Tập sách này sẽ sớm được cập nhật</p>
+                                </div>
+                                <button disabled class="mt-3 w-full py-2.5 px-4 rounded-xl bg-slate-200 text-slate-500 font-bold text-xs sm:text-sm text-center cursor-not-allowed">
+                                    <i class="fas fa-clock mr-1.5"></i> Đang biên soạn
+                                </button>
+                            `}
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <article id="${b.id}" class="bg-white rounded-2xl p-5 sm:p-7 border border-slate-200/90 shadow-xs scroll-mt-28 ${t.borderTop}">
+                        <!-- Header của từng Bộ Sách -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 mb-6 border-b border-slate-100">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-12 h-12 rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-center shrink-0 ${t.accentText} text-xl shadow-2xs">
+                                    <i class="fas ${b.icon}"></i>
+                                </div>
+                                <div>
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <span class="text-xs font-extrabold uppercase px-2.5 py-0.5 rounded-md border ${t.badgeBg}">
+                                            Bộ #${bookIdx + 1} • ${b.vols.length} Quyển
+                                        </span>
+                                        <h2 class="text-lg sm:text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tight">
+                                            ĐỌC THỬ: ${b.title}
+                                        </h2>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-slate-500 italic mt-1">"${b.desc}"</p>
+                                </div>
+                            </div>
+                            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="self-start md:self-center shrink-0 text-xs font-bold text-slate-500 hover:text-emerald-600 bg-slate-100 hover:bg-emerald-50 px-3 py-1.5 rounded-lg transition cursor-pointer">
+                                <i class="fas fa-arrow-up mr-1"></i> Lên đầu trang
+                            </button>
+                        </div>
+
+                        <!-- Lưới chứa các Tập Sách (1 - 6 quyển) -->
+                        <div class="grid ${gridClass} gap-6 sm:gap-7">
+                            ${volsHTML}
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            // 5. Render Thanh trượt Carousel cuối trang
+            const bottomCarousel = document.getElementById('bottomCarousel');
+            bottomCarousel.innerHTML = BOOKS_DATA.map((b, idx) => {
+                const t = THEME_STYLES[b.theme] || THEME_STYLES.emerald;
+                return `
+                    <div onclick="scrollToBook('${b.id}')" class="w-56 shrink-0 bg-slate-50 hover:bg-white rounded-xl border border-slate-200 hover:border-emerald-500 p-4 transition shadow-2xs hover:shadow-md cursor-pointer flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[11px] font-extrabold px-2 py-0.5 rounded border ${t.badgeBg}">
+                                    ${b.vols.length} Tập
+                                </span>
+                                <span class="text-xs font-bold text-slate-400">#${idx + 1}</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center ${t.accentText} text-2xl mb-3 group-hover:scale-110 transition">
+                                <i class="fas ${b.icon}"></i>
+                            </div>
+                            <h3 class="font-extrabold text-sm text-slate-800 group-hover:text-emerald-700 line-clamp-2 leading-snug mb-1">
+                                ${b.title}
+                            </h3>
+                        </div>
+                        <div class="pt-3 mt-2 border-t border-slate-200/60 flex items-center justify-between text-xs font-bold text-emerald-600">
+                            <span>Xem đọc thử</span>
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ================= LOGIC BANNER SLIDER TỰ ĐỘNG =================
+        let currentSlideIndex = 0;
+        let bannerTimer = null;
+
+        function initBannerSlider() {
+            renderBannerDots();
+            showBannerSlide(0);
+            startBannerTimer();
         }
 
         function renderBannerDots() {
-            const dotsContainer = document.getElementById('bannerDots');
-            dotsContainer.innerHTML = '';
-            for(let i=0; i<bannerDataList.length; i++) {
-                dotsContainer.innerHTML += `<div class="dot ${i===0 ? 'active' : ''}" onclick="goToSlide(${i})"></div>`;
-            }
+            const dotsEl = document.getElementById('bannerDots');
+            dotsEl.innerHTML = BOOKS_DATA.map((b, i) => `
+                <button onclick="goToSlide(${i})" id="bDot_${i}" class="h-2 rounded-full transition-all duration-300 cursor-pointer ${i === 0 ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300 hover:bg-slate-400'}" title="${b.title}"></button>
+            `).join('');
         }
 
-        function changeBanner(index) {
-            if(bannerDataList.length === 0) return;
-            const banner = document.getElementById('mainBanner');
-            const data = bannerDataList[index];
-            
-            banner.className = `banner-slider flex items-center justify-between transition-all duration-500 ${data.bgClass}`;
-            document.getElementById('bannerLabel').className = `text-sm font-bold mb-3 uppercase tracking-wider ${data.textClass}`;
-            document.getElementById('bannerTitle').innerHTML = data.title;
-            // Xử lý chuỗi an toàn
-            let formattedDesc = data.desc;
-            if(formattedDesc && !formattedDesc.startsWith('"')) formattedDesc = '"' + formattedDesc + '"';
-            document.getElementById('bannerDesc').innerHTML = formattedDesc;
-            
-            document.getElementById('bannerIcon').className = `fas fa-pen-nib mr-2 ${data.textClass}`;
-            document.getElementById('bannerBigIcon').className = `fas ${data.icon} ${data.accentClass} opacity-20 transform hover:scale-110 transition-transform duration-500`;
+        function showBannerSlide(index) {
+            if (BOOKS_DATA.length === 0) return;
+            currentSlideIndex = (index + BOOKS_DATA.length) % BOOKS_DATA.length;
+            const book = BOOKS_DATA[currentSlideIndex];
+            const t = THEME_STYLES[book.theme] || THEME_STYLES.emerald;
 
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots.forEach(dot => dot.style.backgroundColor = 'rgba(200,200,200,0.8)'); 
-            
-            if(dots[index]) {
-                dots[index].classList.add('active');
-                if(data.theme === 'green') dots[index].style.backgroundColor = 'var(--primary-green)';
-                else if(data.theme === 'blue') dots[index].style.backgroundColor = 'var(--primary-blue)';
-                else if(data.theme === 'purple') dots[index].style.backgroundColor = 'var(--primary-purple)';
-                else if(data.theme === 'red') dots[index].style.backgroundColor = '#ef4444';
-                else if(data.theme === 'orange') dots[index].style.backgroundColor = '#f97316';
-                else if(data.theme === 'teal') dots[index].style.backgroundColor = 'var(--primary-teal)';
-            }
-        }
+            const hero = document.getElementById('heroBanner');
+            hero.className = `relative rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm mb-8 transition-all duration-500 bg-gradient-to-r ${t.bannerBg}`;
 
-        function goToSlide(index) {
-            currentSlide = index;
-            changeBanner(index);
-            resetAutoSlide();
+            document.getElementById('bannerTag').className = `inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-white shadow-xs mb-3 ${t.accentText}`;
+            document.getElementById('bannerTag').innerHTML = `<span class="w-2 h-2 rounded-full bg-current animate-ping"></span> Chuyên Đề #${currentSlideIndex + 1}/${BOOKS_DATA.length} • Bộ ${book.vols.length} Quyển`;
+            
+            document.getElementById('bannerTitle').textContent = book.title;
+            document.getElementById('bannerDesc').textContent = `"${book.desc}"`;
+            document.getElementById('bannerIcon').className = `fas ${book.icon} text-7xl ${t.accentText} opacity-85 transition-transform duration-500 hover:scale-110`;
+            
+            const actionBtn = document.getElementById('bannerActionBtn');
+            actionBtn.onclick = () => scrollToBook(book.id);
+
+            // Cập nhật trạng thái chấm tròn (dots)
+            BOOKS_DATA.forEach((b, i) => {
+                const d = document.getElementById(`bDot_${i}`);
+                if (d) {
+                    d.className = i === currentSlideIndex 
+                        ? `h-2 rounded-full transition-all duration-300 cursor-pointer ${t.dotActive}`
+                        : `h-2 w-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-300 hover:bg-slate-400`;
+                }
+            });
         }
 
         function nextSlide() {
-            if(bannerDataList.length <= 1) return;
-            currentSlide = (currentSlide + 1) % bannerDataList.length;
-            changeBanner(currentSlide);
+            showBannerSlide(currentSlideIndex + 1);
+            resetBannerTimer();
         }
 
-        function startAutoSlide() {
-            if(bannerDataList.length > 1) {
-                slideInterval = setInterval(nextSlide, 5000); 
+        function prevSlide() {
+            showBannerSlide(currentSlideIndex - 1);
+            resetBannerTimer();
+        }
+
+        function goToSlide(idx) {
+            showBannerSlide(idx);
+            resetBannerTimer();
+        }
+
+        function startBannerTimer() {
+            if (bannerTimer) clearInterval(bannerTimer);
+            if (BOOKS_DATA.length > 1) {
+                bannerTimer = setInterval(() => {
+                    showBannerSlide(currentSlideIndex + 1);
+                }, 4500);
             }
         }
 
-        function resetAutoSlide() {
-            clearInterval(slideInterval);
-            startAutoSlide();
+        function resetBannerTimer() {
+            clearInterval(bannerTimer);
+            startBannerTimer();
         }
 
-        window.onload = function() {
-            loadBannersFromBooks();
-        };
+        // ================= CÁC HÀM TƯƠNG TÁC GIAO DIỆN =================
+        function scrollToBook(bookId) {
+            const el = document.getElementById(bookId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                // Nếu đang lọc tìm kiếm mà ẩn mất sách đó, xóa bộ lọc rồi cuộn tới
+                clearSearch();
+                setTimeout(() => {
+                    const target = document.getElementById(bookId);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
 
+        function scrollBottomCarousel(offset) {
+            const c = document.getElementById('bottomCarousel');
+            if (c) c.scrollBy({ left: offset, behavior: 'smooth' });
+        }
 
-        // --- CÁC HÀM XỬ LÝ CHỨC NĂNG ADMIN & ĐĂNG NHẬP ---
-        function openLoginModal() {
+        function toggleSidebar() {
+            const overlay = document.getElementById('sidebarOverlay');
+            const drawer = document.getElementById('sidebarDrawer');
+            const isHidden = drawer.classList.contains('-translate-x-full');
+            if (isHidden) {
+                overlay.classList.remove('hidden');
+                drawer.classList.remove('-translate-x-full');
+            } else {
+                overlay.classList.add('hidden');
+                drawer.classList.add('-translate-x-full');
+            }
+        }
+
+        function handleSearch(val) {
+            const clearBtn = document.getElementById('clearSearchBtn');
+            if (val.trim().length > 0) clearBtn.classList.remove('hidden');
+            else clearBtn.classList.add('hidden');
+            renderAllUI(val);
+        }
+
+        function clearSearch() {
+            const inp = document.getElementById('searchInput');
+            inp.value = "";
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            renderAllUI("");
+        }
+
+        function showToast(message, isSuccess = true) {
+            const existing = document.getElementById('appToast');
+            if (existing) existing.remove();
+
+            const toast = document.createElement('div');
+            toast.id = 'appToast';
+            toast.className = `fixed bottom-5 right-5 z-50 px-5 py-3.5 rounded-xl shadow-2xl text-white text-sm font-bold flex items-center gap-2.5 transition-all duration-300 ${isSuccess ? 'bg-emerald-600' : 'bg-red-600'}`;
+            toast.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'} text-lg"></i> <span>${message}</span>`;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3200);
+        }
+
+        // ================= HỆ THỐNG QUẢN TRỊ VIÊN (ADMIN) =================
+        function openAdminAuth() {
             document.getElementById('loginModal').classList.remove('hidden');
             document.getElementById('loginModal').classList.add('flex');
-            document.getElementById('admin_user').focus();
+            document.getElementById('loginUser').focus();
         }
 
-        function checkAdminLogin() {
-            const u = document.getElementById('admin_user').value;
-            const p = document.getElementById('admin_pass').value;
-            
-            if (u === 'admin' && p === 'codeplus') { 
-                document.getElementById('loginModal').classList.add('hidden');
-                document.getElementById('loginModal').classList.remove('flex');
-                
-                document.getElementById('adminModal').classList.remove('hidden');
-                document.getElementById('adminModal').classList.add('flex');
-                
-                document.getElementById('admin_user').value = '';
-                document.getElementById('admin_pass').value = '';
-                
-                showToast('Đăng nhập quản trị thành công!', true);
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('loginModal').classList.remove('flex');
+        }
+
+        function handleAdminLogin() {
+            const u = document.getElementById('loginUser').value.trim();
+            const p = document.getElementById('loginPass').value.trim();
+            if (u === 'admin' && p === 'codeplus') {
+                closeLoginModal();
+                document.getElementById('loginUser').value = '';
+                document.getElementById('loginPass').value = '';
+                openAdminPanel();
+                showToast('Đăng nhập Quản trị viên thành công!', true);
             } else {
                 showToast('Sai tài khoản hoặc mật khẩu!', false);
             }
         }
-        
-        // Luôn chạy dòng này khi JS tải để vẽ Form
-        generateBookInputs();
 
-        function generateBookInputs() {
-            const count = parseInt(document.getElementById('admin_count').value);
-            const container = document.getElementById('dynamic_book_inputs');
-            container.innerHTML = ''; 
+        function openAdminPanel() {
+            renderAdminVolumeInputs();
+            renderAdminExistingList();
+            document.getElementById('adminPanelModal').classList.remove('hidden');
+            document.getElementById('adminPanelModal').classList.add('flex');
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanelModal').classList.add('hidden');
+            document.getElementById('adminPanelModal').classList.remove('flex');
+        }
+
+        function renderAdminVolumeInputs() {
+            const count = parseInt(document.getElementById('admCount').value) || 3;
+            const container = document.getElementById('admVolumesList');
+            const defaultNames = ["TẬP 1: LÝ THUYẾT", "TẬP 2: BÀI TẬP", "TẬP 3: HƯỚNG DẪN GIẢI", "TẬP 4: CHUYÊN ĐỀ MỞ RỘNG", "TẬP 5: ĐỀ THI THỰC CHIẾN", "TẬP 6: TỔNG HỢP"];
             
-            for(let i=1; i<=count; i++) {
-                container.innerHTML += `
-                    <div class="mb-5 pb-5 border-b border-slate-200 last:border-0 last:pb-0 last:mb-0">
-                        <p class="font-bold text-slate-800 mb-3"><i class="fas fa-book mr-2 text-slate-400"></i>Quyển thứ ${i}</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="md:col-span-1">
-                                <input type="text" id="admin_b_title_${i}" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Tiêu đề (VD: Tập 1: Lý Thuyết)">
-                            </div>
-                            <div class="md:col-span-2">
-                                <input type="text" id="admin_b_link_${i}" class="w-full px-3 py-2 border text-sm rounded focus:outline-none focus:ring-1 focus:ring-green-500" placeholder="Link Google Drive (https://drive.google.com/file/d/.../view)">
-                            </div>
+            let html = '';
+            for (let i = 1; i <= count; i++) {
+                html += `
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pb-3 border-b border-slate-100 last:border-0 last:pb-0">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 mb-1">Tên hiển thị Quyển ${i}</label>
+                            <input type="text" id="admVolName_${i}" value="${defaultNames[i-1] || `TẬP ${i}`}" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-[11px] font-bold text-slate-600 mb-1">Link Google Drive PDF Quyển ${i} (Để trống nếu đang biên soạn)</label>
+                            <input type="text" id="admVolLink_${i}" placeholder="https://drive.google.com/file/d/.../view?usp=sharing" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500">
                         </div>
                     </div>
                 `;
             }
+            container.innerHTML = html;
         }
 
-        function processDriveLink(link) {
-            if(!link) return '';
-            let newLink = link.trim();
-            newLink = newLink.replace('/view?usp=sharing', '/preview');
-            newLink = newLink.replace('/view', '/preview');
-            return newLink;
+        // Chuẩn hóa mọi dạng link Google Drive về dạng /preview nhúng được
+        function normalizeDriveLink(rawLink) {
+            if (!rawLink) return "";
+            let link = rawLink.trim();
+            const match = link.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) {
+                return `https://drive.google.com/file/d/${match[1]}/preview`;
+            }
+            return link;
         }
 
-        // Tạo hàm bọc escape chuỗi HTML để tránh lỗi khi gán data-desc
-        function escapeHtml(unsafe) {
-            if (!unsafe) return "";
-            return unsafe
-                 .replace(/&/g, "&amp;")
-                 .replace(/</g, "&lt;")
-                 .replace(/>/g, "&gt;")
-                 .replace(/"/g, "&quot;")
-                 .replace(/'/g, "&#039;");
-        }
+        function addNewBookFromAdmin() {
+            const title = document.getElementById('admTitle').value.trim().toUpperCase();
+            if (!title) {
+                showToast('Vui lòng nhập Tên Bộ Sách / Chuyên Đề!', false);
+                document.getElementById('admTitle').focus();
+                return;
+            }
+            const desc = document.getElementById('admDesc').value.trim() || `Tuyển tập chuyên khảo ${title} bồi dưỡng học sinh giỏi Tin học.`;
+            const theme = document.getElementById('admTheme').value;
+            const icon = document.getElementById('admIcon').value;
+            const count = parseInt(document.getElementById('admCount').value) || 3;
 
-        function previewAndAddBook() {
-            const title = document.getElementById('admin_title').value.trim() || 'COMBO SÁCH MỚI';
-            const descRaw = document.getElementById('admin_desc').value.trim() || 'Tuyển tập sách mới nhất của tác giả Lê Thành Nam.';
-            const desc = escapeHtml(descRaw); // Escape để chống lỗi ngoặc kép
-            
-            const theme = document.getElementById('admin_theme').value;
-            const icon = document.getElementById('admin_icon').value;
-            const count = parseInt(document.getElementById('admin_count').value);
-            
-            let gridClass = 'grid-cols-1 md:grid-cols-3';
-            if(count === 1) gridClass = 'grid-cols-1 max-w-md mx-auto';
-            else if(count === 2) gridClass = 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto';
-            else if(count === 3) gridClass = 'grid-cols-1 md:grid-cols-3';
-            else if(count === 4) gridClass = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4';
-            else gridClass = 'grid-cols-1 md:grid-cols-3 lg:grid-cols-4';
-
-            let booksHtml = '';
-            for(let i=1; i<=count; i++) {
-                const bTitle = document.getElementById(`admin_b_title_${i}`).value.trim() || `TẬP ${i}`;
-                const bLink = processDriveLink(document.getElementById(`admin_b_link_${i}`).value);
-                
-                booksHtml += `
-                    <div class="book-col">
-                        <div class="book-vol-badge ${theme === 'green' ? '' : theme}">
-                            <i class="fas fa-book-open"></i> ${bTitle}
-                        </div>
-                        <div class="preview-wrapper">
-                            <iframe src="${bLink}"></iframe>
-                        </div>
-                        <div class="text-center w-full">
-                            <button class="buy-btn ${theme === 'green' ? '' : theme} text-white rounded text-base font-bold shadow-md" onclick="showToast('Đang chuyển đến trang đặt hàng...')"><i class="fas fa-shopping-cart mr-2"></i> Mua ngay</button>
-                        </div>
-                    </div>
-                `;
+            const vols = [];
+            for (let i = 1; i <= count; i++) {
+                const vName = document.getElementById(`admVolName_${i}`).value.trim() || `TẬP ${i}`;
+                const vLink = normalizeDriveLink(document.getElementById(`admVolLink_${i}`).value);
+                vols.push({ name: vName, link: vLink });
             }
 
-            const newBookId = 'book-' + Math.floor(Math.random() * 10000);
+            const newBookObj = {
+                id: 'book-' + Date.now(),
+                title: title,
+                desc: desc,
+                theme: theme,
+                icon: icon,
+                vols: vols
+            };
 
-            // Bọc chuỗi mô tả vào thuộc tính data-desc để loadBannersFromBooks nhận diện
-            const newBlockHtml = `
-                <!-- ================= SÁCH MỚI (TỪ ADMIN) ================= -->
-                <div class="book-block" id="${newBookId}" data-title="${title}" data-desc="${desc}" data-theme="${theme}" data-icon="${icon}">
-                    <div class="section-header">
-                        <div class="section-title ${theme === 'green' ? '' : theme + '-theme'}">ĐỌC THỬ BỘ SÁCH ${title}</div>
-                    </div>
-                    <div class="books-container grid ${gridClass} gap-10 md:gap-8">
-                        ${booksHtml}
-                    </div>
-                </div>
-            `;
+            // Đẩy lên đầu mảng dữ liệu
+            BOOKS_DATA.unshift(newBookObj);
 
-            const allBooksContainer = document.getElementById('all-books-container');
-            allBooksContainer.insertAdjacentHTML('afterbegin', newBlockHtml);
-            
-            // Tái chạy hàm để thu thập banner slide mới
-            loadBannersFromBooks();
+            // Render lại toàn trang và cập nhật danh sách trong Admin
+            renderAllUI();
+            initBannerSlider();
+            renderAdminExistingList();
 
-            const exploreGrid = document.getElementById('bookGrid');
-            const newExploreCard = `
-                <div class="book-card" onclick="document.getElementById('${newBookId}').scrollIntoView({ behavior: 'smooth', block: 'start' });">
-                    <div class="discount-badge">-15%</div>
-                    <div class="book-image-placeholder"><i class="fas ${icon}"></i></div>
-                    <div class="book-title">Combo ${title}</div>
-                </div>
-            `;
-            exploreGrid.insertAdjacentHTML('afterbegin', newExploreCard);
-            
-            document.getElementById('adminModal').classList.add('hidden');
-            document.getElementById('adminModal').classList.remove('flex');
-            window.scrollTo({ top: 300, behavior: 'smooth' });
-            showToast('Đã thêm sách mới và cập nhật Slider thành công!', true);
+            // Reset form
+            document.getElementById('admTitle').value = '';
+            document.getElementById('admDesc').value = '';
+            renderAdminVolumeInputs();
+
+            showToast(`Đã thêm "${title}" (${count} quyển) lên đầu trang! Hãy bấm "Lưu & Tải File" để cập nhật GitHub.`, true);
         }
 
-        // TẢI XUỐNG BẢN HTML SẠCH - KHÔNG LỖI QUOTE
-        function downloadUpdatedHTML() {
-            document.getElementById('adminModal').classList.add('hidden');
-            document.getElementById('adminModal').classList.remove('flex');
-            
-            // Lấy toàn bộ HTML của DOM hiện tại
-            let htmlContent = document.documentElement.outerHTML;
-            htmlContent = '<!DOCTYPE html>
-' + htmlContent;
+        function renderAdminExistingList() {
+            document.getElementById('admCurrentCount').textContent = BOOKS_DATA.length;
+            const listEl = document.getElementById('admExistingBooksList');
+            listEl.innerHTML = BOOKS_DATA.map((b, idx) => `
+                <div class="p-3 flex items-center justify-between gap-3 hover:bg-slate-50">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0">${idx + 1}</span>
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-slate-800 truncate">${b.title}</p>
+                            <p class="text-[11px] text-slate-500">${b.vols.length} quyển • Chủ đề màu: ${b.theme}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                        ${idx > 0 ? `
+                            <button onclick="moveBookToTop(${idx})" class="px-2.5 py-1 rounded bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white text-xs font-bold transition cursor-pointer" title="Đẩy lên vị trí số 1">
+                                <i class="fas fa-arrow-up"></i> Lên đầu
+                            </button>
+                        ` : `<span class="text-[10px] font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">Top 1</span>`}
+                        <button onclick="deleteBookAt(${idx})" class="px-2.5 py-1 rounded bg-red-50 hover:bg-red-600 text-red-600 hover:text-white text-xs font-bold transition cursor-pointer" title="Xóa bộ sách này">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-            const blob = new Blob([htmlContent], {type: "text/html;charset=utf-8"});
+        function moveBookToTop(index) {
+            if (index <= 0 || index >= BOOKS_DATA.length) return;
+            const [item] = BOOKS_DATA.splice(index, 1);
+            BOOKS_DATA.unshift(item);
+            renderAllUI();
+            initBannerSlider();
+            renderAdminExistingList();
+            showToast(`Đã đưa "${item.title}" lên vị trí đầu trang!`, true);
+        }
+
+        function deleteBookAt(index) {
+            const target = BOOKS_DATA[index];
+            if (!target) return;
+            if (confirm(`Bạn có chắc chắn muốn xóa bộ sách "${target.title}" khỏi danh sách?`)) {
+                BOOKS_DATA.splice(index, 1);
+                renderAllUI();
+                initBannerSlider();
+                renderAdminExistingList();
+                showToast(`Đã xóa bộ sách "${target.title}".`, true);
+            }
+        }
+
+        // ================= HÀM XUẤT FILE HTML SẠCH (KHÔNG LỖI DOM) =================
+        function exportCleanHTML() {
+            closeAdminPanel();
+            clearSearch();
+
+            // Đóng gói mảng BOOKS_DATA hiện tại thành chuỗi JSON đẹp, chuẩn xác
+            const serializedData = "let BOOKS_DATA = " + JSON.stringify(BOOKS_DATA, null, 4) + ";";
+
+            // Lấy toàn bộ mã nguồn trang hiện tại và thay thế đúng vùng dữ liệu BOOKS_DATA
+            let fullHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const regex = /\/\*__BOOKS_DATA_START__\*\/[\s\S]*?\/\*__BOOKS_DATA_END__\*\//;
+            const replacement = `/*__BOOKS_DATA_START__*/\n        ${serializedData}\n        /*__BOOKS_DATA_END__*/`;
+
+            fullHTML = fullHTML.replace(regex, replacement);
+
+            // Tạo file tải xuống
+            const blob = new Blob([fullHTML], { type: "text/html;charset=utf-8" });
             const url = URL.createObjectURL(blob);
-            
             const a = document.createElement("a");
             a.href = url;
             a.download = "index.html";
             document.body.appendChild(a);
             a.click();
-            
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            
-            showToast('Đã tải xuống file index.html! Hãy upload lên GitHub của bạn.', true);
+
+            showToast("Đã tải xuống file index.html mới! Hãy upload đè lên GitHub.", true);
         }
+
+        // Khởi chạy khi mở trang
+        window.addEventListener('DOMContentLoaded', () => {
+            renderAllUI();
+            initBannerSlider();
+        });
     </script>
 </body>
 </html>
