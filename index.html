@@ -257,18 +257,18 @@
         <div class="content-area">
             
             <!-- Banner Slider Chung (Dành cho việc tự động thêm slide) -->
-            <div class="banner-slider flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-green-50 to-emerald-100 banner-content-wrapper" id="mainBanner">
+            <div class="banner-slider flex items-center justify-between transition-all duration-500 bg-gradient-to-r from-red-50 to-rose-100 banner-content-wrapper" id="mainBanner">
                 <div class="max-w-lg w-full">
-                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-green-600" id="bannerLabel">Chuyên đề bồi dưỡng HSG</div>
-                    <h1 class="banner-title text-slate-900" id="bannerTitle">LCA (TỔ TIÊN CHUNG)<br/><span class="text-green-700">SÁCH MỚI CẬP NHẬT</span></h1>
-                    <p class="banner-desc" id="bannerDesc">"Làm chủ thuật toán tìm tổ tiên chung gần nhất và tối ưu hóa các bài toán trên cây."</p>
-                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-green-100 mb-4 md:mb-0">
-                        <i class="fas fa-pen-nib mr-2 text-green-600" id="bannerIcon"></i>
+                    <div class="text-xs md:text-sm font-bold mb-3 uppercase tracking-wider text-red-600" id="bannerLabel">Chuyên đề bồi dưỡng HSG</div>
+                    <h1 class="banner-title text-slate-900" id="bannerTitle">CHUYÊN ĐỀ LHD<br/><span class="text-red-700">SÁCH MỚI CẬP NHẬT</span></h1>
+                    <p class="banner-desc" id="bannerDesc">"Khám phá trọn bộ tài liệu LHD từ cơ bản đến nâng cao dành cho Lập trình thi đấu."</p>
+                    <div class="inline-flex items-center px-3 md:px-4 py-1.5 md:py-2 bg-white rounded-full shadow-sm border border-red-100 mb-4 md:mb-0">
+                        <i class="fas fa-pen-nib mr-2 text-red-600" id="bannerIcon"></i>
                         <span class="font-bold text-slate-800 text-sm md:text-base">Tác giả: Lê Thành Nam</span>
                     </div>
                 </div>
                 <div class="banner-icon-bg">
-                    <i class="fas fa-network-wired text-green-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
+                    <i class="fas fa-book-open text-red-700 opacity-20 transform hover:scale-110 transition-transform duration-500" style="font-size: 8rem;" id="bannerBigIcon"></i>
                 </div>
                 <div class="slider-dots" id="bannerDots">
                     <!-- Dots will be populated by JS -->
@@ -277,6 +277,31 @@
 
             <!-- Nơi chứa toàn bộ Khối Sách -->
             <div id="all-books-container">
+
+                <!-- ================= SÁCH MỚI: LHD ================= -->
+                <div class="book-block" id="book-lhd" data-title="CHUYÊN ĐỀ LHD" data-desc="Khám phá trọn bộ tài liệu LHD từ cơ bản đến nâng cao dành cho Lập trình thi đấu." data-theme="red" data-icon="fa-book-open">
+                    <div class="section-header">
+                        <div class="section-title red-theme">ĐỌC THỬ BỘ SÁCH CHUYÊN ĐỀ LHD</div>
+                    </div>
+                    <div class="books-container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+                        <div class="book-col">
+                            <div class="book-vol-badge red"><i class="fas fa-book-open"></i> TẬP 1: LÝ THUYẾT</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1mKlf-IROkhQihL0MJ_EVMFa4TNr9bPqA/preview"></iframe></div>
+                            <button class="buy-btn red text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 1', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 1</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge red"><i class="fas fa-tasks"></i> TẬP 2: BÀI TẬP</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/10BdZyFdbHgL4y0QEvysGjwuxReW1mLhg/preview"></iframe></div>
+                            <button class="buy-btn red text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 2', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 2</button>
+                        </div>
+                        <div class="book-col">
+                            <div class="book-vol-badge red"><i class="fas fa-lightbulb"></i> TẬP 3: HƯỚNG DẪN GIẢI</div>
+                            <div class="preview-wrapper"><iframe src="https://drive.google.com/file/d/1mV_-w1L1T7zDf5O6CzcGxQAFcvN3E2i-/preview"></iframe></div>
+                            <button class="buy-btn red text-white rounded font-bold shadow-md" onclick="showToast('Thêm vào giỏ hàng: Tập 3', true)"><i class="fas fa-cart-plus mr-2"></i> Mua ngay Tập 3</button>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- ================= SÁCH MỚI: LCA ================= -->
                 <div class="book-block" id="book-lca" data-title="LCA (TỔ TIÊN CHUNG GẦN NHẤT)" data-desc="Làm chủ thuật toán tìm tổ tiên chung gần nhất và tối ưu hóa các bài toán trên cây." data-theme="green" data-icon="fa-network-wired">
@@ -578,6 +603,12 @@
                     <button class="grid-arrow right" onclick="scrollGrid(320)"><i class="fas fa-chevron-right"></i></button>
                     
                     <div class="book-grid-scroll" id="bookGrid">
+
+                        <div class="book-card" onclick="document.getElementById('book-lhd').scrollIntoView({ behavior: 'smooth', block: 'start' });">
+                            <div class="discount-badge">-15%</div>
+                            <div class="book-image-placeholder"><i class="fas fa-book-open"></i></div>
+                            <div class="book-title">Combo Chuyên Đề LHD</div>
+                        </div>
 
                         <div class="book-card" onclick="document.getElementById('book-lca').scrollIntoView({ behavior: 'smooth', block: 'start' });">
                             <div class="discount-badge">-15%</div>
