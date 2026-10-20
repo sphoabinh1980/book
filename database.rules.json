@@ -1,0 +1,59 @@
+{
+  "rules": {
+    ".read": "auth != null && auth.uid === 'I7hRhfqXnXS45gqDMK58hNQGqS73'",
+    ".write": false,
+
+    "c": {
+      "visits": { ".write": true, ".validate": "newData.isNumber() && newData.val() === (data.exists() ? data.val() : 0) + 1" },
+      "day": {
+        "$d": {
+          ".validate": "$d.matches(/^20[0-9][0-9]-[01][0-9]-[0-3][0-9]$/)",
+          "$k": {
+            ".write": "$k === 'visits' || $k === 'newVisitors' || $k === 'reads' || $k === 'full'",
+            ".validate": "newData.isNumber() && newData.val() === (data.exists() ? data.val() : 0) + 1"
+          }
+        }
+      },
+      "vol": {
+        "$v": {
+          ".validate": "$v.matches(/^[A-Za-z0-9_-]{1,60}$/)",
+          "reads": { ".write": true, ".validate": "newData.isNumber() && newData.val() === (data.exists() ? data.val() : 0) + 1" },
+          "full":  { ".write": true, ".validate": "newData.isNumber() && newData.val() === (data.exists() ? data.val() : 0) + 1" },
+          "sec":   { ".write": true, ".validate": "newData.isNumber() && newData.val() === (data.exists() ? data.val() : 0) + 15" },
+          "$other": { ".validate": false }
+        }
+      },
+      "landing": {
+        "$b": {
+          ".write": "$b.matches(/^[A-Za-z0-9_-]{1,60}$/)",
+          ".validate": "newData.isNumber() && newData.val() === (data.exists() ? data.val() : 0) + 1"
+        }
+      },
+      "$other": { ".validate": false }
+    },
+
+    "u": {
+      "visitors": {
+        "$id": { ".write": "!data.exists() && $id.matches(/^[a-z0-9]{20}$/)", ".validate": "newData.val() === true" }
+      },
+      "day": {
+        "$d": {
+          "$id": { ".write": "!data.exists() && $d.matches(/^20[0-9][0-9]-[01][0-9]-[0-3][0-9]$/) && $id.matches(/^[a-z0-9]{20}$/)", ".validate": "newData.val() === true" }
+        }
+      },
+      "readers": {
+        "$v": {
+          "$id": { ".write": "!data.exists() && $v.matches(/^[A-Za-z0-9_-]{1,60}$/) && $id.matches(/^[a-z0-9]{20}$/)", ".validate": "newData.val() === true" }
+        }
+      },
+      "$other": { ".validate": false }
+    },
+
+    "presence": {
+      "$sid": {
+        ".write": "$sid.matches(/^[a-z0-9]{20}$/) && (!newData.exists() || !data.exists())",
+        ".validate": "newData.isNumber() && newData.val() <= now + 60000"
+      }
+    }
+  }
+}
