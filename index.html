@@ -93,7 +93,7 @@
             <div class="hidden md:flex items-center gap-3 text-sm font-medium">
                 <div class="bg-emerald-700/70 px-3 py-1.5 rounded-lg flex items-center gap-2">
                     <i class="fas fa-book text-emerald-200"></i>
-                    <span id="totalBooksBadge">22 Bộ (65 Tập)</span>
+                    <span id="totalBooksBadge">23 Bộ (68 Tập)</span>
                 </div>
                 <button onclick="toggleSidebar()" class="bg-white text-emerald-700 hover:bg-emerald-50 font-bold px-3.5 py-1.5 rounded-lg shadow-sm transition flex items-center gap-2 cursor-pointer">
                     <i class="fas fa-list-ul"></i> Mục lục đầy đủ
@@ -138,11 +138,11 @@
         <section id="heroBanner" class="relative rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm mb-8 transition-all duration-500 bg-gradient-to-r from-purple-50 via-fuchsia-50 to-slate-100">
             <div class="p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div class="max-w-2xl z-10">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-white shadow-xs mb-3 text-purple-600" id="bannerTag"><span class="w-2 h-2 rounded-full bg-current animate-ping"></span> Chuyên Đề #1/22 • Bộ 3 Quyển</div>
-                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-3" id="bannerTitle">CHIA ĐỂ TRỊ (DIVIDE AND CONQUER)</h1>
-                    <p class="text-slate-600 text-sm sm:text-base italic mb-5 leading-relaxed" id="bannerDesc">"Phân tách bài toán lớn thành các bài toán con độc lập – Chìa khóa tối ưu hóa đệ quy và xử lý dữ liệu lớn."</p>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-white shadow-xs mb-3 text-purple-600" id="bannerTag"><span class="w-2 h-2 rounded-full bg-current animate-ping"></span> Chuyên Đề #1/23 • Bộ 3 Quyển</div>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-3" id="bannerTitle">ĐỆ QUY – QUAY LUI – NHÁNH CẬN</h1>
+                    <p class="text-slate-600 text-sm sm:text-base italic mb-5 leading-relaxed" id="bannerDesc">"Duyệt toàn bộ cấu hình một cách có hệ thống, cắt tỉa nhánh vô ích – Nền móng của mọi kĩ thuật tìm kiếm và tối ưu."</p>
                     <div class="flex flex-wrap items-center gap-3">
-                        <button id="bannerActionBtn" onclick="scrollToBook('book-chiadetri')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-sm transition flex items-center gap-2 cursor-pointer">
+                        <button id="bannerActionBtn" onclick="scrollToBook('book-dequyquaylui')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-sm transition flex items-center gap-2 cursor-pointer">
                             <i class="fas fa-book-reader"></i> Đọc thử bộ này ngay
                         </button>
                         <div class="inline-flex items-center px-3.5 py-2 bg-white/90 rounded-xl border border-slate-200/80 text-xs sm:text-sm font-semibold text-slate-700">
@@ -178,7 +178,7 @@
                     </h2>
                     <p class="text-xs text-slate-500 mt-0.5">Nhấn vào bất kỳ chuyên đề nào bên dưới để chuyển nhanh tới khu vực đọc thử PDF</p>
                 </div>
-                <span class="text-xs font-bold bg-slate-100 text-slate-700 px-3 py-1 rounded-full self-start sm:self-auto" id="catalogSummaryCount">Đang hiển thị: 22 bộ chuyên đề</span>
+                <span class="text-xs font-bold bg-slate-100 text-slate-700 px-3 py-1 rounded-full self-start sm:self-auto" id="catalogSummaryCount">Đang hiển thị: 23 bộ chuyên đề</span>
             </div>
             <div id="catalogOverviewGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 <!-- JS tự động render thẻ tóm tắt từng đầu sách tại đây -->
@@ -325,6 +325,7 @@
                                 <option value="fa-gem">Viên ngọc (Tham lam / Nổi bật)</option>
                                 <option value="fa-network-wired">Mạng lưới / Cây (LCA / Đồ thị)</option>
                                 <option value="fa-draw-polygon">Đa giác (Hình học / Bao lồi)</option>
+                                <option value="fa-code-branch">Nhánh rẽ (Đệ quy / Quay lui / Nhánh cận)</option>
                                 <option value="fa-sitemap">Sơ đồ phân nhánh (Chia để trị / Centroid / Cây)</option>
                                 <option value="fa-layer-group">Nhiều lớp (Đường quét / Sweep-line)</option>
                                 <option value="fa-balance-scale">Cán cân (Tính chẵn lẻ / Parity)</option>
@@ -365,7 +366,7 @@
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <h3 class="text-sm font-black uppercase tracking-wider text-slate-700 flex items-center gap-2">
-                            <i class="fas fa-list-ol text-emerald-600"></i> 2. Danh Sách Các Đầu Sách Đang Có (<span id="admCurrentCount">22</span> bộ)
+                            <i class="fas fa-list-ol text-emerald-600"></i> 2. Danh Sách Các Đầu Sách Đang Có (<span id="admCurrentCount">23</span> bộ)
                         </h3>
                         <span class="text-xs text-slate-500">Bộ ở vị trí số 1 sẽ xuất hiện đầu tiên trên trang</span>
                     </div>
@@ -388,9 +389,30 @@
 
     <!-- ================= JAVASCRIPT ENGINE (DATA-DRIVEN) ================= -->
     <script id="mainAppScript">
-        // 1. CƠ SỞ DỮ LIỆU TẬP TRUNG (22 ĐẦU SÁCH)
+        // 1. CƠ SỞ DỮ LIỆU TẬP TRUNG (23 ĐẦU SÁCH)
         /*__BOOKS_DATA_START__*/
         let BOOKS_DATA = [
+    {
+        "id": "book-dequyquaylui",
+        "title": "ĐỆ QUY – QUAY LUI – NHÁNH CẬN",
+        "desc": "Duyệt toàn bộ cấu hình một cách có hệ thống, cắt tỉa nhánh vô ích – Nền móng của mọi kĩ thuật tìm kiếm và tối ưu.",
+        "theme": "teal",
+        "icon": "fa-code-branch",
+        "vols": [
+            {
+                "name": "TẬP 1: LÝ THUYẾT",
+                "link": "https://drive.google.com/file/d/16cpNxxpxgcIb5KlGQUpDnx_GKYLZIYoq/preview"
+            },
+            {
+                "name": "TẬP 2: BÀI TẬP",
+                "link": "https://drive.google.com/file/d/1u495QbHUxhFltzZC2OAWAZhd137bxaY3/preview"
+            },
+            {
+                "name": "TẬP 3: HƯỚNG DẪN GIẢI",
+                "link": "https://drive.google.com/file/d/1BGlSgXo4QtlD_WX_yNgLyd58A4NsHjzG/preview"
+            }
+        ]
+    },
     {
         "id": "book-chiadetri",
         "title": "CHIA ĐỂ TRỊ (DIVIDE AND CONQUER)",
