@@ -1,0 +1,65 @@
+name: Render XEPDEU with real Manim
+on:
+  push:
+    branches:
+      - manim-xepdeu-20261022
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    name: Render 1080x1920 30fps
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Manim system libraries and Vietnamese-capable fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ffmpeg pkg-config python3-dev libcairo2-dev libpango1.0-dev \
+            fonts-noto-core fonts-dejavu-core fonts-liberation
+          fc-cache -f
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: manim/requirements.txt
+
+      - name: Install Manim Community
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r manim/requirements.txt
+          python -c "import manim; print('MANIM VERSION:', manim.__version__)"
+
+      - name: Render REAL Manim animation
+        env:
+          NP_PREVIEW: '0'
+          NP_OUT: ${{ github.workspace }}/artifacts
+          PYTHONIOENCODING: utf-8
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          python -m manim --renderer cairo --disable_caching -r 1080,1920 --fps 30 \
+            -o XEPDEU_Manim.mp4 manim/xepdeu_video.py XepDeuVideo 2>&1 | tee artifacts/render.log
+          VIDEO=$(find media -type f -name XEPDEU_Manim.mp4 -print -quit)
+          test -n "$VIDEO"
+          cp "$VIDEO" artifacts/XEPDEU_Manim.mp4
+          ffprobe -v error -select_streams v:0 \
+            -show_entries stream=codec_name,width,height,r_frame_rate \
+            -of default=noprint_wrappers=1 artifacts/XEPDEU_Manim.mp4 \
+            | tee artifacts/video_properties.txt
+          ls -lah artifacts/
+
+      - name: Upload final Manim MP4 + SRT + report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: XEPDEU-MANIM-FULLHD
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 30
